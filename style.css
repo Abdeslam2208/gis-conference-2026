@@ -3911,7 +3911,7 @@ body[data-lang="en"] .en-item {
     box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
-    height: 320px; /* Equal default height for perfect button alignment initially */
+    height: 345px; /* Equal default height for perfect button alignment initially with plenty of breathing room */
 }
 
 .speaker-card-unified.expanded {
