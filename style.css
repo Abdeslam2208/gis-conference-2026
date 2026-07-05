@@ -736,6 +736,12 @@ body[data-lang="en"] .en-item {
     color: var(--accent-gold) !important;
 }
 
+.info-item-gold .info-icon {
+    background: rgba(250, 170, 2, 0.15) !important;
+    border-color: rgba(250, 170, 2, 0.3) !important;
+    color: var(--accent-gold) !important;
+}
+
 .info-divider {
     width: 1px;
     height: 32px;
