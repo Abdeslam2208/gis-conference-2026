@@ -5119,23 +5119,23 @@ body[data-lang="en"] .en-item {
 
 /* --- SUBMISSION GUIDELINES SECTION --- */
 .guidelines-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.8fr;
-    gap: 30px;
-    align-items: stretch;
-    margin-top: 20px;
-}
-
-@media (max-width: 992px) {
-    .guidelines-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.guidelines-left-col {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    margin-top: 20px;
+}
+
+.guidelines-top-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .guidelines-top-row {
+        grid-template-columns: 1fr;
+    }
 }
 
 .guidelines-card {
