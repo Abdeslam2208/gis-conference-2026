@@ -452,13 +452,16 @@
                         <th>Catégorie / Category</th>
                         <th>Type / Participation</th>
                         <th>Frais / Fee</th>
-                        <th>Détails Comm. / Workshop</th>
+                        <th>Titre Comm. / Title</th>
+                        <th>Auteurs / Authors</th>
+                        <th>Atelier / Workshop</th>
+                        <th>Fichier / File</th>
                         <th>Date</th>
                     </tr>
                 </thead>
                 <tbody id="adminTableBody">
                     <tr>
-                        <td colspan="9" class="no-data">Chargement des données...</td>
+                        <td colspan="12" class="no-data">Chargement des données...</td>
                     </tr>
                 </tbody>
             </table>
@@ -524,7 +527,7 @@
 
             function loadSubmissions() {
                 if (GOOGLE_SCRIPT_URL) {
-                    tableBody.innerHTML = `<tr><td colspan="9" class="no-data">Chargement des données en ligne...</td></tr>`;
+                    tableBody.innerHTML = `<tr><td colspan="12" class="no-data">Chargement des données en ligne...</td></tr>`;
                     fetch(GOOGLE_SCRIPT_URL)
                         .then(response => response.json())
                         .then(data => {
@@ -617,7 +620,7 @@
             function renderTable(data) {
                 tableBody.innerHTML = '';
                 if (data.length === 0) {
-                    tableBody.innerHTML = `<tr><td colspan="9" class="no-data">Aucune inscription trouvée / No registrations found</td></tr>`;
+                    tableBody.innerHTML = `<tr><td colspan="12" class="no-data">Aucune inscription trouvée / No registrations found</td></tr>`;
                     return;
                 }
 
@@ -646,42 +649,48 @@
                         typeBadge = `<span class="badge-type badge-attendance">${sub.participationType}</span>`;
                     }
 
-                    // Format details cell
-                    let detailsContent = '';
+                    // Split fields
+                    let commTitle = '-';
+                    let authorsHtml = '-';
+                    let workshopSelection = '-';
+                    let fileLinkHtml = '-';
+
                     if (sub.participationType.includes('Communication')) {
-                        let fileLinkHtml = '';
-                        if (sub.abstractFileBase64 && sub.abstractFileName) {
-                            fileLinkHtml = `<br><strong>Fichier:</strong> <a href="${sub.abstractFileBase64}" download="${sub.abstractFileName}" style="color: #2563eb; text-decoration: underline; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; margin-top: 4px;"><i class="ph ph-download-simple"></i> Télécharger Résumé</a>`;
-                        }
-                        detailsContent += `
-                            <div class="comm-details-pop" style="margin-bottom: 4px;">
-                                <strong>Titre:</strong> ${sub.communicationTitle || '-'}<br>
-                                <strong>Auteur:</strong> ${sub.communicantName || '-'} (${sub.communicantAffiliation || '-'})<br>
-                                <strong>Co-auteurs:</strong> ${sub.coAuthors || 'Aucun'}${fileLinkHtml}
+                        commTitle = sub.communicationTitle || '-';
+                        authorsHtml = `
+                            <div class="comm-details-pop" style="margin-bottom: 0;">
+                                <strong>Auteur:</strong> ${sub.communicantName || '-'}<br>
+                                <span style="font-size: 0.76rem; color: #64748b;">(${sub.communicantAffiliation || '-'})</span><br>
+                                <strong>Co-auteurs:</strong> ${sub.coAuthors || 'Aucun'}
                             </div>
                         `;
+                        if (sub.abstractFileBase64 && sub.abstractFileName) {
+                            fileLinkHtml = `<a href="${sub.abstractFileBase64}" download="${sub.abstractFileName}" class="btn-action" style="padding: 5px 12px; font-size: 0.75rem; background: rgba(37, 99, 235, 0.08); color: #2563eb; border: 1px solid rgba(37, 99, 235, 0.15); border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;"><i class="ph ph-download-simple"></i> DOC/PDF</a>`;
+                        }
                     }
                     if (sub.participationType.includes('Workshops')) {
-                        detailsContent += `<div style="font-size: 0.8rem; color: #0284c7;"><strong>Atelier:</strong> ${sub.workshopSelection || '-'}</div>`;
+                        workshopSelection = `<strong style="color: #0284c7; font-family: monospace;">${sub.workshopSelection || '-'}</strong>`;
                     }
-                    if (!detailsContent) detailsContent = '-';
 
                     row.innerHTML = `
-                        <td style="font-weight: 700; color: var(--accent-gold); font-family: monospace;">${sub.code}</td>
+                        <td style="font-weight: 700; color: #ca8a04; font-family: monospace;">${sub.code}</td>
                         <td><strong>${sub.firstName} ${sub.lastName.toUpperCase()}</strong></td>
                         <td>
                             <div>${sub.email}</div>
-                            <div style="font-size: 0.75rem; color: #94a3b8; font-family: monospace; margin-top: 2px;">${sub.phone || '-'}</div>
+                            <div style="font-size: 0.75rem; color: #64748b; font-family: monospace; margin-top: 2px;">${sub.phone || '-'}</div>
                         </td>
                         <td>
                             <div>${sub.affiliation}</div>
-                            <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">${sub.city || '-'}, ${sub.country || '-'}</div>
+                            <div style="font-size: 0.75rem; color: #64748b; margin-top: 2px;">${sub.city || '-'}, ${sub.country || '-'}</div>
                         </td>
                         <td style="font-size: 0.8rem;">${sub.position}</td>
                         <td>${typeBadge}</td>
                         <td style="font-weight: 700;">${sub.fee}</td>
-                        <td>${detailsContent}</td>
-                        <td style="font-size: 0.78rem; white-space: nowrap; color: #94a3b8;">${formattedDate}</td>
+                        <td style="max-width: 200px; word-wrap: break-word;">${commTitle}</td>
+                        <td>${authorsHtml}</td>
+                        <td>${workshopSelection}</td>
+                        <td>${fileLinkHtml}</td>
+                        <td style="font-size: 0.78rem; white-space: nowrap; color: #64748b;">${formattedDate}</td>
                     `;
                     tableBody.appendChild(row);
                 });

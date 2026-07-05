@@ -679,5 +679,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
+        // --- 9. Keynote Speaker Biography Toggle ---
+        const bioBtns = document.querySelectorAll('.btn-bio');
+        bioBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const bioContainer = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                if (bioContainer) {
+                    const isOpen = bioContainer.classList.toggle('open');
+                    if (isOpen) {
+                        bioContainer.style.maxHeight = bioContainer.scrollHeight + 'px';
+                        if (icon) icon.className = "ph ph-caret-up";
+                        btn.classList.add('active');
+                    } else {
+                        bioContainer.style.maxHeight = '0';
+                        if (icon) icon.className = "ph ph-caret-down";
+                        btn.classList.remove('active');
+                    }
+                }
+            });
+        });
     }
 });

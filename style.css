@@ -4055,6 +4055,54 @@ body[data-lang="en"] .en-item {
     box-shadow: 0 6px 16px rgba(15, 23, 42, 0.18);
 }
 
+/* Speaker Biography Toggle Styles */
+.btn-bio {
+    background: transparent;
+    border: 1.5px solid rgba(202, 138, 4, 0.2) !important;
+    color: #ca8a04 !important;
+    padding: 6px 16px !important;
+    border-radius: 50px !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-bio:hover,
+.btn-bio.active {
+    background: #ca8a04 !important;
+    color: #ffffff !important;
+    border-color: #ca8a04 !important;
+    box-shadow: 0 4px 10px rgba(202, 138, 4, 0.15);
+}
+
+.btn-bio i {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.speaker-bio {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    width: 100%;
+}
+
+.speaker-bio p {
+    font-size: 0.76rem !important;
+    color: #475569 !important;
+    line-height: 1.5;
+    text-align: justify;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(15, 23, 42, 0.08);
+}
+
 @media (max-width: 1200px) {
     .speakers-grid-unified {
         grid-template-columns: repeat(6, 1fr);
