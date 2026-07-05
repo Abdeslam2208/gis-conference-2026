@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-lang="fr">
+<body data-lang="en">
 
     <!-- Top Official Logo Bar -->
     <div id="top-logo-bar" class="official-logo-bar">
@@ -111,12 +111,6 @@
                     <span class="lang-en">Keynote Speakers</span>
                 </a>
 
-                <!-- Link: Submission Guidelines -->
-                <a href="#submission-guidelines">
-                    <span class="lang-fr">Soumission</span>
-                    <span class="lang-en">Submission</span>
-                </a>
-
                 <!-- Dropdown: Registration -->
                 <div class="nav-dropdown">
                     <button class="dropdown-trigger">
@@ -125,9 +119,13 @@
                         <svg class="chevron-icon" viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
                     </button>
                     <div class="dropdown-menu">
+                        <a href="#submission-guidelines">
+                            <span class="lang-fr">Directives de Soumission</span>
+                            <span class="lang-en">Submission Guidelines</span>
+                        </a>
                         <a href="#fees">
-                            <span class="lang-fr">Tarifs & RIB</span>
-                            <span class="lang-en">Fees & Bank RIB</span>
+                            <span class="lang-fr">Tarifs &amp; RIB</span>
+                            <span class="lang-en">Fees &amp; Bank RIB</span>
                         </a>
                         <a href="#registration">
                             <span class="lang-fr">Formulaire d'Inscription</span>
@@ -1190,14 +1188,26 @@
     </section>
 
     <!-- Submission Guidelines Section -->
-    <section id="submission-guidelines" style="background-color: #f8fafc; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 80px 0;">
+    <section id="submission-guidelines" class="section-light-committee" style="border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <div class="text-center" style="margin-bottom: 50px;">
+            <!-- Section Header -->
+            <div class="text-center" style="margin-bottom: 55px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, rgba(250,170,2,0.12), rgba(250,204,21,0.08)); border: 1px solid rgba(250,170,2,0.3); border-radius: 50px; padding: 6px 18px; margin-bottom: 20px;">
+                    <i class="ph ph-file-text" style="color: var(--accent-gold); font-size: 1rem;"></i>
+                    <span style="font-size: 0.78rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px;">
+                        <span class="lang-fr">Directives</span>
+                        <span class="lang-en">Guidelines</span>
+                    </span>
+                </div>
                 <h2 class="section-title">
                     <span class="lang-fr">Directives de Soumission</span>
                     <span class="lang-en">Submission Guidelines</span>
                 </h2>
-                <div style="width: 50px; height: 3px; background: var(--accent-gold); margin: 12px auto 0 auto; border-radius: 2px;"></div>
+                <div style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--accent-gold), #f59e0b); margin: 0 auto 18px auto; border-radius: 2px;"></div>
+                <p class="section-desc" style="max-width: 650px; margin: 0 auto; color: #64748b;">
+                    <span class="lang-fr">Toutes les consignes essentielles pour la préparation, le formatage et la soumission de vos résumés au congrès.</span>
+                    <span class="lang-en">All essential guidelines for preparing, formatting, and submitting your abstracts to the congress.</span>
+                </p>
             </div>
 
             <div class="guidelines-grid">
@@ -1206,37 +1216,53 @@
                     
                     <!-- Card 1: Presentation Formats -->
                     <div class="guidelines-card format-card animate-ready">
-                        <div class="guidelines-icon-box blue-icon">
-                            <i class="ph ph-presentation-chart"></i>
+                        <div class="guidelines-card-header">
+                            <div class="guidelines-icon-box blue-icon">
+                                <i class="ph ph-presentation-chart"></i>
+                            </div>
+                            <h3 class="guidelines-card-title">
+                                <span class="lang-fr">Formats de Présentation</span>
+                                <span class="lang-en">Presentation Formats</span>
+                            </h3>
                         </div>
-                        <h3 class="guidelines-card-title">
-                            <span class="lang-fr">Formats de Présentation</span>
-                            <span class="lang-en">Presentation Formats</span>
-                        </h3>
                         <p class="guidelines-text-en lang-en">In-person oral presentations in <strong>English or French</strong> (15 min).</p>
                         <p class="guidelines-text-fr lang-fr">Présentations orales en personne en <strong>Anglais ou Français</strong> (15 min).</p>
                     </div>
 
                     <!-- Card 2: Evaluation Criteria -->
                     <div class="guidelines-card criteria-card animate-ready">
-                        <h3 class="guidelines-card-title text-white">
-                            <span class="lang-fr">Critères d'Évaluation</span>
-                            <span class="lang-en">Evaluation Criteria</span>
-                        </h3>
-                        <p class="guidelines-text-en text-slate-300 lang-en">Abstracts undergo a double-blind review based on relevance, originality, and methodological rigor.</p>
-                        <p class="guidelines-text-fr text-slate-400 lang-fr">Évaluation par le comité scientifique (double-blind review) selon la pertinence, l'originalité et la rigueur.</p>
+                        <div class="guidelines-card-header">
+                            <div class="guidelines-icon-box gold-icon">
+                                <i class="ph ph-seal-check"></i>
+                            </div>
+                            <h3 class="guidelines-card-title">
+                                <span class="lang-fr">Critères d'Évaluation</span>
+                                <span class="lang-en">Evaluation Criteria</span>
+                            </h3>
+                        </div>
+                        <p class="guidelines-text-en lang-en">Abstracts undergo a double-blind review based on relevance, originality, and methodological rigor.</p>
+                        <p class="guidelines-text-fr lang-fr">Évaluation par le comité scientifique (double-blind review) selon la pertinence, l'originalité et la rigueur.</p>
                         <ul class="criteria-list">
                             <li>
                                 <i class="ph ph-check-circle"></i>
-                                <span>RELEVANCE / PERTINENCE</span>
+                                <span>
+                                    <span class="lang-fr">PERTINENCE</span>
+                                    <span class="lang-en">RELEVANCE</span>
+                                </span>
                             </li>
                             <li>
                                 <i class="ph ph-check-circle"></i>
-                                <span>ORIGINALITY / ORIGINALITÉ</span>
+                                <span>
+                                    <span class="lang-fr">ORIGINALITÉ</span>
+                                    <span class="lang-en">ORIGINALITY</span>
+                                </span>
                             </li>
                             <li>
                                 <i class="ph ph-check-circle"></i>
-                                <span>RIGOR / RIGUEUR</span>
+                                <span>
+                                    <span class="lang-fr">RIGUEUR</span>
+                                    <span class="lang-en">RIGOR</span>
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -1245,10 +1271,15 @@
 
                 <!-- Bottom Row: Submission Procedures (Full Width) -->
                 <div class="guidelines-right-col guidelines-card procedures-card animate-ready" style="width: 100%;">
-                    <h3 class="procedures-title">
-                        <span class="lang-fr">Instructions de Soumission</span>
-                        <span class="lang-en">Submission Procedures</span>
-                    </h3>
+                    <div class="guidelines-card-header procedures-header">
+                        <div class="guidelines-icon-box blue-icon">
+                            <i class="ph ph-list-checks"></i>
+                        </div>
+                        <h3 class="procedures-title">
+                            <span class="lang-fr">Instructions de Soumission</span>
+                            <span class="lang-en">Submission Procedures</span>
+                        </h3>
+                    </div>
 
                     <div class="procedures-timeline">
                         <!-- Step 1 -->
@@ -1493,7 +1524,7 @@
 
     <!-- Online Pre-Registration Form & Calculator (Interactive interface requested) -->
     <section id="registration" class="section-dark-committee" style="border-top: 1px solid rgba(255,255,255,0.08);">
-        <div class="registration-container" id="formContainer" style="display: block; max-width: 700px; margin: 0 auto;">
+        <div class="registration-container" id="formContainer" style="display: block; max-width: 820px; margin: 0 auto;">
             <!-- Section Header Centered -->
             <div style="text-align: center; margin-bottom: 35px;">
                 <h2 class="section-title" style="color: #ffffff !important; font-size: 2.2rem; margin-bottom: 12px; text-align: center;">

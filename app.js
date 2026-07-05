@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const langBtn = document.getElementById('langBtn');
 
-    // Default language is French
-    let currentLang = 'fr';
+    // Default language is English
+    let currentLang = 'en';
 
     const updateLanguageAttributes = (lang) => {
         document.querySelectorAll('[data-fr][data-en]').forEach(el => {
