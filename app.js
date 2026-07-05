@@ -687,18 +687,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 const bioContainer = btn.nextElementSibling;
                 const icon = btn.querySelector('i');
                 const card = btn.closest('.speaker-card-unified');
-                if (bioContainer) {
+                if (bioContainer && card) {
                     const isOpen = bioContainer.classList.toggle('open');
                     if (isOpen) {
-                        bioContainer.style.maxHeight = bioContainer.scrollHeight + 'px';
-                        if (icon) icon.className = "ph ph-caret-up";
+                        // Open State
                         btn.classList.add('active');
-                        if (card) card.classList.add('expanded');
+                        if (icon) icon.className = "ph ph-caret-up";
+                        
+                        // Set bio max-height
+                        bioContainer.style.maxHeight = bioContainer.scrollHeight + 'px';
+                        
+                        // Smoothly transition card height from 345px to expanded height
+                        card.style.height = '345px';
+                        card.offsetHeight; // Force reflow
+                        card.style.height = (345 + bioContainer.scrollHeight) + 'px';
+                        
+                        // After transition completes, set to auto so it stays responsive
+                        setTimeout(() => {
+                            if (bioContainer.classList.contains('open')) {
+                                card.style.height = 'auto';
+                            }
+                        }, 400);
                     } else {
-                        bioContainer.style.maxHeight = '0';
-                        if (icon) icon.className = "ph ph-caret-down";
+                        // Close State
                         btn.classList.remove('active');
-                        if (card) card.classList.remove('expanded');
+                        if (icon) icon.className = "ph ph-caret-down";
+                        
+                        // Force explicit pixel height on card so it can transition
+                        card.style.height = card.offsetHeight + 'px';
+                        card.offsetHeight; // Force reflow
+                        
+                        // Collapse biography text
+                        bioContainer.style.maxHeight = '0';
+                        
+                        // Collapse card back to its default 345px
+                        card.style.height = '345px';
                     }
                 }
             });

@@ -3914,10 +3914,6 @@ body[data-lang="en"] .en-item {
     height: 345px; /* Equal default height for perfect button alignment initially with plenty of breathing room */
 }
 
-.speaker-card-unified.expanded {
-    height: auto !important; /* Expands to fit biography text when opened */
-}
-
 /* Gold Gradient Top Strip Decor */
 .speaker-card-unified::before {
     content: '';
