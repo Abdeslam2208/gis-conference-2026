@@ -1801,13 +1801,13 @@ body[data-lang="en"] .en-item {
 
 @keyframes currencyPulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(250, 170, 2, 0.5);
+        box-shadow: 0 0 0 0 rgba(15, 23, 42, 0.12);
     }
     70% {
-        box-shadow: 0 0 0 8px rgba(250, 170, 2, 0);
+        box-shadow: 0 0 0 8px rgba(15, 23, 42, 0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(250, 170, 2, 0);
+        box-shadow: 0 0 0 0 rgba(15, 23, 42, 0);
     }
 }
 
@@ -1816,23 +1816,26 @@ body[data-lang="en"] .en-item {
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    background: var(--accent-gold) !important;
+    background: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
     color: #01091F !important;
-    border: none !important;
+    border: 1px solid rgba(15, 23, 42, 0.08) !important;
     padding: 6px 14px !important;
     border-radius: 50px !important;
     cursor: pointer;
     font-weight: 700 !important;
     font-size: 0.75rem !important;
     transition: all 0.3s ease !important;
-    box-shadow: 0 4px 10px rgba(250, 170, 2, 0.2);
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.02);
     animation: currencyPulse 2s infinite;
 }
 
 .pricing-currency-switch:hover {
-    background: #ffc83b !important;
+    background: rgba(255, 255, 255, 0.8) !important;
     transform: translateY(-50%) scale(1.05) !important;
-    box-shadow: 0 6px 15px rgba(250, 170, 2, 0.3);
+    border-color: rgba(15, 23, 42, 0.15) !important;
+    box-shadow: 0 6px 15px rgba(15, 23, 42, 0.05);
 }
 
 .pricing-table-wrapper {
