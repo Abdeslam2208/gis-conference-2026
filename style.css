@@ -5237,3 +5237,11 @@ footer {
 #fees .rib-lbl {
     color: #64748b !important;
 }
+
+/* Force all names to be in UPPERCASE/Capitalized globally */
+.speaker-name,
+.honorary-card-name,
+.committee-card-name-avatar,
+.member-name {
+    text-transform: uppercase !important;
+}
