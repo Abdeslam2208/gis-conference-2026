@@ -219,7 +219,7 @@
                     <span class="lang-fr">S'inscrire</span>
                     <span class="lang-en">Register</span>
                 </a>
-                <a href="#overview" class="btn btn-hero-secondary" style="display: inline-flex; align-items: center; gap: 8px;">
+                <a href="#" id="programBtn" class="btn btn-hero-secondary" style="display: inline-flex; align-items: center; gap: 8px;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     <span class="lang-fr">Programme</span>
                     <span class="lang-en">Program</span>
@@ -1734,6 +1734,31 @@
                 <i class="ph ph-copy" style="font-size: 1.1rem; font-weight: bold;"></i>
                 <span class="lang-fr">Copier le RIB (24 chiffres)</span>
                 <span class="lang-en">Copy RIB (24 digits)</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Program Modal -->
+    <div id="programModal" class="rib-lightbox" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(1, 9, 31, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+        <div style="background: rgba(13, 20, 38, 0.95); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 30px; max-width: 450px; width: 90%; text-align: center; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6); transform: scale(0.95); transition: transform 0.3s ease;">
+            <!-- Icon -->
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(250, 170, 2, 0.15); border: 1px solid rgba(250, 170, 2, 0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; color: var(--accent-gold);">
+                <i class="ph ph-calendar" style="font-size: 2rem;"></i>
+            </div>
+            
+            <h3 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 12px; font-weight: 700; font-family: var(--font-heading);">
+                <span class="lang-fr">Programme Bientôt Disponible</span>
+                <span class="lang-en">Program Available Soon</span>
+            </h3>
+            
+            <p style="color: #94a3b8; font-size: 0.98rem; line-height: 1.5; margin-bottom: 25px;">
+                <span class="lang-fr">Le programme détaillé du congrès sera publié très prochainement. Restez connectés !</span>
+                <span class="lang-en">The detailed congress program will be published very soon. Stay tuned!</span>
+            </p>
+            
+            <button id="closeProgramModal" class="btn" style="background: var(--accent-gold); color: #01091F; border: none; padding: 10px 32px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(250,170,2,0.2);">
+                <span class="lang-fr">Fermer</span>
+                <span class="lang-en">Close</span>
             </button>
         </div>
     </div>

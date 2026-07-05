@@ -619,5 +619,50 @@ document.addEventListener('DOMContentLoaded', () => {
                 closeLightbox();
             }
         });
+
+        // --- Program Modal Popup ---
+        const programBtn = document.getElementById('programBtn');
+        const programModal = document.getElementById('programModal');
+        const closeProgramModal = document.getElementById('closeProgramModal');
+
+        if (programBtn && programModal && closeProgramModal) {
+            programBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                programModal.style.display = 'flex';
+                // Trigger transition
+                setTimeout(() => {
+                    programModal.style.opacity = '1';
+                    const innerContent = programModal.querySelector('div');
+                    if (innerContent) {
+                        innerContent.style.transform = 'scale(1)';
+                    }
+                }, 10);
+            });
+
+            const closeBtnAction = () => {
+                programModal.style.opacity = '0';
+                const innerContent = programModal.querySelector('div');
+                if (innerContent) {
+                    innerContent.style.transform = 'scale(0.95)';
+                }
+                setTimeout(() => {
+                    programModal.style.display = 'none';
+                }, 300);
+            };
+
+            closeProgramModal.addEventListener('click', closeBtnAction);
+            programModal.addEventListener('click', (e) => {
+                if (e.target === programModal) {
+                    closeBtnAction();
+                }
+            });
+
+            // Close on Escape key press
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && programModal.style.display === 'flex') {
+                    closeBtnAction();
+                }
+            });
+        }
     }
 });
