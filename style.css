@@ -736,12 +736,6 @@ body[data-lang="en"] .en-item {
     color: var(--accent-gold) !important;
 }
 
-.info-item-gold .info-icon {
-    background: rgba(250, 170, 2, 0.15) !important;
-    border-color: rgba(250, 170, 2, 0.3) !important;
-    color: var(--accent-gold) !important;
-}
-
 .info-divider {
     width: 1px;
     height: 32px;
@@ -772,6 +766,7 @@ body[data-lang="en"] .en-item {
     display: flex;
     flex-direction: column;
     text-align: left;
+    max-width: 260px;
 }
 
 .info-lbl {
@@ -784,10 +779,11 @@ body[data-lang="en"] .en-item {
 }
 
 .info-val {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-weight: 700;
     color: #ffffff;
-    white-space: nowrap;
+    white-space: normal;
+    line-height: 1.35;
 }
 
 @media (max-width: 640px) {
