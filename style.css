@@ -1008,7 +1008,7 @@ body[data-lang="en"] .en-item {
 
 .date-lbl {
     font-size: 0.88rem;
-    color: #ffffff;
+    color: #cbd5e1;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.6px;
@@ -1022,7 +1022,7 @@ body[data-lang="en"] .en-item {
 
 .date-lbl span span {
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
+    color: #94a3b8;
     text-transform: none;
     letter-spacing: 0;
     font-size: 0.80rem;
@@ -1042,8 +1042,7 @@ body[data-lang="en"] .en-item {
 .date-sub {
     font-size: 0.82rem;
     font-weight: 700;
-    color: #ffffff;
-    opacity: 0.9;
+    color: var(--accent-gold);
     text-transform: uppercase;
     letter-spacing: 0.6px;
 }
