@@ -107,9 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
         '.theme-card, .theme-card-official, .keynote-card, .member-item, .committee-avatar-card, .pricing-card, ' +
         '.venue-wrapper, .section-title, .about-card, ' +
         '.speaker-card-unified, .footer-brand, .footer-links, .footer-partners, ' +
-        '.hero-info-bar, .fee-table-container, #formContainer, ' +
+        '.fee-table-container, #formContainer, ' +
         '.venue-details, .venue-map-container, .receipt-view, ' +
-        '.pre-hero-banner, .hero-badge-wrapper, .hero-container h1, .hero-sub, .hero-buttons, ' +
         '.date-col, .about-text, .stat-card'
     );
     animTargets.forEach((target, i) => {
