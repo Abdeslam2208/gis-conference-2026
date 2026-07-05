@@ -5413,4 +5413,107 @@ body[data-lang="en"] .en-item {
     border-left: 1px dashed rgba(37, 99, 235, 0.15);
     padding-left: 20px;
 }
+
+/* Dark theme adjustments for Submission Guidelines */
+#submission-guidelines .section-title {
+    color: #ffffff !important;
+}
+
+#submission-guidelines .guidelines-card {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+#submission-guidelines .guidelines-card:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+#submission-guidelines .format-card {
+    border-left: 5px solid #60a5fa !important; /* Lighter blue for dark mode visibility */
+}
+
+#submission-guidelines .blue-icon {
+    background: rgba(96, 165, 250, 0.15) !important;
+    color: #60a5fa !important;
+}
+
+#submission-guidelines .guidelines-card-title {
+    color: #ffffff !important;
+}
+
+#submission-guidelines .guidelines-text-en {
+    color: #cbd5e1 !important;
+}
+
+#submission-guidelines .guidelines-text-fr {
+    color: #94a3b8 !important;
+}
+
+/* Criteria Card in dark section can be slightly darker for depth */
+#submission-guidelines .criteria-card {
+    background: rgba(15, 23, 42, 0.4) !important;
+}
+
+#submission-guidelines .procedures-title {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+#submission-guidelines .procedures-timeline::before {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+#submission-guidelines .step-number {
+    background: #0f172a !important;
+    border-color: #60a5fa !important;
+    color: #60a5fa !important;
+    box-shadow: 0 4px 10px rgba(96, 165, 250, 0.15);
+}
+
+#submission-guidelines .green-step {
+    border-color: #34d399 !important;
+    color: #34d399 !important;
+    background: #0f172a !important;
+    box-shadow: 0 4px 10px rgba(52, 211, 153, 0.15);
+}
+
+#submission-guidelines .step-title {
+    color: #ffffff !important;
+}
+
+#submission-guidelines .step-title .en-sub,
+#submission-guidelines .step-title .fr-sub {
+    color: #94a3b8 !important;
+}
+
+#submission-guidelines .highlight-text {
+    color: #93c5fd !important; /* Lighter blue highlight for dark mode */
+}
+
+/* Formatting Box in dark mode */
+#submission-guidelines .formatting-box {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+#submission-guidelines .formatting-title {
+    color: #60a5fa !important;
+}
+
+#submission-guidelines .formatting-col p {
+    color: #cbd5e1 !important;
+}
+
+#submission-guidelines .formatting-col.border-left {
+    border-left: 1px dashed rgba(255, 255, 255, 0.08) !important;
+}
+
+#submission-guidelines .criteria-list {
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
 
