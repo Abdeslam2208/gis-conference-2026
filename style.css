@@ -5397,6 +5397,10 @@ body[data-lang="en"] .en-item {
 }
 
 /* Dark theme adjustments for Submission Guidelines */
+#submission-guidelines {
+    background: #020617 !important; /* Deep dark slate background for maximum contrast */
+}
+
 #submission-guidelines .section-title {
     color: #ffffff !important;
 }
