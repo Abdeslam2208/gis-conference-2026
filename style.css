@@ -725,6 +725,17 @@ body[data-lang="en"] .en-item {
     padding: 6px 24px;
 }
 
+.info-item-clickable:hover .info-val {
+    color: var(--accent-gold) !important;
+    border-bottom: 1px solid var(--accent-gold) !important;
+}
+
+.info-item-clickable:hover .info-icon {
+    background: rgba(250, 170, 2, 0.2) !important;
+    border-color: rgba(250, 170, 2, 0.4) !important;
+    color: var(--accent-gold) !important;
+}
+
 .info-divider {
     width: 1px;
     height: 32px;
