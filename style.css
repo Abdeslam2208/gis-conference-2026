@@ -5396,126 +5396,147 @@ body[data-lang="en"] .en-item {
     padding-left: 20px;
 }
 
-/* Minimalist light-theme adjustments for Submission Guidelines */
+/* Ultra-Minimalist light-theme adjustments for Submission Guidelines */
 #submission-guidelines {
     background-color: #f8fafc !important; /* Clean light gray background */
+    padding: 70px 0 !important;
 }
 
 #submission-guidelines .section-title {
     color: var(--text-heading) !important;
+    font-size: 2rem !important;
 }
 
 #submission-guidelines .guidelines-card {
-    background: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
-    border-radius: 16px !important; /* Clean minimal border radius */
-    padding: 30px !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
     backdrop-filter: none !important;
+    transition: none !important;
 }
 
-#submission-guidelines .guidelines-card:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
-    border-color: #cbd5e1 !important;
-}
-
-/* Remove thick side/top borders */
+/* Remove thick borders or side outlines */
 #submission-guidelines .format-card,
 #submission-guidelines .criteria-card,
 #submission-guidelines .procedures-card {
-    border: 1px solid #e2e8f0 !important;
+    border: none !important;
 }
 
-/* Icons styling */
+/* Icon box styling - purely minimalist simple icon */
 #submission-guidelines .guidelines-icon-box {
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 10px !important;
-    background: #eff6ff !important;
-    border: 1px solid #dbeafe !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    border: none !important;
     box-shadow: none !important;
-    color: #2563eb !important;
+    color: #475569 !important;
+    font-size: 1.6rem !important;
+    margin-bottom: 12px !important;
+    justify-content: flex-start !important;
 }
 
 #submission-guidelines .guidelines-card-title {
     color: #0f172a !important;
     font-size: 1.15rem !important;
+    font-weight: 700 !important;
     margin-bottom: 12px !important;
+    letter-spacing: -0.01em;
 }
 
 #submission-guidelines .guidelines-text-en {
     color: #475569 !important;
     font-size: 0.88rem !important;
+    line-height: 1.6 !important;
 }
 
 #submission-guidelines .guidelines-text-fr {
     color: #64748b !important;
     font-size: 0.82rem !important;
+    line-height: 1.6 !important;
 }
 
-/* Flat white criteria card */
+/* Flat criteria list without cards or badges */
 #submission-guidelines .criteria-card {
-    background: #ffffff !important;
+    background: transparent !important;
     color: #475569 !important;
 }
 
 #submission-guidelines .criteria-list {
-    border-top: 1px solid #f1f5f9 !important;
+    border-top: 1px solid #e2e8f0 !important;
     margin-top: 15px !important;
     padding-top: 15px !important;
+    list-style: none !important;
 }
 
 #submission-guidelines .criteria-list li {
-    background: #f8fafc !important;
-    border: 1px solid #e2e8f0 !important;
-    color: #334155 !important;
-    border-radius: 8px !important;
-    padding: 8px 12px !important;
+    background: transparent !important;
+    border: none !important;
+    color: #475569 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 8px !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 #submission-guidelines .criteria-list li:hover {
-    background: #f1f5f9 !important;
+    background: transparent !important;
     transform: none !important;
 }
 
 #submission-guidelines .criteria-list li i {
-    color: #2563eb !important;
+    color: #94a3b8 !important;
+    font-size: 0.95rem !important;
 }
 
-/* Procedures timeline adjustments */
+/* Procedures timeline adjustments - completely flat styling */
 #submission-guidelines .procedures-title {
     color: #0f172a !important;
-    border-bottom: 1px solid #f1f5f9 !important;
-    font-size: 1.2rem !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    font-size: 1.25rem !important;
     margin-bottom: 25px !important;
+    padding-bottom: 12px !important;
 }
 
 #submission-guidelines .procedures-timeline::before {
-    background: #e2e8f0 !important;
-    width: 2px !important;
-    left: 20px !important;
+    display: none !important; /* Remove the vertical line entirely */
+}
+
+#submission-guidelines .timeline-step {
+    gap: 15px !important;
+    margin-bottom: 20px !important;
 }
 
 #submission-guidelines .step-number {
-    background: #ffffff !important;
-    border: 2px solid #cbd5e1 !important;
-    color: #475569 !important;
+    background: transparent !important;
+    border: none !important;
+    color: #94a3b8 !important;
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    width: auto !important;
+    height: auto !important;
     box-shadow: none !important;
-    width: 40px !important;
-    height: 40px !important;
+    margin-top: -3px !important;
+    font-family: var(--font-heading) !important;
 }
 
 #submission-guidelines .green-step {
-    border-color: #a7f3d0 !important;
-    background: #ffffff !important;
-    color: #10b981 !important;
+    border: none !important;
+    background: transparent !important;
+    color: #94a3b8 !important;
 }
 
 #submission-guidelines .step-title {
     color: #0f172a !important;
-    font-size: 1rem !important;
+    font-size: 0.96rem !important;
+    font-weight: 700 !important;
 }
 
 #submission-guidelines .step-title .en-sub,
@@ -5525,36 +5546,44 @@ body[data-lang="en"] .en-item {
 }
 
 #submission-guidelines .highlight-text {
-    color: #334155 !important;
+    color: #475569 !important;
     border-left: none !important;
     padding-left: 0 !important;
     margin-left: 0 !important;
 }
 
-/* Formatting box in light mode */
+/* Formatting box in light mode - a simple indentation with left border line */
 #submission-guidelines .formatting-box {
-    background: #f8fafc !important;
-    border: 1px solid #e2e8f0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-left: 2px solid #cbd5e1 !important;
     box-shadow: none !important;
-    border-radius: 10px !important;
-    padding: 15px 18px !important;
+    border-radius: 0 !important;
+    padding: 4px 0 4px 15px !important;
+    margin-top: 12px !important;
 }
 
 #submission-guidelines .formatting-title {
-    color: #2563eb !important;
+    color: #475569 !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 6px !important;
 }
 
 #submission-guidelines .formatting-col p {
-    color: #475569 !important;
+    color: #64748b !important;
+    font-size: 0.8rem !important;
 }
 
 #submission-guidelines .formatting-col.border-left {
-    border-left: 1px dashed #e2e8f0 !important;
+    border-left: none !important;
 }
 
 /* Universal Clean Highlights */
 .guidelines-highlight {
-    color: #2563eb;
-    font-weight: 700;
+    color: #0f172a;
+    font-weight: 600;
 }
 
