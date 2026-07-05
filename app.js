@@ -94,6 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
+                // Remove animation classes after transition ends so CSS hover works normally
+                setTimeout(() => {
+                    entry.target.classList.remove('animate-ready', 'animate-in');
+                }, 900);
                 obs.unobserve(entry.target);
             }
         });
