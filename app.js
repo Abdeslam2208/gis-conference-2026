@@ -305,6 +305,10 @@ document.addEventListener('DOMContentLoaded', () => {
             regRecord.communicantName = document.getElementById('communicantName').value.trim();
             regRecord.communicantAffiliation = document.getElementById('communicantAffiliation').value.trim();
             regRecord.coAuthors = document.getElementById('coAuthors').value.trim();
+            if (uploadedFileBase64) {
+                regRecord.abstractFileName = uploadedFileName;
+                regRecord.abstractFileBase64 = uploadedFileBase64;
+            }
         }
         if (isWork) {
             regRecord.workshopSelection = document.getElementById('workshopSelect').value;
@@ -378,6 +382,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Custom File Upload Card Handling ---
+    let uploadedFileBase64 = "";
+    let uploadedFileName = "";
+
     const fileUploadCard = document.getElementById('fileUploadCard');
     const abstractFileInput = document.getElementById('abstractFile');
     const fileNamePreview = document.getElementById('fileNamePreview');
@@ -387,6 +394,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadCardIcon = fileUploadCard ? fileUploadCard.querySelector('.upload-card-icon') : null;
 
     function resetCustomFileUpload() {
+        uploadedFileBase64 = "";
+        uploadedFileName = "";
         if (abstractFileInput) {
             abstractFileInput.value = '';
             if (fileNamePreview) fileNamePreview.style.display = 'none';
@@ -441,6 +450,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (uploadCardIcon) uploadCardIcon.style.display = 'none';
             fileUploadCard.style.pointerEvents = 'none'; // Lock card clicking while preview is shown
             fileUploadCard.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                uploadedFileBase64 = e.target.result;
+                uploadedFileName = file.name;
+            };
+            reader.readAsDataURL(file);
         }
 
         if (removeFileBtn) {

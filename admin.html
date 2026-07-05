@@ -649,11 +649,15 @@
                     // Format details cell
                     let detailsContent = '';
                     if (sub.participationType.includes('Communication')) {
+                        let fileLinkHtml = '';
+                        if (sub.abstractFileBase64 && sub.abstractFileName) {
+                            fileLinkHtml = `<br><strong>Fichier:</strong> <a href="${sub.abstractFileBase64}" download="${sub.abstractFileName}" style="color: #2563eb; text-decoration: underline; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; margin-top: 4px;"><i class="ph ph-download-simple"></i> Télécharger Résumé</a>`;
+                        }
                         detailsContent += `
                             <div class="comm-details-pop" style="margin-bottom: 4px;">
                                 <strong>Titre:</strong> ${sub.communicationTitle || '-'}<br>
                                 <strong>Auteur:</strong> ${sub.communicantName || '-'} (${sub.communicantAffiliation || '-'})<br>
-                                <strong>Co-auteurs:</strong> ${sub.coAuthors || 'Aucun'}
+                                <strong>Co-auteurs:</strong> ${sub.coAuthors || 'Aucun'}${fileLinkHtml}
                             </div>
                         `;
                     }
