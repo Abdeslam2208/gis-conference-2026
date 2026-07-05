@@ -3896,7 +3896,7 @@ body[data-lang="en"] .en-item {
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
     margin-top: 40px;
-    align-items: start; /* Prevents other cards in the row from stretching when one expands */
+    align-items: center; /* Centers other cards vertically in the row when one card expands */
 }
 
 .speaker-card-unified {
