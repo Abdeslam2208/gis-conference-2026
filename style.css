@@ -2531,130 +2531,462 @@ body[data-lang="en"] .en-item {
     transform: translateY(-2px);
 }
 
-/* Venue Section */
-.venue-wrapper {
+/* Premium Venue Section Styles */
+#venue {
+    background: #f8fafc !important;
+    color: var(--text-dark) !important;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 90px 20px !important;
+}
+
+#venue .venue-container-premium {
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: 40px;
-    align-items: center;
+    align-items: stretch;
 }
 
-.venue-details h3 {
-    font-size: 1.35rem;
-    margin-bottom: 10px;
-    color: var(--text-heading);
-}
-
-.venue-details p {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-}
-
-.venue-info-list {
-    margin-bottom: 10px;
-}
-
-.venue-info-item {
+.venue-card-info {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--border-radius);
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     display: flex;
-    align-items: start;
-    gap: 12px;
-    margin-bottom: 12px;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 25px;
+    transition: var(--transition);
 }
 
-.venue-info-item svg {
-    color: var(--primary-light);
+.venue-card-info:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+
+.venue-header-details {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: 18px;
+}
+
+.venue-main-icon {
+    font-size: 2.5rem;
+    color: #b47b02;
+}
+
+.venue-name-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #01091F !important;
+    margin: 0 0 2px 0;
+}
+
+.venue-city-country {
+    font-size: 0.9rem;
+    color: #b47b02;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.venue-info-list-premium {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.venue-info-item-premium {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.venue-info-item-premium .item-icon-wrapper {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(250, 170, 2, 0.08);
+    border: 1px solid rgba(250, 170, 2, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b47b02;
+    font-size: 1.3rem;
     flex-shrink: 0;
-    margin-top: 2px;
 }
 
-.venue-info-text h4 {
-    font-size: 0.85rem;
-    margin-bottom: 1px;
+.venue-info-item-premium .item-text-wrapper h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #01091F !important;
+    margin: 0 0 4px 0;
 }
 
-.venue-info-text p {
+.venue-info-item-premium .item-text-wrapper p {
+    font-size: 0.88rem;
+    color: #475569 !important;
+    margin: 0;
+    line-height: 1.45;
+}
+
+.venue-info-item-premium .item-text-wrapper a {
+    color: #b47b02;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.venue-info-item-premium .item-text-wrapper a:hover {
+    color: #ca8a04;
+    text-decoration: underline;
+}
+
+/* QR Code Container inside Venue Card */
+.venue-qr-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid #cbd5e1;
+    padding-top: 25px;
+    flex-wrap: wrap;
+}
+
+.qr-code-box {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.venue-qr-img {
+    width: 100px;
+    height: 100px;
+    display: block;
+}
+
+.qr-text {
+    flex: 1;
+    min-width: 200px;
+    text-align: left;
+}
+
+.qr-text h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #01091F !important;
+    margin: 0 0 6px 0;
+}
+
+.qr-text p {
+    font-size: 0.82rem;
+    color: #64748b !important;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+}
+
+.btn-maps-premium {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #01091F;
+    color: #ffffff !important;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 50px;
     font-size: 0.8rem;
-    margin-bottom: 0;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(1, 9, 31, 0.15);
 }
 
-.venue-map-container {
-    height: 320px;
+.btn-maps-premium:hover {
+    background: #b47b02;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(180, 123, 2, 0.3);
+}
+
+/* Map Card */
+.venue-map-card {
     border-radius: var(--border-radius);
     overflow: hidden;
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    min-height: 380px;
+    height: 100%;
 }
 
-.venue-map-container iframe {
+.venue-map-card iframe {
     width: 100%;
     height: 100%;
     border: none;
+    display: block;
 }
 
-/* Footer Section */
-footer {
-    background: #0f172a;
+@media (max-width: 991px) {
+    .venue-container-premium {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* Premium Footer Section */
+.footer-premium {
+    background: #060c1d;
+    background-image: linear-gradient(180deg, #0a1124 0%, #030814 100%);
     color: #94a3b8;
-    padding: 60px 20px 20px 20px;
+    padding: 80px 20px 30px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
 }
 
-.footer-top {
+.footer-top-premium {
     max-width: 1200px;
-    margin: 0 auto 35px auto;
+    margin: 0 auto 50px auto;
     display: grid;
-    grid-template-columns: 1.4fr 0.8fr 0.8fr;
-    gap: 40px;
+    grid-template-columns: 1.3fr 0.8fr 0.9fr;
+    gap: 50px;
 }
 
-.footer-brand h3 {
-    color: white;
-    font-size: 1.15rem;
-    margin-bottom: 12px;
+.footer-logo-title {
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
 }
 
-.footer-brand p {
-    font-size: 0.8rem;
-    line-height: 1.6;
+.footer-brand-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #cbd5e1;
+    margin-bottom: 25px;
 }
 
-.footer-links h4,
-.footer-partners h4 {
-    color: white;
+.footer-logos-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.footer-partner-img {
+    height: 40px;
+    border-radius: 6px;
+    background: #ffffff;
+    padding: 3px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Footer Admin Card Premium */
+.footer-admin-card-premium {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(250, 170, 2, 0.02);
+    border: 1.5px dashed rgba(250, 170, 2, 0.25);
+    border-radius: var(--border-radius);
+    padding: 12px 18px;
+    margin-top: 20px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 320px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.footer-admin-card-premium:hover {
+    background: rgba(250, 170, 2, 0.05);
+    border-color: rgba(250, 170, 2, 0.5);
+    box-shadow: 0 4px 12px rgba(250, 170, 2, 0.05);
+    transform: translateY(-1px);
+}
+
+.admin-card-icon {
+    font-size: 1.6rem;
+    color: var(--accent-gold);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-card-body {
+    flex-grow: 1;
+}
+
+.admin-card-body h4 {
     font-size: 0.9rem;
-    margin-bottom: 12px;
+    color: #ffffff;
+    font-weight: 700;
+    margin: 0 0 2px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
 }
 
-.footer-links ul li {
-    margin-bottom: 8px;
+.admin-arrow-icon {
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    transition: transform 0.25s ease;
 }
 
-.footer-links ul li a {
+.footer-admin-card-premium:hover .admin-arrow-icon {
+    transform: translateX(4px);
+}
+
+.admin-card-body p {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin: 0 !important;
+    line-height: 1.3;
+}
+
+.footer-section-title {
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 35px;
+    height: 2px;
+    background: var(--accent-gold);
+    border-radius: 2px;
+}
+
+.footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 20px;
+}
+
+.footer-links-list li a {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+}
+
+.footer-links-list li a i {
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    transition: transform 0.25s ease;
+}
+
+.footer-links-list li a:hover {
+    color: var(--accent-gold);
+}
+
+.footer-links-list li a:hover i {
+    transform: translateX(4px);
+}
+
+/* Previous Editions Tags */
+.editions-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.edition-tag {
     font-size: 0.8rem;
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-.footer-links ul li a:hover {
-    color: white;
+.edition-tag:hover {
+    background: rgba(250, 170, 2, 0.1);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    transform: translateY(-2px);
 }
 
-.footer-bottom {
+/* Footer Bottom */
+.footer-bottom-premium {
     max-width: 1200px;
     margin: 0 auto;
-    padding-top: 20px;
+    padding-top: 25px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.75rem;
+    font-size: 0.82rem;
+    color: #94a3b8;
 }
 
-.footer-bottom a {
-    color: #60a5fa;
+.footer-contact-link {
+    color: var(--accent-gold);
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-.footer-bottom a:hover {
+.footer-contact-link:hover {
+    color: #ffc83b;
     text-decoration: underline;
+}
+
+@media (max-width: 991px) {
+    .footer-top-premium {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 40px;
+    }
+    
+    .footer-editions-premium {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-top-premium {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    
+    .footer-editions-premium {
+        grid-column: span 1;
+    }
+    
+    .footer-bottom-premium {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
 }
 
 /* Print CSS */
@@ -4041,53 +4373,7 @@ footer {
     color: #94a3b8 !important;
 }
 
-/* Dark theme overrides for Venue section elements */
-#venue h3 {
-    color: #ffffff !important;
-    font-weight: 700;
-    font-size: 1.3rem;
-}
 
-#venue p {
-    color: #cbd5e1 !important;
-}
-
-.venue-map-link {
-    color: var(--accent-gold) !important;
-    font-weight: 700;
-    text-decoration: underline;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.3s ease;
-}
-
-.venue-map-link:hover {
-    color: #ffc83b !important;
-}
-
-.venue-info-item svg {
-    color: var(--accent-gold);
-}
-
-.venue-info-text h4 {
-    color: #ffffff !important;
-}
-
-.venue-info-text p {
-    color: #cbd5e1 !important;
-}
-
-.venue-info-text a {
-    color: var(--accent-gold) !important;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.venue-info-text a:hover {
-    color: #ffc83b !important;
-    text-decoration: underline;
-}
 
 /* Committees Portal Section styling (Homepage) */
 .committees-portal-grid {
@@ -4233,7 +4519,7 @@ footer {
 
 /* Light Background Committee Sections (1. Honorary, 3. Scientific) */
 .section-light-committee {
-    background-color: #ffffff !important;
+    background: #f8fafc !important;
     padding: 85px 0 !important;
     max-width: 100% !important;
     margin: 0 !important;
@@ -4323,8 +4609,7 @@ footer {
 
 /* Section: enforce full white, no inherited constraints */
 #honorary {
-    background-color: #fafbfc !important;
-    background-image: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%) !important;
+    background: #f8fafc !important;
     box-shadow: none !important;
 }
 
@@ -4630,7 +4915,7 @@ footer {
 
 /* Sub-sections background alternation */
 #fees {
-    background-color: #ffffff !important;
+    background: #f8fafc !important;
     color: var(--text-dark) !important;
     padding: 85px 0 !important;
     max-width: 100% !important;
@@ -4646,56 +4931,7 @@ footer {
     color: #94a3b8 !important;
 }
 
-/* Light map section */
-#venue {
-    background-color: #ffffff !important;
-    color: var(--text-dark) !important;
-    padding: 85px 0;
-}
 
-#venue .section-title {
-    color: #01091F !important;
-}
-
-#venue .section-desc {
-    color: #64748b !important;
-}
-
-#venue h3 {
-    color: #01091F !important;
-}
-
-#venue p {
-    color: #475569 !important;
-}
-
-#venue .venue-info-text h4 {
-    color: #01091F !important;
-}
-
-#venue .venue-info-text p {
-    color: #64748b !important;
-}
-
-#venue .venue-info-text a {
-    color: #b47b02 !important;
-}
-
-#venue .venue-info-text a:hover {
-    color: #ca8a04 !important;
-}
-
-#venue .venue-map-link {
-    color: #b47b02 !important;
-}
-
-#venue .venue-map-link:hover {
-    color: #ca8a04 !important;
-}
-
-#venue .venue-info-item svg {
-    color: #b47b02 !important;
-}
 
 /* ------------------------------------------------------------- */
 /* COMPACT BULLET LISTS (Scientific & Organizing Committees)      */
@@ -4806,442 +5042,4 @@ footer {
 .scientific-show-more-btn:hover {
     background: #f8fafc;
 }
-
-.organizing-tab-pane.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#registration .section-title {
-    color: #ffffff !important;
-}
-
-#registration .section-desc {
-    color: #94a3b8 !important;
-}
-
-/* Light map section */
-#venue {
-    background-color: #ffffff !important;
-    color: var(--text-dark) !important;
-    padding: 85px 0;
-}
-
-#venue .section-title {
-    color: #01091F !important;
-}
-
-#venue .section-desc {
-    color: #64748b !important;
-}
-
-#venue h3 {
-    color: #01091F !important;
-}
-
-#venue p {
-    color: #475569 !important;
-}
-
-#venue .venue-info-text h4 {
-    color: #01091F !important;
-}
-
-#venue .venue-info-text p {
-    color: #64748b !important;
-}
-
-#venue .venue-info-text a {
-    color: #b47b02 !important;
-}
-
-#venue .venue-info-text a:hover {
-    color: #ca8a04 !important;
-}
-
-#venue .venue-map-link {
-    color: #b47b02 !important;
-}
-
-#venue .venue-map-link:hover {
-    color: #ca8a04 !important;
-}
-
-#venue .venue-info-item svg {
-    color: #b47b02 !important;
-}
-
-/* ------------------------------------------------------------- */
-/* COMPACT BULLET LISTS (Scientific & Organizing Committees)      */
-/* ------------------------------------------------------------- */
-.compact-bullet-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px 20px;
-    padding: 0;
-    margin: 30px 0 0 0;
-    list-style: none;
-}
-
-.compact-bullet-list li {
-    font-family: var(--font-body);
-    font-size: 0.92rem;
-    line-height: 1.4;
-    position: relative;
-    padding: 10px 14px 10px 18px;
-    color: #e2e8f0;
-    /* Default light color for dark section */
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-left: 3px solid var(--accent-gold);
-    border-radius: 8px;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2px;
-}
-
-.compact-bullet-list li:hover {
-    transform: translateY(-2px) translateX(2px);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(250, 170, 2, 0.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Inline affiliation secondary row */
-.affil-inline {
-    font-size: 0.76rem;
-    color: #94a3b8;
-    font-weight: 500;
-    margin-top: 2px;
-    opacity: 0.85;
-}
-
-/* Dark text styling override for lists on light sections (like #scientific) */
-.dark-text-bullets li {
-    color: #0f172a;
-    background: rgba(15, 23, 42, 0.02);
-    border: 1px solid rgba(15, 23, 42, 0.04);
-    border-left: 3px solid #b47b02;
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.01);
-}
-
-.dark-text-bullets li:hover {
-    background: #ffffff;
-    border-color: rgba(180, 123, 2, 0.2);
-    box-shadow: 0 6px 15px rgba(15, 23, 42, 0.06);
-}
-
-.dark-text-bullets .affil-inline {
-    color: #475569;
-}
-
-/* Responsive columns */
-@media (max-width: 1024px) {
-    .compact-bullet-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 640px) {
-    .compact-bullet-list {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-}
-
-/* ------------------------------------------------------- */
-/* SCIENTIFIC COMMITTEE — SHOW MORE BUTTON                   */
-/* ------------------------------------------------------- */
-.scientific-show-more-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 18px;
-}
-
-.scientific-show-more-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    border: 1.5px solid #e2e8f0;
-    color: #334155;
-    padding: 10px 28px;
-    border-radius: 50px;
-    font-size: 0.88rem;
-    font-weight: 600;
-    font-family: var(--font-body);
-    cursor: pointer;
-    transition: all 0.25s ease;
-    letter-spacing: 0.02em;
-}
-
-.scientific-show-more-btn:hover {
-    background: #f8fafc;
-}
-
-#fees>* {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
-
-#fees .section-title {
-    color: #01091F !important;
-}
-
-#fees .section-desc {
-    color: #64748b !important;
-}
-
-/* Reset pricing container wrapper to light on light background */
-#fees .pricing-container {
-    background: #ffffff !important;
-}
-
-#registration .section-title {
-    color: #ffffff !important;
-}
-
-#registration .section-desc {
-    color: #94a3b8 !important;
-}
-
-/* Light map section */
-#venue {
-    background-color: #ffffff !important;
-    color: var(--text-dark) !important;
-    padding: 85px 0;
-}
-
-#venue .section-title {
-    color: #01091F !important;
-}
-
-#venue .section-desc {
-    color: #64748b !important;
-}
-
-#venue h3 {
-    color: #01091F !important;
-}
-
-#venue p {
-    color: #475569 !important;
-}
-
-#venue .venue-info-text h4 {
-    color: #01091F !important;
-}
-
-#venue .venue-info-text p {
-    color: #64748b !important;
-}
-
-#venue .venue-info-text a {
-    color: #b47b02 !important;
-}
-
-#venue .venue-info-text a:hover {
-    color: #ca8a04 !important;
-}
-
-#venue .venue-map-link {
-    color: #b47b02 !important;
-}
-
-#venue .venue-map-link:hover {
-    color: #ca8a04 !important;
-}
-
-#venue .venue-info-item svg {
-    color: #b47b02 !important;
-}
-
-/* ------------------------------------------------------------- */
-/* COMPACT BULLET LISTS (Scientific & Organizing Committees)      */
-/* ------------------------------------------------------------- */
-.compact-bullet-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px 20px;
-    padding: 0;
-    margin: 30px 0 0 0;
-    list-style: none;
-}
-
-.compact-bullet-list li {
-    font-family: var(--font-body);
-    font-size: 0.92rem;
-    line-height: 1.4;
-    position: relative;
-    padding: 10px 14px 10px 18px;
-    color: #e2e8f0;
-    /* Default light color for dark section */
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-left: 3px solid var(--accent-gold);
-    border-radius: 8px;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2px;
-}
-
-.compact-bullet-list li:hover {
-    transform: translateY(-2px) translateX(2px);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(250, 170, 2, 0.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Inline affiliation secondary row */
-.affil-inline {
-    font-size: 0.76rem;
-    color: #94a3b8;
-    font-weight: 500;
-    margin-top: 2px;
-    opacity: 0.85;
-}
-
-/* Dark text styling override for lists on light sections (like #scientific) */
-.dark-text-bullets li {
-    color: #0f172a;
-    background: rgba(15, 23, 42, 0.02);
-    border: 1px solid rgba(15, 23, 42, 0.04);
-    border-left: 3px solid #b47b02;
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.01);
-}
-
-.dark-text-bullets li:hover {
-    background: #ffffff;
-    border-color: rgba(180, 123, 2, 0.2);
-    box-shadow: 0 6px 15px rgba(15, 23, 42, 0.06);
-}
-
-.dark-text-bullets .affil-inline {
-    color: #475569;
-}
-
-/* Responsive columns */
-@media (max-width: 1024px) {
-    .compact-bullet-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 640px) {
-    .compact-bullet-list {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-}
-
-/* ------------------------------------------------------- */
-/* SCIENTIFIC COMMITTEE — SHOW MORE BUTTON                   */
-/* ------------------------------------------------------- */
-.scientific-show-more-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 18px;
-}
-
-.scientific-show-more-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    border: 1.5px solid #e2e8f0;
-    color: #334155;
-    padding: 10px 28px;
-    border-radius: 50px;
-    font-size: 0.88rem;
-    font-weight: 600;
-    font-family: var(--font-body);
-    cursor: pointer;
-    transition: all 0.25s ease;
-    letter-spacing: 0.02em;
-}
-
-.scientific-show-more-btn:hover {
-    background: #f8fafc;
-    border-color: #b47b02;
-    color: #b47b02;
-}
-
-.scientific-show-more-btn i {
-    font-size: 1rem;
-    transition: transform 0.3s ease;
-}
-
-.scientific-show-more-btn.expanded i {
-    transform: rotate(180deg);
-}
-
-/* ------------------------------------------------------------- */
-/* PREMIUM PAYMENT DETAILS OVERRIDES                             */
-/* ------------------------------------------------------------- */
-#fees .bank-details-card {
-    background: #ffffff !important;
-    border: 1px solid #cbd5e1 !important;
-    color: var(--text-dark) !important;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04) !important;
-    border-radius: 12px !important;
-    padding: 30px !important;
-    position: relative;
-    overflow: hidden;
-}
-
-#fees .bank-title {
-    color: #01091F !important;
-    font-weight: 700;
-    font-size: 1.25rem;
-}
-
-#fees .bank-desc {
-    color: #475569 !important;
-}
-
-#fees .swift-box {
-    background: #f8fafc !important;
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 6px;
-    padding: 10px 14px;
-    margin-bottom: 15px;
-    display: inline-block;
-}
-
-#fees .swift-code {
-    color: #b47b02 !important;
-}
-
-#fees .bank-image-card {
-    background: #ffffff !important;
-    border: 1px solid #cbd5e1 !important;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04) !important;
-    border-radius: 12px !important;
-    padding: 30px !important;
-}
-
-#fees .rib-img {
-    border-color: #cbd5e1 !important;
-    max-height: 115px;
-    border-radius: 6px;
-}
-
-#fees .rib-lbl {
-    color: #64748b !important;
-}
-
-/* Force all names to be in UPPERCASE/Capitalized globally */
-.speaker-name,
-.honorary-card-name,
-.committee-card-name-avatar,
-.member-name {
-    text-transform: uppercase !important;
-}
+
