@@ -3896,6 +3896,7 @@ body[data-lang="en"] .en-item {
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
     margin-top: 40px;
+    align-items: start; /* Prevents other cards in the row from stretching when one expands */
 }
 
 .speaker-card-unified {
@@ -3910,6 +3911,7 @@ body[data-lang="en"] .en-item {
     box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
+    min-height: 320px; /* Equal default height for card button alignment */
 }
 
 /* Gold Gradient Top Strip Decor */
@@ -4065,7 +4067,7 @@ body[data-lang="en"] .en-item {
     font-size: 0.72rem !important;
     font-weight: 700 !important;
     cursor: pointer;
-    margin-top: 14px;
+    margin-top: auto !important; /* Forces buttons to align at the same level at the bottom of cards */
     display: inline-flex;
     align-items: center;
     gap: 6px;
