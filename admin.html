@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrateur | GIS-Users 2026</title>
+    <!-- Phosphor Icons Web Font -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific Admin Styles (to keep style.css clean) */
+        .admin-body {
+            background-color: #01091F;
+            color: #cbd5e1;
+            font-family: 'Source Sans 3', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .admin-login-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .admin-login-card h2 {
+            color: #ffffff;
+            font-family: 'Merriweather', serif;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        .admin-login-card p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .admin-login-card .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .admin-login-card label {
+            display: block;
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .admin-login-card .btn-submit {
+            margin-top: 10px;
+        }
+
+        .admin-error-msg {
+            color: #f87171;
+            font-size: 0.8rem;
+            margin-top: 12px;
+            display: none;
+            font-weight: 600;
+        }
+
+        /* Dashboard View styles */
+        .admin-dashboard-container {
+            display: none;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .admin-header h1 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-family: 'Merriweather', serif;
+        }
+
+        .admin-header h1 span {
+            color: var(--accent-gold);
+        }
+
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .admin-stat-card.card-double-info {
+                grid-column: span 2;
+            }
+        }
+
+        .admin-stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .admin-stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: rgba(250, 170, 2, 0.1);
+            border: 1px solid rgba(250, 170, 2, 0.2);
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .admin-stat-info h3 {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .admin-stat-info p {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .admin-controls-panel {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .admin-filters {
+            display: flex;
+            gap: 15px;
+            flex-grow: 1;
+            flex-wrap: wrap;
+        }
+
+        .admin-search-wrapper {
+            position: relative;
+            flex-grow: 1;
+            max-width: 320px;
+        }
+
+        .admin-search-wrapper i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .admin-search-wrapper input {
+            width: 100%;
+            padding-left: 38px;
+        }
+
+        .admin-table-wrapper {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            overflow-x: auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.85rem;
+        }
+
+        .admin-table th {
+            background: rgba(255, 255, 255, 0.03);
+            color: #ffffff;
+            font-weight: 700;
+            padding: 16px 20px;
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
+            white-space: nowrap;
+        }
+
+        .admin-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: #cbd5e1;
+        }
+
+        .admin-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+            color: #ffffff;
+        }
+
+        .badge-type {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-attendance { background: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.2); }
+        .badge-communication { background: rgba(245, 158, 11, 0.1); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.2); }
+        .badge-workshops { background: rgba(16, 185, 129, 0.1); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.2); }
+
+        .btn-action {
+            padding: 8px 18px;
+            font-size: 0.82rem;
+            border-radius: 30px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-export {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-export:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-logout {
+            background: transparent;
+            color: #f87171 !important;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+        }
+
+        .btn-logout:hover {
+            background: rgba(248, 113, 113, 0.1);
+            border-color: #f87171;
+        }
+
+        /* Detail popover */
+        .comm-details-pop {
+            max-width: 250px;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .comm-details-pop strong {
+            color: #ffffff;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .no-data {
+            text-align: center !important;
+            padding: 40px !important;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 1024px) {
+            .admin-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .admin-stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .admin-controls-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .admin-search-wrapper {
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body class="admin-body">
+
+    <!-- Login Section -->
+    <div class="admin-login-card" id="loginCard">
+        <i class="ph ph-lock-key" style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 15px;"></i>
+        <h2>Espace Administrateur</h2>
+        <p>GIS-Users' Conference 2026 Dashboard</p>
+        
+        <form id="adminLoginForm">
+            <div class="form-group">
+                <label for="adminPassword">Mot de passe / Password</label>
+                <div class="input-icon-wrapper" style="position: relative;">
+                    <i class="ph ph-key" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
+                    <input type="password" id="adminPassword" class="form-control" style="padding-left: 42px;" placeholder="Entrez le mot de passe..." required autocomplete="current-password">
+                </div>
+            </div>
+            <button type="submit" class="btn-submit">
+                <i class="ph ph-sign-in"></i> Connexion / Login
+            </button>
+            <div class="admin-error-msg" id="loginError">Mot de passe incorrect / Incorrect password.</div>
+        </form>
+    </div>
+
+    <!-- Dashboard Container -->
+    <div class="admin-dashboard-container" id="dashboardContainer">
+        <div class="admin-header">
+            <div>
+                <h1>GIS-Users' <span>2026</span> Dashboard</h1>
+                <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 4px;">Gestion des inscriptions et soumissions de résumés</p>
+            </div>
+            <button class="btn-action btn-logout" id="logoutBtn">
+                <i class="ph ph-sign-out"></i> Déconnexion / Logout
+            </button>
+        </div>
+
+        <!-- Statistics Grid -->
+        <div class="admin-stats-grid">
+            <div class="admin-stat-card card-double-info">
+                <div class="admin-stat-icon" style="color: #34d399; background: rgba(52, 211, 153, 0.08); border-color: rgba(52, 211, 153, 0.2);"><i class="ph ph-activity"></i></div>
+                <div style="display: flex; gap: 30px; flex-grow: 1; flex-wrap: wrap;">
+                    <div class="admin-stat-info">
+                        <h3>Inscriptions</h3>
+                        <p id="statTotal">0</p>
+                    </div>
+                    <div class="admin-stat-info" style="border-left: 1px solid rgba(255, 255, 255, 0.1); padding-left: 30px;">
+                        <h3>Revenus Globaux</h3>
+                        <p id="statRevenueMad" style="color: var(--accent-gold);">0.00 DH</p>
+                    </div>
+                </div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-icon" style="color: #60a5fa; background: rgba(96, 165, 250, 0.08); border-color: rgba(96, 165, 250, 0.2);"><i class="ph ph-user"></i></div>
+                <div class="admin-stat-info">
+                    <h3>Présence Seule</h3>
+                    <p id="statAttendance">0</p>
+                </div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-icon" style="color: #fbbf24; background: rgba(251, 191, 36, 0.08); border-color: rgba(251, 191, 36, 0.2);"><i class="ph ph-file-text"></i></div>
+                <div class="admin-stat-info">
+                    <h3>Communication Seule</h3>
+                    <p id="statComm">0</p>
+                </div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-icon" style="color: #a78bfa; background: rgba(167, 139, 250, 0.08); border-color: rgba(167, 139, 250, 0.2);"><i class="ph ph-chalkboard-teacher"></i></div>
+                <div class="admin-stat-info">
+                    <h3>Atelier Seul</h3>
+                    <p id="statWorkshop">0</p>
+                </div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-icon" style="color: #ec4899; background: rgba(236, 72, 153, 0.08); border-color: rgba(236, 72, 153, 0.2);"><i class="ph ph-briefcase"></i></div>
+                <div class="admin-stat-info">
+                    <h3>Comm &amp; Atelier</h3>
+                    <p id="statCommWorkshop">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls Filter Panel -->
+        <div class="admin-controls-panel">
+            <div class="admin-filters">
+                <div class="admin-search-wrapper">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" id="adminSearch" class="form-control" style="padding-left: 38px;" placeholder="Rechercher nom, email...">
+                </div>
+                <div style="min-width: 180px;">
+                    <select id="filterType" class="form-control">
+                        <option value="all">Tous types / All types</option>
+                        <option value="Attendance Only">Présence Simple / Attendance Only</option>
+                        <option value="Oral/Poster Communication">Communication Seule / Communication Only</option>
+                        <option value="Workshops Only">Atelier Seul / Workshops Only</option>
+                        <option value="Communication & Workshops">Communication &amp; Ateliers / Comm &amp; Workshops</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn-action btn-export" id="exportBtn">
+                <i class="ph ph-file-csv"></i> Exporter vers Excel (CSV)
+            </button>
+        </div>
+
+        <!-- Data Table -->
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Nom & Prénom / Name</th>
+                        <th>Email / Phone</th>
+                        <th>Affiliation</th>
+                        <th>Catégorie / Category</th>
+                        <th>Type / Participation</th>
+                        <th>Frais / Fee</th>
+                        <th>Détails Comm. / Workshop</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                    <tr>
+                        <td colspan="9" class="no-data">Chargement des données...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const GOOGLE_SCRIPT_URL = ''; // Collez votre URL Google Apps Script Web App ici pour charger depuis Google Sheets
+
+            const loginCard = document.getElementById('loginCard');
+            const dashboardContainer = document.getElementById('dashboardContainer');
+            const loginForm = document.getElementById('adminLoginForm');
+            const passwordInput = document.getElementById('adminPassword');
+            const loginError = document.getElementById('loginError');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const tableBody = document.getElementById('adminTableBody');
+            
+            const searchInput = document.getElementById('adminSearch');
+            const filterSelect = document.getElementById('filterType');
+            const exportBtn = document.getElementById('exportBtn');
+
+            // Default dashboard password
+            const ADMIN_PASSWORD = 'mri9abdjaj';
+
+            // Check if already logged in (session token)
+            if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+                showDashboard();
+            }
+
+            // Handle Login Submission
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const pwd = passwordInput.value;
+                if (pwd === ADMIN_PASSWORD) {
+                    sessionStorage.setItem('adminLoggedIn', 'true');
+                    showDashboard();
+                } else {
+                    loginError.style.display = 'block';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            });
+
+            // Handle Logout
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                sessionStorage.removeItem('adminLoggedIn');
+                sessionStorage.clear();
+                window.location.href = 'admin.html';
+            });
+
+            // Submissions state
+            let allSubmissions = [];
+
+            function showDashboard() {
+                loginCard.style.display = 'none';
+                dashboardContainer.style.display = 'block';
+                document.body.style.alignItems = 'stretch';
+                document.body.style.justifyContent = 'flex-start';
+                loadSubmissions();
+            }
+
+            function loadSubmissions() {
+                if (GOOGLE_SCRIPT_URL) {
+                    tableBody.innerHTML = `<tr><td colspan="9" class="no-data">Chargement des données en ligne...</td></tr>`;
+                    fetch(GOOGLE_SCRIPT_URL)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (Array.isArray(data)) {
+                                allSubmissions = data;
+                            } else if (data && data.result === 'error') {
+                                console.error("Google Sheets Error:", data.error);
+                                loadLocalSubmissions();
+                                return;
+                            }
+                            finalizeSubmissionsLoad();
+                        })
+                        .catch(err => {
+                            console.error("Failed to fetch online submissions, falling back to local:", err);
+                            loadLocalSubmissions();
+                        });
+                } else {
+                    loadLocalSubmissions();
+                }
+            }
+
+            function loadLocalSubmissions() {
+                allSubmissions = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && key.startsWith('GIS-2026-')) {
+                        try {
+                            const record = JSON.parse(localStorage.getItem(key));
+                            if (record) {
+                                allSubmissions.push(record);
+                            }
+                        } catch (e) {
+                            console.error("Error reading record", key, e);
+                        }
+                    }
+                }
+                finalizeSubmissionsLoad();
+            }
+
+            function finalizeSubmissionsLoad() {
+                // Sort by date descending safely
+                allSubmissions.sort((a, b) => {
+                    const dateA = a && a.dateRegistered ? new Date(a.dateRegistered) : 0;
+                    const dateB = b && b.dateRegistered ? new Date(b.dateRegistered) : 0;
+                    return dateB - dateA;
+                });
+
+                calculateStats();
+                renderTable(allSubmissions);
+            }
+
+            function calculateStats() {
+                let total = allSubmissions.length;
+                let revenueMad = 0;
+                let attendanceCount = 0;
+                let commCount = 0;
+                let workshopCount = 0;
+                let commWorkshopCount = 0;
+
+                allSubmissions.forEach(sub => {
+                    if (!sub) return;
+                    // Extract revenue numbers from fee string (sums the MAD part)
+                    const feeStr = sub.fee || "";
+                    const madMatch = feeStr.match(/(\d+)\.00\s+MAD/);
+                    if (madMatch) {
+                        revenueMad += parseInt(madMatch[1]);
+                    }
+
+                    // Count participation types
+                    const type = sub.participationType || "";
+                    if (type === 'Attendance Only') {
+                        attendanceCount++;
+                    } else if (type === 'Oral/Poster Communication' || type === 'Oral/Poster Communication') {
+                        commCount++;
+                    } else if (type === 'Workshops Only') {
+                        workshopCount++;
+                    } else if (type === 'Communication & Workshops') {
+                        commWorkshopCount++;
+                    }
+                });
+
+                document.getElementById('statTotal').innerText = total;
+                document.getElementById('statRevenueMad').innerText = revenueMad.toLocaleString() + '.00 DH';
+                document.getElementById('statAttendance').innerText = attendanceCount;
+                document.getElementById('statComm').innerText = commCount;
+                document.getElementById('statWorkshop').innerText = workshopCount;
+                document.getElementById('statCommWorkshop').innerText = commWorkshopCount;
+            }
+
+            function renderTable(data) {
+                tableBody.innerHTML = '';
+                if (data.length === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="9" class="no-data">Aucune inscription trouvée / No registrations found</td></tr>`;
+                    return;
+                }
+
+                data.forEach(sub => {
+                    if (!sub) return;
+                    const row = document.createElement('tr');
+                    
+                    // Format Date
+                    const regDate = new Date(sub.dateRegistered);
+                    const formattedDate = regDate.toLocaleDateString('fr-FR', {
+                        year: 'numeric', month: 'short', day: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                    });
+
+                    // Set Participation Type Badge
+                    let typeBadge = '';
+                    if (sub.participationType.includes('Communication') && sub.participationType.includes('Workshops')) {
+                        typeBadge = `<span class="badge-type badge-communication" style="background: #e0f2fe; color: #0369a1;">Résumé &amp; Atelier</span>`;
+                    } else if (sub.participationType.includes('Attendance')) {
+                        typeBadge = `<span class="badge-type badge-attendance">Présence</span>`;
+                    } else if (sub.participationType.includes('Communication')) {
+                        typeBadge = `<span class="badge-type badge-communication">Résumé</span>`;
+                    } else if (sub.participationType.includes('Workshops')) {
+                        typeBadge = `<span class="badge-type badge-workshops">Atelier</span>`;
+                    } else {
+                        typeBadge = `<span class="badge-type badge-attendance">${sub.participationType}</span>`;
+                    }
+
+                    // Format details cell
+                    let detailsContent = '';
+                    if (sub.participationType.includes('Communication')) {
+                        detailsContent += `
+                            <div class="comm-details-pop" style="margin-bottom: 4px;">
+                                <strong>Titre:</strong> ${sub.communicationTitle || '-'}<br>
+                                <strong>Auteur:</strong> ${sub.communicantName || '-'} (${sub.communicantAffiliation || '-'})<br>
+                                <strong>Co-auteurs:</strong> ${sub.coAuthors || 'Aucun'}
+                            </div>
+                        `;
+                    }
+                    if (sub.participationType.includes('Workshops')) {
+                        detailsContent += `<div style="font-size: 0.8rem; color: #0284c7;"><strong>Atelier:</strong> ${sub.workshopSelection || '-'}</div>`;
+                    }
+                    if (!detailsContent) detailsContent = '-';
+
+                    row.innerHTML = `
+                        <td style="font-weight: 700; color: var(--accent-gold); font-family: monospace;">${sub.code}</td>
+                        <td><strong>${sub.firstName} ${sub.lastName.toUpperCase()}</strong></td>
+                        <td>
+                            <div>${sub.email}</div>
+                            <div style="font-size: 0.75rem; color: #94a3b8; font-family: monospace; margin-top: 2px;">${sub.phone || '-'}</div>
+                        </td>
+                        <td>
+                            <div>${sub.affiliation}</div>
+                            <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">${sub.city || '-'}, ${sub.country || '-'}</div>
+                        </td>
+                        <td style="font-size: 0.8rem;">${sub.position}</td>
+                        <td>${typeBadge}</td>
+                        <td style="font-weight: 700;">${sub.fee}</td>
+                        <td>${detailsContent}</td>
+                        <td style="font-size: 0.78rem; white-space: nowrap; color: #94a3b8;">${formattedDate}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            // Live Search and Filters
+            function applyFilters() {
+                const searchVal = searchInput.value.toLowerCase().trim();
+                const filterVal = filterSelect.value;
+
+                const filtered = allSubmissions.filter(sub => {
+                    const matchSearch = 
+                        (sub.firstName && sub.firstName.toLowerCase().includes(searchVal)) ||
+                        (sub.lastName && sub.lastName.toLowerCase().includes(searchVal)) ||
+                        (sub.email && sub.email.toLowerCase().includes(searchVal)) ||
+                        (sub.code && sub.code.toLowerCase().includes(searchVal)) ||
+                        (sub.affiliation && sub.affiliation.toLowerCase().includes(searchVal));
+
+                    let matchType = true;
+                    if (filterVal !== 'all') {
+                        matchType = sub.participationType === filterVal;
+                    }
+
+                    return matchSearch && matchType;
+                });
+
+                renderTable(filtered);
+            }
+
+            searchInput.addEventListener('input', applyFilters);
+            filterSelect.addEventListener('change', applyFilters);
+
+            // Export to CSV Function
+            exportBtn.addEventListener('click', () => {
+                if (allSubmissions.length === 0) {
+                    alert("Aucune donnée à exporter / No data to export.");
+                    return;
+                }
+
+                // Header Row
+                const headers = [
+                    "Code", "Nom", "Prénom", "Email", "Téléphone", "Pays", "Ville", "Affiliation", 
+                    "Catégorie", "Type Participation", "Frais d'inscription", 
+                    "Titre Communication", "Auteur Principal", "Affiliation Auteur", 
+                    "Co-auteurs", "Atelier Sélectionné", "Date Inscription"
+                ];
+
+                // Build Rows
+                let csvRows = [headers.join(",")];
+
+                allSubmissions.forEach(sub => {
+                    const clean = val => {
+                        if (val === undefined || val === null) return '""';
+                        // escape double quotes and wrap in double quotes
+                        return `"${String(val).replace(/"/g, '""')}"`;
+                    };
+
+                    const row = [
+                        clean(sub.code),
+                        clean(sub.lastName),
+                        clean(sub.firstName),
+                        clean(sub.email),
+                        clean(sub.phone),
+                        clean(sub.country),
+                        clean(sub.city),
+                        clean(sub.affiliation),
+                        clean(sub.position),
+                        clean(sub.participationType),
+                        clean(sub.fee),
+                        clean(sub.communicationTitle),
+                        clean(sub.communicantName),
+                        clean(sub.communicantAffiliation),
+                        clean(sub.coAuthors),
+                        clean(sub.workshopSelection),
+                        clean(sub.dateRegistered)
+                    ];
+                    csvRows.push(row.join(","));
+                });
+
+                // Prepend BOM to ensure Excel opens CSV UTF-8 correctly
+                const csvString = "\uFEFF" + csvRows.join("\n");
+                const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.setAttribute("href", url);
+                link.setAttribute("download", `Inscriptions_GIS_Users_2026_${new Date().toISOString().split('T')[0]}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        });
+    </script>
+</body>
+</html>

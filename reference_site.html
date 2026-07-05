@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../img/favicon.png">
+    <title>EPIA-1 | International Congress on Epidemiology & AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+   
+        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        /* On ajuste les titres pour qu'ils profitent bien du côté "Black" de Poppins */
+        .section-title, .font-black {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800; /* Très gras pour un look impactant */
+        }
+        .hero-video-container { 
+            position: relative; 
+            height: 100vh; 
+            width: 100%; 
+            overflow: hidden; 
+            background: #001a33; /* Couleur de secours */
+        }
+        #bgVideo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        .hero-overlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 58, 138, 0.7) 100%); 
+            z-index: 1; 
+        }
+        .content-z { z-index: 10; position: relative; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .section-title { position: relative; padding-bottom: 1rem; margin-bottom: 2rem; text-align: center; font-weight: 700; font-size: 2.25rem; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: #3b82f6; border-radius: 2px; }
+        .speaker-img { 
+        width: 120px; height: 120px; 
+        border-radius: 50%; 
+        border: 4px solid white; 
+        object-fit: cover; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        }
+        .speaker-card:hover .speaker-img { transform: scale(1.05); }
+        .flag-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-size: 14px;
+        }
+
+        @keyframes scroll-logos {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+        .animate-scroll {
+            /* "linear" est crucial pour que le mouvement soit constant */
+            animation: scroll-logos 30s linear infinite;
+            flex-shrink: 0; /* Empêche les blocs de s'écraser */
+        }
+
+        /* Optionnel : stopper au survol */
+        .group:hover .animate-scroll {
+            animation-play-state: paused;
+        }
+
+        /* Suppression du z-index: 1 qui posait problème */
+        nav#main-nav {
+            z-index: 999; /* Suffisant pour la barre de navigation */
+        }
+
+        #mobile-menu {
+            z-index: 9999; /* Valeur très haute pour passer devant tout */
+        }
+
+        #mobile-menu.active {
+            transform: translateX(0);
+            /* On ne remet pas de z-index ici, il est déjà défini au-dessus */
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        .mobile-link {
+            @apply text-white text-2xl font-bold uppercase tracking-widest transition-colors;
+        }
+
+        .mobile-link:hover {
+            color: #3b82f6;
+        }
+
+        /* Barre de défilement personnalisée pour les bios */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+
+        /* Animation de l'overlay */
+        .speaker-card .absolute {
+            pointer-events: none; /* Désactivé par défaut */
+        }
+        .speaker-card:hover .absolute {
+            pointer-events: auto; /* Activé au survol pour permettre le scroll */
+        }
+        @media screen and (max-width: 450px) {
+            .speaker-card {
+                min-width: 150px !important;
+                max-width: 155px !important;
+            }
+            /* On réduit aussi la taille du texte pour que ça reste harmonieux */
+            .speaker-card p.font-bold {
+                font-size: 11px !important;
+            }
+            .speaker-card p.uppercase {
+                font-size: 8px !important;
+            }
+        }
+
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+    <div id="top-logo-bar" class="bg-white py-2 border-b border-slate-50 transition-all duration-500">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center gap-4">
+                <div class="flex-1 flex justify-center">
+                    <img src="img/ISDEESIA.png" alt="ISDEESIA" class="h-16 md:h-20 w-auto object-contain">
+                </div>
+                <div class="flex-1 flex justify-center">
+                    <img src="img/logo.png" alt="ENS Fez" class="h-18 md:h-25 w-auto object-contain">
+                </div>
+                <div class="flex-1 flex justify-center">
+                    <img src="img/usmba50.png" alt="USMBA 50 years" class="h-16 md:h-20 w-auto object-contain">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav id="main-nav" class="bg-white/95 backdrop-blur-md border-b border-slate-100 sticky top-0 z-[1000] transition-all duration-300">
+        <div class="container mx-auto px-6">
+            <div class="relative flex items-center justify-between h-16 md:h-15">
+                
+                <div id="sticky-title" class="opacity-0 -translate-x-4 transition-all duration-300 pointer-events-none absolute left-0">
+                    <span class="font-black text-blue-600 text-xl tracking-tighter">EPIA-1</span>
+                </div>
+
+                <div class="hidden lg:flex items-center justify-center w-full space-x-10">
+                    <div class="flex items-center space-x-8">
+                        <a href="#overview" class="text-slate-600 hover:text-blue-600 font-semibold text-xs uppercase tracking-widest transition">Home</a>
+                        <a href="#themes" class="text-slate-600 hover:text-blue-600 font-semibold text-xs uppercase tracking-widest transition">Themes</a>
+                        <a href="#keynotes" class="text-slate-600 hover:text-blue-600 font-semibold text-xs uppercase tracking-widest transition">Keynote speakers</a>
+                        <a href="#committee" class="text-slate-600 hover:text-blue-600 font-semibold text-xs uppercase tracking-widest transition">Committee</a>
+                        <a href="./Programme interactif.html" class="text-slate-600 hover:text-blue-600 font-semibold text-xs uppercase tracking-widest transition">Program</a>
+                        <a href="#guidelines" class="text-slate-600 hover:text-blue-600 font-semibold text-xs uppercase tracking-widest transition">Submission</a>
+                        <a href="#contact" class="text-slate-600 hover:text-blue-600 font-semibold text-xs uppercase tracking-widest transition">Contact</a>
+                    </div>
+                    <a href="#registration" class="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-slate-900 transition-all shadow-lg shadow-blue-100 hover:shadow-none">
+                        Registration
+                    </a>
+                </div>
+
+                <div class="lg:hidden flex items-center justify-between w-full">
+                    <span class="font-black text-blue-600 text-xl tracking-tighter">EPIA-1</span>
+                    <button id="mobile-menu-btn" class="text-slate-800 focus:outline-none p-2">
+                        <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24 " stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-blue-900 z-[9999] flex flex-col items-center justify-center space-y-8 transition-transform duration-500 translate-x-full lg:hidden">
+        <button id="close-menu" class="absolute top-6 right-6 z-50 text-white hover:text-blue-400 transition-colors cursor-pointer p-2 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        
+        <a href="#overview" class="mobile-link">Home</a>
+        <a href="#themes" class="mobile-link">Themes</a>
+        <a href="#keynotes" class="mobile-link">Keynote speakers</a>
+        <a href="#committee" class="mobile-link">Committee</a>
+        <a href="./Programme interactif.html" class="mobile-link">Program</a>
+        <a href="#guidelines" class="mobile-link">Submission</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+        
+        <a href="#registration" class="bg-blue-600 text-white px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest mt-4 shadow-xl hover:bg-slate-900 transition-all">
+            Registration
+        </a>
+    </div>
+
+    <div class="w-full bg-slate-900 border-b-2 border-amber-500/30 pt-14 pb-14 shadow-2xl relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5 pointer-events-none">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+                <path d="M0 0l100 100M100 0L0 100" stroke="currentColor" stroke-width="0.5"/>
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 text-center relative z-10 max-w-3xl flex flex-col items-center justify-center space-y-6 m-0">
+            
+            <div class="flex items-center justify-center gap-3 m-0 p-0">
+                <svg class="w-5 h-5 text-amber-500 animate-pulse m-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                <h2 class="text-amber-500 font-semibold uppercase tracking-[0.25em] text-sm md:text-base m-0 p-0">
+                    Official Announcement
+                </h2>
+                <div class="h-px w-8 bg-amber-500/50 hidden md:block m-0"></div>
+            </div>
+
+            <div class="flex flex-col items-center justify-center space-y-2 w-full m-0 p-0">
+                <p class="text-white font-bold text-lg md:text-xl tracking-tight m-0 p-0">
+                    The Scientific Program is now officially available
+                </p>
+            </div>
+            <div class="flex flex-col items-center justify-center space-y-2 w-full m-0 p-0">
+                <p class="text-slate-300 font-medium text-sm md:text-base italic m-0 p-0">
+                    Le programme scientifique de la session est désormais disponible
+                </p>
+            </div>
+
+            <div class="pt-2 pb-2">
+                <a href="./Programme interactif.html" class="inline-flex flex-col items-center justify-center px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-900 font-bold rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg border border-amber-400/20 group">
+                    <span class="text-sm md:text-base tracking-tight flex items-center gap-2">
+                        Access Interactive Program
+                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 5l7 7-7 7M5 12h14"></path>
+                        </svg>
+                    </span>
+                    <span class="text-[10px] text-slate-900/80 italic font-medium mt-0.5">
+                        Consulter le Programme Interactif
+                    </span>
+                </a>
+            </div>
+
+            <div class="w-12 h-px bg-slate-800/60 m-0"></div>
+        </div>
+    </div>
+    <header id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+    
+        <div class="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+            <iframe 
+                class="w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50"
+                src="https://www.youtube.com/embed/mMWGPWxegaI?autoplay=1&mute=1&loop=1&playlist=mMWGPWxegaI&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3" 
+                frameborder="0" allow="autoplay; encrypted-media">
+            </iframe>
+        </div>
+
+        <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-[1px] z-[1]"></div>
+        
+        <div class="content-z text-center text-white px-6">
+            <p class="text-blue-400 font-bold tracking-[0.3em] uppercase mb-4" data-aos="fade-down">1st International Congress</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight" data-aos="zoom-in">
+                Epidemiology in the <br> 
+                <span class="text-blue-400 italic font-light">Age of AI</span>
+                <span class="text-sm border-t border-white/20 pt-2 inline-block mt-4 uppercase tracking-widest">Conferences - Communications - Workshops</span>
+            </h1>
+            <p class="text-lg md:text-xl opacity-80 mb-10 max-w-3xl mx-auto" data-aos="fade-up">
+                Fez, Morocco | June 29 - 30 & July 1, 2026 <br>
+            </p>
+            <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up" data-aos-delay="200">
+                <a href="#registration" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg transform hover:scale-105 text-center">
+                    Registration & Abstract
+                </a>
+                
+                <a href="./Programme interactif.html" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition text-center">
+                    View Program
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-blue-900 py-10 border-y border-white/5">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 text-center text-white">   
+            
+            <div data-aos="fade-right" class="flex flex-col justify-between">
+                <div class="mb-3 uppercase tracking-wide">
+                    <p class="text-blue-300 text-xs font-bold leading-tight">Registration Type:</p>
+                    <p class="text-white font-semibold text-xs lowercase italic normal-case tracking-normal mt-0.5 opacity-90">
+                        Communication (abstract submission)/ Workshops/ Attendance
+                    </p>
+                    <div class="w-8 h-px bg-white/10 mx-auto my-2"></div>
+                    <p class="text-blue-200/60 text-[10px] font-normal italic leading-tight">Type d’Inscription :</p>
+                    <p class="text-blue-200/50 text-[10px] font-light italic normal-case tracking-normal mt-0.5">
+                        Communication (Soumission des résumés) / ateliers / Présence
+                    </p>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <p class="text-xl font-bold text-white/90 tracking-tight drop-shadow-sm">MAY 31, 2026</p>
+                    <p class="text-xs text-blue-300/80 italic font-medium">31 Mai 2026</p>
+                </div>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="100" class="border-t md:border-t-0 md:border-x border-white/10 flex flex-col justify-between pt-6 md:pt-0 px-2">
+                <div class="mb-3 uppercase tracking-wide">
+                    <p class="text-blue-300 text-xs font-bold leading-tight">Notification of Acceptance</p>
+                    <p class="text-blue-200/70 text-[10px] font-normal tracking-normal lowercase normal-case opacity-80 mt-0.5">of communication</p>
+                    <div class="w-8 h-px bg-white/10 mx-auto my-2"></div>
+                    <p class="text-blue-200/60 text-[10px] font-normal italic leading-tight">Notification d'acceptation</p>
+                    <p class="text-blue-200/50 text-[10px] font-light italic tracking-normal lowercase normal-case mt-0.5">de la communication</p>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <p class="text-xl font-bold text-white/90 tracking-tight drop-shadow-sm">June 5, 2026</p>
+                    <p class="text-xs text-blue-300/80 italic font-medium">5 Juin 2026</p>
+                </div>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="200" class="border-t md:border-t-0 md:border-r border-white/10 flex flex-col justify-between pt-6 md:pt-0 px-2">
+                <div class="mb-3 uppercase tracking-wide">
+                    <p class="text-blue-300 text-xs font-bold leading-tight">Submission of</p>
+                    <p class="text-white font-semibold text-xs tracking-normal mt-0.5 opacity-90">Extended Abstract</p>
+                    <div class="w-8 h-px bg-white/10 mx-auto my-2"></div>
+                    <p class="text-blue-200/60 text-[10px] font-normal italic leading-tight">Soumission du</p>
+                    <p class="text-blue-200/50 text-[10px] font-bold italic tracking-normal mt-0.5">Résumé Étendu</p>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <p class="text-xl font-bold text-white/90 tracking-tight drop-shadow-sm">June 16, 2026</p>
+                    <p class="text-xs text-blue-300/80 italic font-medium">16 juin 2026</p>
+                </div>
+            </div>
+
+            <div data-aos="fade-left" class="border-t md:border-t-0 flex flex-col justify-between pt-6 md:pt-0">
+                <div class="mb-3 uppercase tracking-wide">
+                    <p class="text-blue-300 text-xs font-bold leading-tight">Prepayment deadline</p>
+                    <p class="text-blue-200/70 text-[10px] font-normal tracking-normal lowercase normal-case opacity-80 mt-0.5">(Bank transfer)</p>
+                    <div class="w-8 h-px bg-white/10 mx-auto my-2"></div>
+                    <p class="text-blue-200/60 text-[10px] font-normal italic leading-tight">Délai de paiement anticipé</p>
+                    <p class="text-blue-200/50 text-[10px] font-light italic tracking-normal lowercase normal-case mt-0.5">(Transfert bancaire)</p>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <p class="text-xl font-bold text-white/90 tracking-tight drop-shadow-sm">June 22, 2026</p>
+                    <p class="text-xs text-blue-300/80 italic font-medium">22 juin 2026</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section id="themes" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-20" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-black text-slate-800 leading-tight">
+                    Main Research Themes
+                    </h2>
+                    <p class="text-blue-500 font-medium italic mt-4 text-xl">
+                    Thématiques Principales
+                    </p>
+                    <div class="w-24 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-400 transition-all duration-300 group shadow-sm hover:shadow-xl flex flex-col" data-aos="fade-up">
+                        <div class="w-14 h-14 bg-blue-600 text-white flex items-center justify-center rounded-2xl mb-6 text-2xl group-hover:scale-110 group-hover:rotate-6 transition-transform">🧠</div>
+                        <h3 class="text-xl font-bold mb-4 text-slate-800 group-hover:text-blue-600 transition">Epidemiology & Addiction</h3>
+                        
+                        <div class="space-y-4 flex-grow">
+                            <p class="text-slate-700 text-sm leading-relaxed border-l-2 border-blue-200 pl-4">
+                            Epidemiology of addictive behaviors, psychosocial factors, and public health policies in the age of new technologies.
+                            </p>
+                            <p class="text-slate-400 text-xs italic leading-relaxed pl-4">
+                                Épidémiologie des comportements addictifs (tabac, alcool, substances) et politiques de santé publique à l'ère des nouvelles technologies.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-red-400 transition-all duration-300 group shadow-sm hover:shadow-xl flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-14 h-14 bg-red-600 text-white flex items-center justify-center rounded-2xl mb-6 text-2xl group-hover:scale-110 group-hover:rotate-6 transition-transform">🧬</div>
+                        <h3 class="text-xl font-bold mb-4 text-slate-800 group-hover:text-red-600 transition">Epidemiology & Cancer</h3>
+                        
+                        <div class="space-y-4 flex-grow">
+                            <p class="text-slate-700 text-sm leading-relaxed border-l-2 border-red-200 pl-4">
+                                Risk factors, screening strategies, and oncology interventions research on patient survival and quality of life in the age of AI.
+                            </p>
+                            <p class="text-slate-400 text-xs italic leading-relaxed pl-4">
+                                Profils épidémiologiques, facteurs de risque et évaluation des interventions en oncologie (survie et qualité de vie) via l'IA.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-green-400 transition-all duration-300 group shadow-sm hover:shadow-xl flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-14 h-14 bg-green-600 text-white flex items-center justify-center rounded-2xl mb-6 text-2xl group-hover:scale-110 group-hover:rotate-6 transition-transform">🦟</div>
+                        <h3 class="text-xl font-bold mb-4 text-slate-800 group-hover:text-green-600 transition">Epidemiology & Vector-Borne Diseases</h3>
+                        
+                        <div class="space-y-4 flex-grow">
+                            <p class="text-slate-700 text-sm leading-relaxed border-l-2 border-green-200 pl-4">
+                                Transmission dynamics, environmental and climatic factors, and AI-driven strategies for disease surveillance and control.
+                            </p>
+                            <p class="text-slate-400 text-xs italic leading-relaxed pl-4">
+                                Dynamiques de transmission, facteurs environnementaux et climatiques, et apport de l'IA dans la surveillance des maladies infectieuses.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="keynotes" class="py-24 bg-slate-100">
+            <div class="container mx-auto px-6 text-center">
+                <div class="text-center mb-20" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-black text-slate-800 leading-tight">Keynote Speakers</h2>
+                    <p class="text-blue-500 font-medium italic mt-4 text-xl">Conférenciers d'Honneur</p>
+                    <div class="w-24 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full"></div>
+                </div>
+
+                <div class="mb-16">
+                <h3 class="text-xl font-black text-amber-500 uppercase tracking-widest mb-10 flex items-center justify-center">
+                    <span class="h-px w-12 bg-amber-500 mr-4"></span> Addiction <span class="h-px w-12 bg-amber-500 ml-4"></span>
+                </h3>
+                
+                <div class="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
+        
+                    <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in">
+                        <div class="relative w-full aspect-square overflow-hidden p-5">
+                            <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                <span class="relative flex h-2 w-2 text-white">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                </span>
+                                BIO
+                            </div>
+                            <img src="./img/Souheil HALLIT.jpg" alt="Pr. Souheil HALLIT" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                            <span class="absolute top-2 right-2 z-20">
+                                <img src="https://flagcdn.com/lb.svg" width="28" alt="Lebanon" class="rounded-sm shadow-sm border border-white/20">
+                            </span>
+                            <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                    <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                    <strong>Pr. Souheil HALLIT</strong>, PharmD, MSc, MPH, PhD, HDR est titulaire d’un Doctorat en Pharmacie, d’un Master en Pharmacologie et Thérapeutique, d’un Master de Recherche en Pharmacie Clinique et Pharmacoépidémiologie, ainsi que d’un doctorat en Santé Publique et Épidémiologie. En 2026, il a obtenu l’Habilitation à Diriger des Recherches (HDR) de l’Université de Nantes, France. Il est actuellement Professeur associé et chef du Département de recherche à la Faculté de Médecine et des Sciences Médicales de l’Université Saint-Esprit de Kaslik (USEK), Liban. Il est auteur de 834 articles et chapitres de livres évalués par des pairs à l’échelle internationale, ainsi que de nombreuses communications scientifiques. Il figure parmi les 2% des scientifiques les plus influents au niveau mondial selon le classement Stanford–Scopus pour les années 2022, 2023, 2024 et 2025, et est classé parmi les 1% des experts mondiaux en psychométrie selon ScienceLeadR.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-white text-center relative z-20">
+                            <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Pr. Souheil HALLIT</p>
+                            <p class="text-[9px] text-slate-400 uppercase">USEK, Lebanon</p>
+                        </div>
+                    </div>
+
+                    <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="relative w-full aspect-square overflow-hidden p-5">
+                            <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                <span class="relative flex h-2 w-2 text-white">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                </span>
+                                BIO
+                            </div>
+                            <img src="./img/Amine BOUT.jpg" alt="Pr. Amine BOUT" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                            <span class="absolute top-2 right-2 z-20">
+                                <img src="https://flagcdn.com/ma.svg" width="28" alt="Maroc" class="rounded-sm shadow-sm border border-white/20">
+                            </span>
+                            <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                    <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                    <strong>Pr. Amine BOUT</strong> a obtenu son doctorat en médecine en 2008 de la Faculté de médecine et de pharmacie de Fès. De 2018 à 2022, il a été maître de conférences au service de psychiatrie du CHU de Fès, avant d'être nommé professeur agrégé en 2022. Il enseigne actuellement la psychiatrie, l'addictologie et la sémiologie psychiatrique à la Faculté de médecine et de pharmacie de Fès. Il dirige également les activités cliniques du service d'addictologie de l'hôpital Ibn Al Hassan de Fès. Il est l'auteur de plusieurs publications dans les domaines de la psychiatrie et de l'addictologie.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-white text-center relative z-20">
+                            <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Pr. Amine BOUT</p>
+                            <p class="text-[9px] text-slate-400 uppercase">FMPMDF, Morocco</p>
+                        </div>
+                    </div>
+
+                    <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="relative w-full aspect-square overflow-hidden p-5">
+                            <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                <span class="relative flex h-2 w-2 text-white">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                </span>
+                                BIO
+                            </div>
+                            <img src="./img/Feten FEKIH-ROMDHANE.jpg" alt="Pr. Feten FEKIH-ROMDHANE" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                            <span class="absolute top-2 right-2 z-20">
+                                <img src="https://flagcdn.com/tn.svg" width="28" alt="Tunisie" class="rounded-sm shadow-sm border border-white/20">
+                            </span>
+                            <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                    <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                    <strong>Pr. Feten FEKIH-ROMDHANE</strong> MD, PhD, HDR, est psychiatre hospitalo-universitaire (professeure associée), thérapeute cognitivo-comportementaliste, et chercheuse. Elle est titulaire d’un Doctorat en Médecine (Tunisie), d’un Doctorat en Science de l’Education (Tunisie), et d’une Habilitation à Diriger des Recherches (France). Elle occupe le poste de vice-présidente pour le Moyen-Orient et l'Afrique du Nord de l'association internationale d'intervention précoce en santé mentale (IEPA), et est rédactrice en chef adjointe de la revue Early Intervention in Psychiatry. Ses principaux domaines d'expertise sont les troubles psychotiques ; le dépistage, évaluation, diagnostic et intervention précoce de la psychose ; la santé mentale des jeunes en population générale ; et le développement et la validation psychométrique d’échelles de mesure. Elle est autrice de 380+ articles scientifiques publiés dans des revues internationales indexées et impactées avec comité de lecture. Elle intervient régulièrement en qualité d'oratrice lors de conférences nationales et internationales. Elle est lauréate de plusieurs prix académiques et a été classée parmi les 1% des experts mondiaux en psychométrie selon ScienceLeadR.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-white text-center relative z-20">
+                            <p class="font-bold text-slate-800 text-[12px] group-hover:text-blue-700 transition truncate">Pr. Feten FEKIH-ROMDHANE</p>
+                            <p class="text-[9px] text-slate-400 uppercase">Fac of Med, Tunis-Tunisia</p>
+                        </div>
+                    </div>
+
+                    <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="relative w-full aspect-square overflow-hidden p-5">
+                            <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                <span class="relative flex h-2 w-2 text-white">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                </span>
+                                BIO
+                            </div>
+                            <img src="./img/TAOUFIQ Imane.jpg" alt="Pr. Imane TAOUFIQ" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                            <span class="absolute top-2 right-2 z-20">
+                                <img src="https://flagcdn.com/ma.svg" width="28" alt="Maroc" class="rounded-sm shadow-sm border border-white/20">
+                            </span>
+                            <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                    <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                    <strong>Dr. Imane TAOUFIQ</strong> est Maître des conférences habilité de psychologie à l’Université Hassan II de Casablanca depuis 2021. Elle est également une psychologue clinicienne, psychothérapeute, et a exercé à l’hôpital psychiatrique de CHU Hassan II de Fès depuis 2011 jusqu’au 2021. En tant que docteur psychologue clinicienne expérimentée, elle a une compréhension profonde des troubles mentaux et de la manière de les traiter qu’elle essaye de la mettre au service des patients souffrant de large éventail de de problèmes de santé mentale, et au service des chercheurs et étudiants en psychologie.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-white text-center relative z-20">
+                            <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Pr. Imane TAOUFIQ</p>
+                            <p class="text-[9px] text-slate-400 uppercase">UHII, Morocco</p>
+                        </div>
+                    </div>
+
+                    <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="relative w-full aspect-square overflow-hidden p-5">
+                            <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                <span class="relative flex h-2 w-2 text-white">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                </span>
+                                BIO
+                            </div>
+                            <img src="./img/Btissame ZARROUQ.jpg" alt="Pr. Imane TAOUFIQ" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                            <span class="absolute top-2 right-2 z-20">
+                                <img src="https://flagcdn.com/ma.svg" width="28" alt="Maroc" class="rounded-sm shadow-sm border border-white/20">
+                            </span>
+                            <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                    <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                    <strong>Pr. Btissame ZARROUQ</strong> a commencé sa vie professionnelle en tant que professeur agrégée de Sciences de la Vie et la Terre. Après l’obtention en 2016 d’un Doctorat Es-Sciences Biologie, Spécialité : Physiologie et Epidémiologie, à l’Université Sidi Mohammed Ben Abdellah, elle a commencé à exercer en tant que professeur de l’Enseignement Supérieur Assistant à l’ENS de Fès. Etant passionnée par tout ce qui concerne la santé mentale, elle a poursuivi des études en psychologie en parallèle, pour obtenir un master en psychologie clinique et psychothérapies. Actuellement, elle dirige une dizaine de travaux de recherche focalisés sur la santé mentale, la psycho-oncologie, l’addiction et le développement des programmes de promotion de la santé mentale au niveau des établissement marocains d’enseignement secondaire.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-white text-center relative z-20">
+                            <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Pr. Btissame ZARROUQ </p>
+                            <p class="text-[9px] text-slate-400 uppercase">USMBA, Morocco</p>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+
+            <div class="mb-16">
+                    <h3 class="text-xl font-black text-orange-500 uppercase tracking-widest mb-10 flex items-center justify-center">
+                        <span class="h-px w-12 bg-orange-500 mr-4"></span> Cancer <span class="h-px w-12 bg-orange-500 ml-4"></span>
+                    </h3>
+                    <div class="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
+                        
+                        <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in">
+                            <div class="relative w-full aspect-square overflow-hidden p-5">
+                                <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                    <span class="relative flex h-2 w-2 text-white">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    BIO
+                                </div>
+                                <img src="./img/Chakib NEJIJAR.jpg" alt="Pr. Chakib NEJJARI" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                                <span class="absolute top-2 right-2 z-20">
+                                    <img src="https://flagcdn.com/ma.svg" width="28" alt="Maroc" class="rounded-sm shadow-sm border border-white/20">
+                                </span>
+                                <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                    <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                        <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                        <strong>Pr. Chakib NEJJARI</strong> titulaire de deux doctorats en médecine et en sciences, possède une solide expérience en enseignement, recherche et gestion académique. Il a occupé plusieurs postes de haut niveau, notamment à l’Université Mohammed VI des Sciences de la Santé, à l’École Nationale de Santé Publique et au CHU Hassan II de Fès. Chercheur ayant également travaillé à l’INSERM, il a contribué au développement de structures et programmes majeurs en santé, dont le Plan Cancer et plusieurs institutions de recherche. Très impliqué à l’échelle nationale et internationale, il a collaboré avec des organisations telles que l’OMS et diverses fondations. Reconnu pour son impact scientifique, il figure parmi les 2 % des chercheurs les plus influents selon le classement de Stanford (2019–2025). Actuellement, il est Vice-président en charge du Pôle Santé à l’Université Euromed de Fès, où il participe activement au développement de la formation, de la recherche et de l’innovation en sciences de la santé.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white text-center relative z-20">
+                                <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Pr. Chakib NEJJARI</p>
+                                <p class="text-[9px] text-slate-400 uppercase">UEMF, Morocco</p>
+                            </div>
+                        </div>
+
+                        <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="relative w-full aspect-square overflow-hidden p-5">
+                                <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                    <span class="relative flex h-2 w-2 text-white">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    BIO
+                                </div>
+                                <img src="./img/Inge HUYBRECHTS.jpg" alt="Dr. Inge HUYBRECHTS" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                                <span class="absolute top-2 right-2 z-20">
+                                    <img src="https://flagcdn.com/fr.svg" width="28" alt="France" class="rounded-sm shadow-sm border border-white/20">
+                                </span>
+                                <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                    <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                        <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                        <strong>Dr. Inge HUYBRECHTS</strong> est une épidémiologiste en nutrition au sein de la branche Nutrition et Métabolisme de l’Agence internationale de recherche sur le cancer. Titulaire d’une formation en nutrition et d’un doctorat en sciences médicales (Université de Gand, Belgique), elle dirige l’équipe « Sustainable Lifestyle and Cancer » et possède plus de 25 ans d’expérience en recherche et en enseignement dans le domaine de l’épidémiologie nutritionnelle. Ses travaux portent sur les déterminants liés au mode de vie des maladies non transmissibles, étudiés à travers des recherches observationnelles et des études d’intervention. Elle est auteure de plus de 400 articles scientifiques évalués par les pairs, publiés dans des revues spécialisées en nutrition, en épidémiologie et en santé planétaire. Ses projets actuels visent à analyser les associations entre les habitudes alimentaires, la diversité alimentaire et le risque ainsi que la survie des cancers, tout en prenant en compte les co-bénéfices pour la santé humaine et l’impact sur la planète.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white text-center relative z-20">
+                                <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Dr. Inge HUYBRECHTS</p>
+                                <p class="text-[9px] text-slate-400 uppercase">IARC/WHO, Lyon-France</p>
+                            </div>
+                        </div>
+
+                        <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="relative w-full aspect-square overflow-hidden p-5">
+                                <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                    <span class="relative flex h-2 w-2 text-white">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    BIO
+                                </div>
+                                <img src="./img/Ruben MARTIN-PAYO.jpg" alt="Pr. Ruben MARTIN-PAYO" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                                <span class="absolute top-2 right-2 z-20">
+                                    <img src="https://flagcdn.com/es.svg" width="28" alt="Espagne" class="rounded-sm shadow-sm border border-white/20">
+                                </span>
+                                <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                    <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                        <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                        <strong>Pr. Ruben MARTIN-PAYO</strong> (PhD) est professeur associé en médecine préventive et santé publique à l’Université d’Oviedo. He is directeur de la Chaire de santé communautaire et de promotion de la santé ainsi que du Département de médecine de cette même université. Il est également investigateur principal du groupe de recherche en promotion de la santé à l’Institut de recherche en santé de la Principauté des Asturies (ISPA). Il a publié plus de 50 articles scientifiques dans des revues à facteur d’impact, encadré 9 thèses de doctorat et supervisé plus de 100 mémoires de fin d’études et de master.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white text-center relative z-20">
+                                <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Pr. R. MARTIN-PAYO</p>
+                                <p class="text-[9px] text-slate-400 uppercase">Depart of Med, Oviedo Univ-Spain</p>
+                            </div>
+                        </div>
+
+                        <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="relative w-full aspect-square overflow-hidden p-5">
+                                <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                    <span class="relative flex h-2 w-2 text-white">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    BIO
+                                </div>
+                                <img src="./img/Farida SELMOUNI.jpg" alt="Dr. Farida SELMOUNI" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                                <span class="absolute top-2 right-2 z-20">
+                                    <img src="https://flagcdn.com/fr.svg" width="28" alt="France" class="rounded-sm shadow-sm border border-white/20">
+                                </span>
+                                <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                    <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                        <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                        <strong>Dr. Farida SELMOUNI</strong> Responsable de la santé publique, Centre international de Recherche sur le Cancer / OMS, Lyon, France La Dre Farida Selmouni est spécialiste en santé publique, avec une expertise reconnue dans le dépistage du cancer et la détection précoce. Titulaire d'un doctorat en santé publique de l'Université Complutense de Madrid (Espagne), elle mène des recherches centrées sur le développement, la mise en œuvre et l'évaluation de programmes intégrés de dépistage du cancer, accessibles et équitables dans des contextes socio-économiques variés. Au sein du CIRC, elle assure la coordination scientifique de plusieurs projets multicentriques visant à améliorer l'accès aux services de dépistage et à réduire les inégalités en santé, contribuant ainsi à l'effort mondial de prévention et de contrôle du cancer. Ses travaux portent également sur l'évaluation de nouvelles approches de dépistage et de triage du cancer du col de l'utérus, notamment chez les femmes vivant avec le VIH.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white text-center relative z-20">
+                                <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Dr. Farida SELMOUNI</p>
+                                <p class="text-[9px] text-slate-400 uppercase">IARC/WHO, Lyon-France</p>
+                            </div>
+                        </div>
+
+                        <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="relative w-full aspect-square overflow-hidden p-5">
+                                <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                    <span class="relative flex h-2 w-2 text-white">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    BIO
+                                </div>
+                                <img src="./img/Mohamed Amine BERRAHO.jpg" alt="Dr. Mohamed Amine BERRAHO" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                                <span class="absolute top-2 right-2 z-20">
+                                    <img src="https://flagcdn.com/ma.svg" width="28" alt="Maroc" class="rounded-sm shadow-sm border border-white/20">
+                                </span>
+                                <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                    <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                        <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                        <strong>Dr. Mohamed Amine BERRAHO</strong> est un médecin et universitaire marocain, spécialiste en épidémiologie et en santé publique. Professeur de l’enseignement supérieur à la Faculté de Médecine, de Médecine Dentaire et de Pharmacie de Fès, il occupe des fonctions stratégiques dans le domaine de la recherche oncologique, notamment en qualité de Directeur de l’institut de recherche sur le cancer et de Président de son Conseil scientifique. Par ailleurs, il est membre actif du laboratoire de recherche en épidémiologie et assure la responsabilité de la commission du rôle sociétal au sein de sa faculté. À travers ces différentes fonctions, il contribue de manière significative au développement de la recherche scientifique, à la formation académique et à la promotion de l’engagement sociétal au Maroc.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white text-center relative z-20">
+                                <p class="font-bold text-slate-800 text-[11px] group-hover:text-blue-700 transition truncate">Pr. Mohamed Amine BERRAHO</p>
+                                <p class="text-[9px] text-slate-400 uppercase">IRC Fez/ Morroco</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-black text-green-600 uppercase tracking-widest mb-10 flex items-center justify-center">
+                        <span class="h-px w-12 bg-green-600 mr-4"></span> Vector-Borne Diseases <span class="h-px w-12 bg-green-600 ml-4"></span>
+                    </h3>
+                    <div class="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
+                        
+                        <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in">
+                            <div class="relative w-full aspect-square overflow-hidden p-5">
+                                <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                    <span class="relative flex h-2 w-2 text-white">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    BIO
+                                </div>
+                                <img src="./img/Denis SERNO.jpg" alt="Pr. Denis SERENO" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                                <span class="absolute top-2 right-2 z-20">
+                                    <img src="https://flagcdn.com/fr.svg" width="28" alt="France" class="rounded-sm shadow-sm border border-white/20">
+                                </span>
+                                <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                    <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                        <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                        <strong>Dr. Denis SERENO</strong> est chercheur en parasitologie et entomologie médicale, reconnu pour ses travaux à l’interface entre biologie, écologie et santé globale. Basé à Montpellier, il développe des approches innovantes pour comprendre, surveiller et anticiper les dynamiques des maladies vectorielles. Ses recherches portent principalement sur les maladies tropicales négligées, notamment les leishmanioses, ainsi que sur l’écologie et la dynamique des insectes vecteurs. Il se distingue par une approche interdisciplinaire combinant biologie des systèmes, écologie et modélisation. Pionnier dans l’intégration de l’intelligence artificielle en entomologie, Denis Sereno développe des méthodes originales fondées sur les signatures optiques des ailes d’insectes (WIP – wing interference patterns) pour l’identification non invasive des espèces et l’inférence de leurs traits fonctionnels. Ses travaux ouvrent de nouvelles perspectives pour la surveillance entomologique et la détection précoce des risques sanitaires. Il anime le groupe de recherche GloInsect, dédié à l’innovation en entomologie médicale et en infectiologie globale, avec des applications directes en santé publique, notamment dans les contextes à ressources limitées.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white text-center relative z-20">
+                                <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Dr. Denis SERENO</p>
+                                <p class="text-[9px] text-slate-400 uppercase">IRD, Montpelier-France</p>
+                            </div>
+                        </div>
+
+                        <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="relative w-full aspect-square overflow-hidden p-5">
+                                <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                    <span class="relative flex h-2 w-2 text-white">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    BIO
+                                </div>
+                                <img src="./img/Mohamed GHAMIZI.jpg" alt="Pr. Mohamed GHAMIZI" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                                <span class="absolute top-2 right-2 z-20">
+                                    <img src="https://flagcdn.com/ma.svg" width="28" alt="Maroc" class="rounded-sm shadow-sm border border-white/20">
+                                </span>
+                                <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                    <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                        <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                        <strong>Pr. Mohamed GHAMIZI</strong> est professeur de l’Enseignement Supérieur à l’Université Cadi Ayyad, Faculté des Sciences Semlalia – Marrakech. Il a eu son Doctorat de 3ième Cycle en Parasitologie comparée – Académie de Montpellier – France, et un doctorat d’Etat sur les Mollusques des Eaux continentales du Maroc (Taxonomie et Parasitologie). Actuellement, il est directeur du Muséum d’Histoire Naturelle de Marrakech, Centre de recherche en Biodiversité, Géodiversité et promotion de la culture scientifique ; Coordinateur du Master Biodiversité, Climat et Développement Durable (BioClimaDD) ; Coordinateur du Point Focal et Membre de la Commission « Survie des espèces » de l’Union Internationale pour la Conservation de la Nature (UICN) ; Membre de la Commission Nationale « Climat et Biodiversité » du Ministère de la Transition Energétique et du Développement Durable – Maroc ; Membre du Bureau National de l’Alliance Marocaine pour le Climat et le Développement Durable (AMCDD) ; Coordonnateur de projets européens sur la conservation de la biodiversité des karsts et des zones humides ; Membre de la commission des experts et du Conseil National de l’Association des Enseignants des Sciences de la Vie et de la Terre (AESVT Maroc) ; Membre du Conseil d’Administration du Centre de Développement de la Région de Tensift (CDRT), Association d’Utilité Publique, et Membre du Conseil Scientifique du Parc National de Toubkal relevant de la Direction Régionale de l’Agence Nationale des Eaux et Forêts du Haut Atlas.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white text-center relative z-20">
+                                <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Pr. Mohamed GHAMIZI</p>
+                                <p class="text-[9px] text-slate-400 uppercase">MHNM/FSSM/UCA-Morocco</p>
+                            </div>
+                        </div>
+
+                        <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="relative w-full aspect-square overflow-hidden p-5">
+                                <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                    <span class="relative flex h-2 w-2 text-white">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    BIO
+                                </div>
+                                <img src="./img/Phillipe HOLZMULLER.jpg" alt="Dr. Phillipe HOLZMULLER" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                                <span class="absolute top-2 right-2 z-20">
+                                    <img src="https://flagcdn.com/fr.svg" width="28" alt="France" class="rounded-sm shadow-sm border border-white/20">
+                                </span>
+                                <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                    <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                        <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                        <strong>Philippe HOLZMULLER</strong> est chercheur microbiologiste-immunologiste au CIRAD (Unité Mixte de Recherche « Systèmes d’élevage méditerranéens et tropicaux » (SELMET), Montpellier), où il explore un enjeu central de la santé globale : comprendre comment les agents pathogènes, leurs vecteurs et leurs hôtes interagissent dans des environnements en constante évolution. Ses travaux portent sur le décryptage des mécanismes cellulaire et moléculaire de résilience et d’adaptation des animaux d’élevage face aux infections, ainsi que sur le rôle des vecteurs (notamment les tiques) dans la transmission des agents pathogènes. Il se distingue en mobilisant des approches intégratives, à l’interface entre biologie des systèmes, immuno-physiologie et analyses multi-omiques incluant la protéomique, pour transformer la complexité des modèles biologiques étudiés en solutions concrètes — vaccins, outils diagnostiques, stratégies de prévention — au service d’une meilleure anticipation des risques sanitaires. Il est membre du groupe de recherche GloInsect, dédié à l’innovation en entomologie médicale et en infectiologie globale, avec des applications directes en santé publique, notamment dans les contextes à ressources limitées.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white text-center relative z-20">
+                                <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Dr. Phillipe HOLZMULLER</p>
+                                <p class="text-[9px] text-slate-400 uppercase">CIRAD, Paris-France</p>
+                            </div>
+                        </div>
+
+                        <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="relative w-full aspect-square overflow-hidden p-5">
+                                <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                    <span class="relative flex h-2 w-2 text-white">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    BIO
+                                </div>
+                                <img src="./img/Souad GUERNAOUI.png" alt="Pr. Souad GUERNAOUI" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                                <span class="absolute top-2 right-2 z-20">
+                                    <img src="https://flagcdn.com/ma.svg" width="28" alt="Maroc" class="rounded-sm shadow-sm border border-white/20">
+                                </span>
+                                <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                    <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                        <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                        <strong>Souad GUERNAOUI</strong> est une professeure et chercheuse marocaine à la Faculté des Sciences Dhar Lmahraz Fès, spécialisée en biologie, génétique et parasitologie. Elle est particulièrement reconnue pour ses travaux sur les maladies vectorielles au Maroc. Ses recherches portent principalement sur les maladies tropicales négligées, notamment les leishmanioses. Depuis 2001, elle adopte une approche pluridisciplinaire reliant écologie, modélisation et génétique afin de comprendre les mécanismes de transmission dans des milieux naturels complexes, diversifiés et en perpétuel changement. L’approche utilisée fournit des preuves scientifiques permettant l’aide à la décision pour identifier les zones prioritaires pour les interventions sanitaires et prévoir les risques d'épidémies.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white text-center relative z-20">
+                                <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Pr. Souad GUERNAOUI</p>
+                                <p class="text-[9px] text-slate-400 uppercase">FSDM, Morocco</p>
+                            </div>
+                        </div>
+
+                        <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="relative w-full aspect-square overflow-hidden p-5">
+                                <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                    <span class="relative flex h-2 w-2 text-white">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    BIO
+                                </div>
+                                <img src="./img/Mohamed ECHCHAKERY.jpg" alt="Pr. Mohamed ECHCHAKERY" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                                <span class="absolute top-2 right-2 z-20">
+                                    <img src="https://flagcdn.com/ma.svg" width="28" alt="Maroc" class="rounded-sm shadow-sm border border-white/20">
+                                </span>
+                                <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                    <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                        <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                        <strong>PhD Mohamed ECHCHAKERY</strong> (https://orcid.org/0000-0001-6166-6592) is a Full Professor of Infectious Biology and Quality Management Systems of Medical Biology Laboratories at the Higher Institute of Health Sciences, Hassan First University of Settat, Morocco. He is affiliated with the Laboratory of Sciences and Health Technologies and has multidisciplinary expertise in Epidemiology, Parasitology, Infectious Diseases, Medical Entomology, and Vector-Borne Diseases, with a particular focus on leishmaniasis in Morocco. He obtained his PhD in Eco-epidemiology, Parasitology, and Molecular Biology from Cadi Ayyad University in 2018 and completed research training at the National Microbiology Center, Instituto de Salud Carlos III, Madrid, Spain (WHO Collaborating Centre), where he developed expertise in molecular diagnosis and identification of Leishmania species. His research focuses on the epidemiology and eco-epidemiology of leishmaniasis, including vectors, rodent reservoirs, and the impact of environmental and climate factors on disease transmission. He is the author of a scientific book and has published 23 peer-reviewed articles and 13 book chapters, and presented more than 25 communications at national and international conferences. He also serves as a peer reviewer for indexed scientific journals. His work contributes to improving epidemiological surveillance and control of vector-borne diseases.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white text-center relative z-20">
+                                <p class="font-bold text-slate-800 text-[12px] group-hover:text-blue-700 transition truncate">Pr. Mohamed ECHCHAKERY</p>
+                                <p class="text-[9px] text-slate-400 uppercase">UH1 Settat, Morocco</p>
+                            </div>
+                        </div>
+
+                        <div class="speaker-card group relative overflow-hidden rounded-3xl bg-white shadow-sm max-w-[200px] min-w-[200px]" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="relative w-full aspect-square overflow-hidden p-5">
+                                <div class="absolute top-4 left-4 z-40 bg-orange-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-pulse transition-all duration-300 group-hover:opacity-0 group-hover:scale-0 pointer-events-none">
+                                    <span class="relative flex h-2 w-2 text-white">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    BIO
+                                </div>
+                                <img src="./img/Maria Bourquia.jpg" alt="Pr. Maria Bourquia" class="w-full h-full object-cover rounded-full transition duration-500 group-hover:scale-110">
+                                <span class="absolute top-2 right-2 z-20">
+                                    <img src="https://flagcdn.com/ma.svg" width="28" alt="Maroc" class="rounded-sm shadow-sm border border-white/20">
+                                </span>
+                                <div class="absolute inset-0 bg-slate-900/90 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col z-10">
+                                    <p class="text-[9px] text-slate-200 leading-tight overflow-y-auto custom-scrollbar text-left">
+                                        <span class="font-bold text-blue-400 block mb-1">Biographie :</span>
+                                        <strong>Maria Bourquia</strong> Enseignante-chercheur, responsible de l’Unité de parasitologie et des maladies parasitaires à l’Institut agronomique et vétérinaire Hassan II. Vétérinaire de formation, elle est titulaire d’un doctorat d’Université en Parasitologie et maladies parasitaires ainsi que d’un diplôme universitaire de l’Université Paris-Est Créteil consacré aux zoonoses transmises par les tiques. Ses travaux de recherche s’inscrivent dans le champ de l’écologie des vecteurs et de l’épidémiologie des maladies vectorielles. Elle mène actuellement plusieurs projets portant sur les zoonoses vectorielles chez les animaux domestiques et sauvages ainsi que sur l’impact de la végétalisation urbaine sur la dynamique et la distribution des vecteurs.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white text-center relative z-20">
+                                <p class="font-bold text-slate-800 text-[13px] group-hover:text-blue-700 transition truncate">Pr. Maria Bourquia</p>
+                                <p class="text-[9px] text-slate-400 uppercase">University Hassan II, Morocco</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <section id="committee" class="py-20 bg-slate-50">
+         <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black text-slate-800 leading-tight">
+                    Committees
+                </h2>
+                <p class="text-blue-500 font-medium italic mt-4 text-xl">
+                    Comités
+                </p>
+                <div class="w-24 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full"></div>
+        </div>
+        <div class="container mx-auto px-6">
+            
+            <div class="mb-24" data-aos="fade-up">
+                <h3 class="text-blue-700 font-black border-b-2 border-blue-50 pb-6 mb-12 flex items-center justify-center uppercase tracking-[0.2em] text-center text-sm md:text-base">
+                    Honorary Committee <span class="text-slate-300 font-light ml-3">/ Comité d'Honneur</span>
+                </h3>
+        
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+                    
+                    <div class="group bg-white rounded-3xl p-3 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[4/5]">
+                            <img src="img/Pr. IJJAALI Mustapha.jpg" alt="Pr. IJJAALI Mustapha" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <div class="text-center px-2 pb-2">
+                            <p class="text-[9px] text-blue-600 font-bold uppercase mb-1 tracking-tighter">President USMBA</p>
+                            <p class="font-extrabold text-slate-800 text-sm leading-tight">Pr. IJJAALI Mustapha</p>
+                        </div>
+                    </div>
+
+                    <div class="group bg-white rounded-3xl p-3 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[4/5]">
+                            <img src="img/Pr. Ali AHAITOUF.jpg" alt="Pr. AHAITOUF Ali" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <div class="text-center px-2 pb-2">
+                            <p class="text-[9px] text-blue-600 font-bold uppercase mb-1 tracking-tighter">Director ENS Fez</p>
+                            <p class="font-extrabold text-slate-800 text-sm leading-tight">Pr. AHAITOUF Ali</p>
+                        </div>
+                    </div>
+
+                    <div class="group bg-white rounded-3xl p-3 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[4/5]">
+                            <img src="img/Pr. SQUALLI HOUSSAINI Tariq.jpg" alt="Pr. SQUALLI HOUSSAINI Tariq" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <div class="text-center px-2 pb-2">
+                            <p class="text-[9px] text-blue-600 font-bold uppercase mb-1 tracking-tighter">Dean FMPMD Fez</p>
+                            <p class="font-extrabold text-slate-800 text-sm leading-tight">Pr. Tarik SQALLI HOUSSAINI</p>
+                        </div>
+                    </div>
+
+                    <div class="group bg-white rounded-3xl p-3 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[4/5]">
+                            <img src="img/Pr. BELKASMI Mohammed.jpg" alt="Pr. BELKASMI Mohammed" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <div class="text-center px-2 pb-2">
+                            <p class="text-[9px] text-blue-600 font-bold uppercase mb-1 tracking-tighter">Dean FSDM Fez</p>
+                            <p class="font-extrabold text-slate-800 text-sm leading-tight">Pr. BELKASMI Mohammed</p>
+                        </div>
+                    </div>
+
+                    <div class="group bg-white rounded-3xl p-3 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[4/5]">
+                            <img src="img/Pr. BERRAHO Mohamed Amine.jpg" alt="Pr. BERRAHO Mohamed Amine" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <div class="text-center px-2 pb-2">
+                            <p class="text-[9px] text-blue-600 font-bold uppercase mb-1 tracking-tighter">Director IRC Fez</p>
+                            <p class="font-extrabold text-slate-800 text-sm leading-tight">Pr. BERRAHO Mohamed Amine</p>
+                        </div>
+                    </div>
+
+                    <div class="group bg-blue-50/50 rounded-3xl p-3 border border-blue-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[4/5]">
+                            <img src="img/Pr. EMEK Mustafa Latif.jpg" alt="Pr. EMEK Mustafa Latif" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <div class="text-center px-2 pb-2">
+                            <p class="text-[9px] text-blue-700 font-bold uppercase mb-1 tracking-tighter">President IKSAD, Turkey</p>
+                            <p class="font-extrabold text-slate-800 text-sm leading-tight">Pr. EMEK Mustafa Latif</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                    
+                    <div class="relative group" data-aos="fade-right">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                        <div class="relative bg-blue-700 text-white p-8 md:p-10 rounded-3xl shadow-xl h-full flex flex-col justify-center">
+                            <div class="flex flex-col sm:flex-row items-center gap-8">
+                                <div class="relative">
+                                    <div class="absolute inset-0 bg-blue-400 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform duration-500"></div>
+                                    <img src="img/Saad BENAMAR.jpg" alt="Pr. BENAMAR Saad" class="relative w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover shadow-2xl border-2 border-white/20">
+                                </div>
+                                
+                                <div class="text-center sm:text-left">
+                                    <div class="flex items-center justify-center sm:justify-start gap-2 mb-4">
+                                        <span class="w-8 h-px bg-blue-300"></span>
+                                        <p class="text-blue-200 text-xs font-bold uppercase tracking-[0.2em]">Chairman of the Congress</p>
+                                    </div>
+                                    <h3 class="text-2xl md:text-3xl font-black mb-2 tracking-tight">Pr. BENAMAR Saad</h3>
+                                    <p class="text-blue-100 opacity-80 flex items-center justify-center sm:justify-start gap-2 italic">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                        </svg>
+                                        ENS Fez, USMBA Morocco
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 text-white p-8 md:p-10 rounded-3xl shadow-xl flex flex-col justify-center" data-aos="fade-left">
+                        <p class="text-slate-400 text-xs font-bold uppercase tracking-[0.2em] mb-8 flex items-center gap-3">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                            Congress Coordinators
+                        </p>
+                        
+                        <div class="space-y-8">
+                            <div class="flex items-center group">
+                                <div class="relative">
+                                    <img src="img/Btissame Zerriq.jpg" alt="Pr. ZARROUQ Btissame" class="w-20 h-20 rounded-2xl object-cover mr-6 shadow-lg border-2 border-white/10 group-hover:scale-110 group-hover:rotate-3 transition duration-300">
+                                </div>
+                                <div>
+                                    <p class="font-bold text-xl leading-tight group-hover:text-blue-400 transition">Pr. ZARROUQ Btissame</p>
+                                    <p class="text-xs text-slate-500 mt-1 uppercase italic font-light">USMBA, Morocco</p>
+                                    <p class="text-[11px] font-semibold text-blue-500/90 mt-1 uppercase tracking-wider">Epidemiology & Addiction</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center group border-y border-white/5 py-6">
+                                <div class="relative">
+                                    <img src="img/Souad GUERNAOUI.jpg" alt="Pr. GUERNAOUI Souad" class="w-20 h-20 rounded-2xl object-cover mr-6 shadow-lg border-2 border-white/10 group-hover:scale-110 group-hover:rotate-3 transition duration-300">
+                                </div>
+                                <div>
+                                    <p class="font-bold text-xl leading-tight group-hover:text-green-400 transition">Pr. GUERNAOUI Souad</p>
+                                    <p class="text-xs text-slate-500 mt-1 uppercase italic font-light">USMBA, Morocco</p>
+                                    <p class="text-[11px] font-semibold text-green-500/90 mt-1 uppercase tracking-wider">Epidemiology & Vector-Borne Diseases</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center group">
+                                <div class="relative">
+                                    <img src="img/Khaoula EL KINANY.jpg" alt="Pr. EL KINANY Khaoula" class="w-20 h-20 rounded-2xl object-cover mr-6 shadow-lg border-2 border-white/10 group-hover:scale-110 group-hover:rotate-3 transition duration-300">
+                                </div>
+                                <div>
+                                    <p class="font-bold text-xl leading-tight group-hover:text-amber-400 transition">Pr. EL KINANY Khaoula</p>
+                                    <p class="text-xs text-slate-500 mt-1 uppercase italic font-light">USMBA, Morocco</p>
+                                    <p class="text-[11px] font-semibold text-amber-500/90 mt-1 uppercase tracking-wider">Epidemiology & Cancer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </section>
+
+    <section id="committees" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="mb-20">
+                <h2 class="section-title text-center" data-aos="fade-up">
+                    International Scientific Committee <br class="md:hidden"> 
+                    <span class="text-blue-400 font-light">/ Comité Scientifique International</span>
+                </h2>
+                
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-12">
+                    
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. AMAADOUR Lamiae</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">FMPMDF, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. AMMARI Abdelghaffar</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">ENSP Rabat, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. BASLAM Abdelmounaim</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">ENS Fez, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. BENBRAHIM Zineb</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">FMPMDF, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. BERRAHO Amine</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">CRI / IRC Fez, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. BOUT Amine</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">FMPMDF, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. EL KINANY Khaoula</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">ISPITS Fez, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. EL MALKI Hicham</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">ISPITS Fez, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. EL RHAZI Karima</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">FMPMD Fez, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. ESSAHALE Adil</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">ENS Fez, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. FEKIH ROMDHANE Feten</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">UTM/FMT, Tunisia</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. GHAMIZI Mohamed</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">FSSM/UCA, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. GUERNAOUI Souad</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">FSDM Fez, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. HALLIT Souheil</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">USEK, Jounieh, Lebanon</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Dr. HOLZMULLER Philippe</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">CIRAD, Paris, France</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Dr. HUYBRECHTS Inge</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">IARC/WHO, Lyon, France</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. NEJJARI Chakib</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">UEMF, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. OMARI Majid</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">ENSP Rabat, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. PAYO Ruben Martin</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">UNIOVI, Spain</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Dr. SELMOUNI Farida</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">IARC/WHO, Lyon, France</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Dr. SERENO Denis</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">IRD, Montpellier, France</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. TAOUFIQ Imane</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">UHII, Morocco</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border-l-4 border-blue-600 rounded-r-lg shadow-sm hover:shadow-md transition group" data-aos="fade-up">
+                        <p class="font-bold text-sm group-hover:text-blue-600 transition">Pr. ZARROUQ Btissame</p>
+                        <p class="text-[11px] text-slate-500 uppercase font-medium">ENS Fez, Morocco</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="organizing-committee" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-center" data-aos="fade-up">
+                Organizing Committee<br class="md:hidden"> 
+                <span class="text-blue-400 font-light">/ Comité d’Organisation</span>
+            </h2>
+            
+            <div class="mx-auto mt-12 bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100" data-aos="zoom-in">
+                <div class="grid lg:grid-cols-3 gap-12">
+                    
+                    <div class="lg:col-span-2">
+                        <h4 class="text-blue-700 font-bold border-b-2 border-blue-100 pb-2 mb-6 flex items-center">
+                            Professors <span class="text-blue-300 font-light ml-2 text-xs">/ Professeurs</span>
+                        </h4>
+                        <div class="grid md:grid-cols-2 gap-x-8 gap-y-3">
+                            <ul class="space-y-3 text-gray-700 text-sm">
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. AMARA Bouchra; FMPMDF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. BASLAM Abdelmounaim; ENSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. BEN BAQQAL Hicham; ENSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. BEN FARES Samiha; ENSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. BENAMAR Saad; ENSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. EL ASMI Hicham; ENSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. EL KHATTABI Khalid; ENSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. EL KINANY Khaoula; ISPITSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. EL MALKI Hicham; ISPITSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. EL RHAZI Karima; FMPDF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. EL MESKAOUI Abdelmalek; FSDM</li>
+                            </ul>
+                            <ul class="space-y-3 text-gray-700 text-sm">
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. ESSAHALE Adil; ENSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. GUERNAOUI Souad; FSDM Fez</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. KRIYA Salima; ISPITS Meknès</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. LAGUENINI Fouzia; ENSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. LAMSAADI Nadia; ENSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. NADI Sara; ISPITSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. OMARI Majid; ENSP Rabat</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. QARMICHE Nora; FMPDF Fez</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. SLALI Hamid; ENSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. SQUALLI Wafae; ENSF</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Pr. ZARROUQ Btissame; ENSF</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-inner">
+                        <h4 class="text-blue-800 font-bold border-b-2 border-blue-200 pb-2 mb-6 flex items-center">
+                            PhD Students <span class="text-blue-400 font-light ml-2 text-xs">/ Doctorants</span>
+                        </h4>
+                        <ul class="space-y-2 text-gray-700 text-[11px] font-medium uppercase tracking-tight">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span> ABOUDRAR Mohamed; FSDM</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span> BOULAAMANE Rabia; ENSF</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span> CHERKAOUY Fadwa; ENSF</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span> EL AMMARI Abdelfettah; ENSF</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span> EL OGRI Oumayma; FSDM</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span> EL OUALI Salma; ENSF</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span> ETTIFOURI Salma; ENSF</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span> KASSAB Kenza; ENSF</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span> LARAQUI Zineb; ENSF</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span> ZERROUK Deyae; ENSF</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="overview" class="py-24 bg-white overflow-hidden">
+        <div class="container mx-auto px-6">
+            
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black text-slate-800 leading-tight">
+                    Overview of EPIA-1 and Scientific Scope
+                </h2>
+                <p class="text-blue-500 font-medium italic mt-4 text-xl">
+                    Aperçu et Portée Scientifique
+                </p>
+                <div class="w-24 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="max-w-5xl mx-auto mb-24" data-aos="fade-up">
+                <div class="bg-slate-50 p-8 md:p-12 rounded-[40px] border border-slate-100 relative group">
+                    <div class="absolute -top-6 -right-6 w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-xl group-hover:rotate-12 transition-transform">
+                        📅
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-10 items-center">
+                        <div>
+                            <p class="text-slate-700 leading-relaxed text-lg">
+                                The Laboratory for Scientific Innovation in Sustainability, Environment, Education, and Health <strong>(ISDEESIA)</strong> and partners are organizing the <strong>1st International Congress of Epidemiology (EPIA-1), held on June 29–30 & July 1, 2026, in Fez, Morocco</strong>.
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-blue-200 pl-8 italic">
+                            <p class="text-slate-500 text-base leading-relaxed">
+                                Le Laboratoire d'Innovation Scientifique pour la Durabilité, l'Environnement, l'Éducation et la Santé à l'ère de l'IA <strong>(ISDEESIA)</strong> et ses partenaires organisent le <strong>1er Congrès International d'Épidémiologie à l'ère de l'Intelligence Artificielle (EPIA-1)</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 mb-24 items-center">
+                <div class="order-2 lg:order-1" data-aos="fade-right">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm"> </span>
+                        Scientific Rationale <span class="text-slate-300 font-light ml-2">/ Argumentaire Scientifique</span>
+                    </h3>
+                    
+                    <div class="space-y-8">
+                        <div class="border-l-4 border-blue-600 pl-6">
+                            <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                                Public health faces major challenges, including cancer, vector-borne diseases, and addictions. These issues require strong epidemiological approaches, reliable data, and collaboration between researchers, healthcare professionals, and decision-makers. Advances in data science and artificial intelligence offer new opportunities to improve disease surveillance, risk-factor analysis, prevention strategies, and evidence-based decision-making, while complementing human expertise. EPIA-1 aims to provide a space for scientific exchange and interdisciplinary collaboration around three main themes: cancer, vector-borne diseases, and addictions.
+                            </p>
+                        </div>
+
+                        <div class="border-l-4 border-slate-200 pl-6 italic">
+                            <p class="text-slate-500 leading-relaxed text-sm md:text-base">
+                                La santé publique est confrontée à des défis majeurs, notamment le cancer, les maladies vectorielles et les addictions. Ces enjeux nécessitent des approches épidémiologiques solides, des données fiables et une collaboration étroite entre chercheurs, professionnels de la santé et décideurs. Les progrès de la science des données et de l'intelligence artificielle offrent de nouvelles opportunités pour améliorer la surveillance des maladies, l'analyse des facteurs de risque, les stratégies de prévention et la prise de décision fondée sur des preuves, tout en complétant l'expertise humaine. EPIA-1 vise à offrir un espace d'échange scientifique et de collaboration interdisciplinaire autour de trois thématiques principales : le cancer, les maladies vectorielles et les addictions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2 bg-blue-600 rounded-[3rem] p-1 h-80 shadow-2xl overflow-hidden" data-aos="fade-left">
+                    <div class="w-full h-full bg-slate-900 rounded-[2.8rem] flex items-center justify-center p-12 text-center relative">
+                        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#3b82f6 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        
+                        <div class="relative z-10">
+                            <p class="text-blue-400 font-mono text-lg animate-pulse tracking-widest">
+                                &lt; AI_Analysis_In_Progress /&gt;
+                            </p>
+                            <span class="text-white font-sans text-4xl font-black block mt-4 tracking-tighter uppercase">
+                                Epidemiology 2.0
+                            </span>
+                            <div class="w-12 h-1 bg-blue-500 mx-auto mt-4 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-24">
+                <h3 class="text-2xl font-bold text-slate-800 mb-12 text-center" data-aos="fade-up">
+                    Research Themes <span class="text-blue-400 font-light">/ Thématiques de Recherche</span>
+                </h3>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm hover:shadow-xl transition-all hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-blue-600 font-black text-4xl mb-4">01</div>
+                        <h4 class="font-bold text-slate-800 mb-2">Epidemiology and Addiction</h4>
+                        <p class="text-slate-600 text-sm mb-4">This area focuses on the epidemiology of addictive behaviors (tobacco, alcohol, psychoactive substances, and behavioral addictions), associated psychosocial factors, comorbidities, as well as prevention strategies, harm reduction, and public health policies in the age of new technologies</p>
+                        <p class="text-slate-400 text-[11px] italic leading-relaxed border-t pt-4">Cet axe se concentre sur l'épidémiologie des comportements addictifs (tabac, alcool, substances psychoactives et addictions comportementales), les facteurs psychosociaux associés, les comorbidités, ainsi que les stratégies de prévention, la réduction des risques et les politiques de santé publique à l'ère des nouvelles technologies.</p>
+                    </div>
+
+                    <div class="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm hover:shadow-xl transition-all hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-red-500 font-black text-4xl mb-4">02</div>
+                        <h4 class="font-bold text-slate-800 mb-2">Epidemiology and Cancer</h4>
+                        <p class="text-slate-600 text-sm mb-4">This theme covers epidemiological approaches applied to cancer, including the description of epidemiological profiles, the study of risk factors, prevention and screening strategies, as well as the evaluation of oncology interventions and research on patient survival and quality of life in the age of AI.</p>
+                        <p class="text-slate-400 text-[11px] italic leading-relaxed border-t pt-4">Cette thématique couvre les approches épidémiologiques appliquées au cancer, notamment la description des profils épidémiologiques, l'étude des facteurs de risque, les stratégies de prévention et de dépistage, ainsi que l'évaluation des interventions en oncologie et la recherche sur la survie et la qualité de vie des patients à l'ère de l'intelligence artificielle.</p>
+                    </div>
+
+                    <div class="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm hover:shadow-xl transition-all hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-green-500 font-black text-4xl mb-4">03</div>
+                        <h4 class="font-bold text-slate-800 mb-2">Epidemiology and Vector-Borne Diseases</h4>
+                        <p class="text-slate-600 text-sm mb-4">This research area focuses on vector-borne diseases, their transmission dynamics, associated environmental and climatic factors, as well as the contribution of AI in surveillance, prevention, and control strategies, in the context of the emergence and re-emergence of infectious diseases.</p>
+                        <p class="text-slate-400 text-[11px] italic leading-relaxed border-t pt-4">Cet axe de recherche se concentre sur les maladies vectorielles, leurs dynamiques de transmission, les facteurs environnementaux et climatiques associés, ainsi que la contribution de l'intelligence artificielle aux stratégies de surveillance, de prévention et de lutte, dans un contexte d'émergence et de réémergence des maladies infectieuses.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 rounded-[3rem] p-6 md:p-12 text-white relative overflow-hidden" data-aos="zoom-in">
+                <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+                    <div class="absolute inset-0" style="background-image: radial-gradient(#3b82f6 1px, transparent 1px); background-size: 30px 30px;"></div>
+                </div>
+                
+                <div class="text-center max-w-3xl mx-auto mb-12 relative z-10">
+                    <h3 class="text-3xl md:text-4xl font-black mb-4 tracking-tight">
+                        Workshops / <span class="text-amber-500 italic font-light font-serif">Ateliers Pratiques</span>
+                    </h3>
+                    <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                        Practical workshops will explore methodological and applied topics in epidemiology and public health.
+                    </p>
+                    <p class="text-slate-400 text-xs md:text-sm italic mt-2 opacity-80">
+                        Des ateliers pratiques organisés pour renforcer les compétences des participants sur des thématiques méthodologiques approfondies.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10"> 
+                    <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/60 rounded-2xl p-6 flex flex-col justify-between transition-all hover:border-amber-500/30 hover:bg-slate-800/80">
+                        <div>
+                            <div class="mb-5">
+                                <span class="text-xs font-bold uppercase tracking-widest text-amber-500 block mb-1">Theme 1</span>
+                                <h4 class="text-xl font-bold text-white tracking-tight">Epidemiology & Addiction</h4>
+                                <p class="text-xs text-slate-400 italic mt-0.5">Thème 1 : Épidémiologie & Addiction</p>
+                            </div>
+                            
+                            <div class="space-y-5">
+                                <div class="border-l-2 border-slate-700 pl-4 py-1">
+                                    <div class="flex items-center gap-2 mb-1.5">
+                                        <span class="bg-slate-900 text-amber-400 text-[10px] font-mono px-2 py-0.5 rounded border border-amber-500/20 font-bold">WT1-1</span>
+                                        <div class="flex items-center text-slate-400 text-[11px] gap-1">
+                                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            1H30
+                                        </div>
+                                    </div>
+                                    <p class="text-sm font-semibold text-slate-200 leading-snug">Addiction aux écrans : mythe ou réalité ? Comprendre pour mieux prévenir</p>
+                                    <p class="text-xs text-slate-400 mt-1.5"><span class="text-amber-500/80 font-medium">Facilitator:</span> FEKIH-ROMDHANE Feten</p>
+                                </div>
+
+                                <div class="border-l-2 border-slate-700 pl-4 py-1">
+                                    <div class="flex items-center gap-2 mb-1.5">
+                                        <span class="bg-slate-900 text-amber-400 text-[10px] font-mono px-2 py-0.5 rounded border border-amber-500/20 font-bold">WT1-2</span>
+                                        <div class="flex items-center text-slate-400 text-[11px] gap-1">
+                                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            1H30
+                                        </div>
+                                    </div>
+                                    <p class="text-sm font-semibold text-slate-200 leading-snug">L’entretien motivationnel : outils et applications thérapeutiques</p>
+                                    <p class="text-xs text-slate-400 mt-1.5"><span class="text-amber-500/80 font-medium">Facilitator:</span> TAOUFIQ Imane</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/60 rounded-2xl p-6 flex flex-col justify-between transition-all hover:border-amber-500/30 hover:bg-slate-800/80">
+                        <div>
+                            <div class="mb-5">
+                                <span class="text-xs font-bold uppercase tracking-widest text-amber-500 block mb-1">Theme 2</span>
+                                <h4 class="text-xl font-bold text-white tracking-tight">Epidemiology & Cancer</h4>
+                                <p class="text-xs text-slate-400 italic mt-0.5">Thème 2 : Épidémiologie du Cancer</p>
+                            </div>
+                            
+                            <div class="space-y-5">
+                                <div class="border-l-2 border-slate-700 pl-4 py-1">
+                                    <div class="flex items-center gap-2 mb-1.5">
+                                        <span class="bg-slate-900 text-amber-400 text-[10px] font-mono px-2 py-0.5 rounded border border-amber-500/20 font-bold">WT2-1</span>
+                                        <div class="flex items-center text-slate-400 text-[11px] gap-1">
+                                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            1H30
+                                        </div>
+                                    </div>
+                                    <p class="text-sm font-semibold text-slate-200 leading-snug">Sustainable lifestyle and health in the age of Artificial Intelligence</p>
+                                    <p class="text-xs text-slate-400 mt-1.5"><span class="text-amber-500/80 font-medium">Facilitator:</span> HUYBRECHTS Inge</p>
+                                </div>
+
+                                <div class="border-l-2 border-slate-700 pl-4 py-1">
+                                    <div class="flex items-center gap-2 mb-1.5">
+                                        <span class="bg-slate-900 text-amber-400 text-[10px] font-mono px-2 py-0.5 rounded border border-amber-500/20 font-bold">WT2-2</span>
+                                        <div class="flex items-center text-slate-400 text-[11px] gap-1">
+                                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            1H30
+                                        </div>
+                                    </div>
+                                    <p class="text-sm font-semibold text-slate-200 leading-snug">Epidémiologie du cancer et recherche interventionnelle : une application au cancer du col de l’utérus</p>
+                                    <p class="text-xs text-slate-400 mt-1.5"><span class="text-amber-500/80 font-medium">Facilitator:</span> SELMOUNI Farida</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/60 rounded-2xl p-6 flex flex-col justify-between transition-all hover:border-amber-500/30 hover:bg-slate-800/80">
+                        <div>
+                            <div class="mb-5">
+                                <span class="text-xs font-bold uppercase tracking-widest text-amber-500 block mb-1">Theme 3</span>
+                                <h4 class="text-xl font-bold text-white tracking-tight">Vector-Borne Diseases</h4>
+                                <p class="text-xs text-slate-400 italic mt-0.5">Thème 3 : Maladies à Vecteurs</p>
+                            </div>
+                            
+                            <div class="space-y-5">
+                                <div class="border-l-2 border-slate-700 pl-4 py-1">
+                                    <div class="flex items-center gap-2 mb-1.5">
+                                        <span class="bg-slate-900 text-amber-400 text-[10px] font-mono px-2 py-0.5 rounded border border-amber-500/20 font-bold">WT3-1</span>
+                                        <div class="flex items-center text-slate-400 text-[11px] gap-1">
+                                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            3H00
+                                        </div>
+                                    </div>
+                                    <p class="text-sm font-semibold text-slate-200 leading-snug">Entomologie et malacologie médicales</p>
+                                    <p class="text-xs text-slate-400 mt-1.5"><span class="text-amber-500/80 font-medium">Facilitator:</span> GUERNAOUI Souad</p>
+                                </div>
+
+                                <div class="border-l-2 border-slate-700 pl-4 py-1">
+                                    <div class="flex items-center gap-2 mb-1.5">
+                                        <span class="bg-slate-900 text-amber-400 text-[10px] font-mono px-2 py-0.5 rounded border border-amber-500/20 font-bold">WT3-2</span>
+                                        <div class="flex items-center text-slate-400 text-[11px] gap-1">
+                                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            3H00
+                                        </div>
+                                    </div>
+                                    <p class="text-sm font-semibold text-slate-200 leading-snug">Utilisation de l'intelligence artificielle pour l'identification des moustiques du Maroc</p>
+                                    <p class="text-xs text-slate-400 mt-1.5"><span class="text-amber-500/80 font-medium">Facilitators:</span> SERENO Denis, BOURQUIA Maria & GUERNAOUI Souad</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <section id="guidelines" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-black text-slate-800 uppercase tracking-tighter">
+                    Submission Guidelines
+                </h2>
+                <p class="text-blue-500 font-medium italic mt-2">
+                    Directives de Soumission
+                </p>
+                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                
+                <div class="space-y-8">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100" data-aos="fade-right">
+                        <div class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Presentation Formats</h3>
+                        <p class="text-blue-600 text-xs font-bold uppercase tracking-widest mb-4 italic">Formats de Présentation</p>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                            In-person oral presentations in <strong>English or French</strong> (15 min).
+                        </p>
+                        <p class="text-slate-400 text-xs italic leading-relaxed border-t pt-3">
+                            Présentations orales en personne en <strong>Anglais ou Français</strong> (15 min).
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-900 text-white p-8 rounded-3xl shadow-xl" data-aos="fade-right" data-aos-delay="100">
+                        <h3 class="text-xl font-bold mb-2">Evaluation Criteria</h3>
+                        <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-6 italic">Critères d'Évaluation</p>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                             Abstracts undergo a double-blind review based on relevance, originality, and methodological rigor.
+                        </p>
+                        <p class="text-slate-500 text-xs italic mb-6 border-b border-slate-800 pb-4">
+                            Évaluation par le comité scientifique (double-blind review) selon la pertinence, l'originalité et la rigueur.
+                        </p>
+                        <ul class="space-y-3 text-xs uppercase tracking-wide text-blue-100/80">
+                            <li class="flex items-center gap-3"><span class="w-1 h-1 bg-blue-500 rounded-full"></span> Relevance / Pertinence</li>
+                            <li class="flex items-center gap-3"><span class="w-1 h-1 bg-blue-500 rounded-full"></span> Originality / Originalité</li>
+                            <li class="flex items-center gap-3"><span class="w-1 h-1 bg-blue-500 rounded-full"></span> Rigor / Rigueur</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 bg-white p-8 md:p-12 rounded-[40px] shadow-sm border border-slate-100" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2">Submission Procedures</h3>
+                    <p class="text-blue-600 text-xs font-bold uppercase tracking-widest mb-10 italic">Instructions de Soumission </p>
+
+                    <div class="space-y-12 relative">
+                        <div class="absolute left-4 top-0 bottom-0 w-px bg-slate-100 md:left-6"></div>
+
+                        <div class="relative pl-12 md:pl-16">
+                            <div class="absolute left-0 top-0 w-8 h-8 md:w-12 md:h-12 bg-blue-50 border-2 border-blue-600 rounded-full flex items-center justify-center font-black text-blue-600 z-10 bg-white">1</div>
+                            <h4 class="font-bold text-slate-800 uppercase tracking-tight text-sm">Initial Abstract / <span class="text-slate-400 italic">Résumé Initial</span></h4>
+                            <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                                250–300 words in English or French. Proposals must include title, authors’ names, affiliation, corresponding author’s email, and 3 to 5 keywords.
+                            </p>
+                            <p class="text-slate-400 text-xs mt-2 italic leading-relaxed">
+                                250–300 mots en Anglais ou Français. Doit inclure : titre, auteurs, affiliation, email de l'auteur correspondant et 3 à 5 mots-clés.
+                            </p>
+                        </div>
+
+                        <div class="relative pl-12 md:pl-16">
+                            <div class="absolute left-0 top-0 w-8 h-8 md:w-12 md:h-12 bg-blue-50 border-2 border-blue-600 rounded-full flex items-center justify-center font-black text-blue-600 z-10 bg-white">2</div>
+                            <h4 class="font-bold text-slate-800 uppercase tracking-tight text-sm">Extended Abstract / <span class="text-slate-400 italic">Résumé Étendu</span></h4>
+                            <div class="mt-2 space-y-2">
+                                <p class="text-blue-700 text-sm leading-relaxed font-semibold">
+                                    After abstract acceptance, an extended abstract of 3 pages must be submitted in English for publication in a booklet with an ISBN.
+                                </p>
+                                <p class="text-slate-400 text-xs italic leading-relaxed">
+                                    Après acceptation, soumission d'un résumé étendu de 3 pages obligatoirement en ANGLAIS pour publication (ISBN).
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100 ml-12 md:ml-16">
+                            <h5 class="text-blue-800 font-bold text-[10px] uppercase mb-4 tracking-widest">Formatting / Mise en forme</h5>
+                            <div class="grid md:grid-cols-2 gap-6 text-[12px] text-slate-600">
+                                <ul class="space-y-1.5 border-l-2 border-blue-200 pl-3">
+                                    <li><strong>Structure:</strong> Intro, Methods, Results, Analysis, Conclusion.</li>
+                                    <li><strong>Text:</strong> Times New Roman, 12 pt, 1.5 spacing.</li>
+                                </ul>
+                                <ul class="space-y-1.5 border-l-2 border-blue-200 pl-3 italic">
+                                    <li><strong>Structure:</strong> Intro, Méthodes, Résultats, Analyse, Conclusion.</li>
+                                    <li><strong>Titre:</strong> Gras, 14 pt, centré.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="relative pl-12 md:pl-16">
+                            <div class="absolute left-0 top-0 w-8 h-8 md:w-12 md:h-12 bg-green-600 rounded-full flex items-center justify-center text-white z-10 shadow-lg shadow-green-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-slate-800 uppercase tracking-tight text-sm">
+                                Submission Platform / <span class="text-slate-400 italic text-[10px]">Plateforme de Soumission</span>
+                            </h4>
+                            <p class="text-slate-600 text-sm mt-2">
+                                Abstracts and extended abstracts should be uploaded via the <strong>registration form below</strong>.
+                            </p>
+                            <p class="text-slate-400 text-xs mt-1 italic">
+                                Les résumés doivent être téléchargés directement sur le <strong>formulaire d'inscription ci-dessous</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="registration" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100" data-aos="fade-up">
+                
+                <div class="bg-blue-600 p-8 text-center text-white">
+                    <h2 class="text-3xl font-bold mb-2">Registration Fees / <span class="font-light italic text-blue-200 text-2xl">Frais de participation</span></h2>
+                    <p class="opacity-80 text-sm uppercase tracking-widest">EPIA-1 Congress 2026</p>
+                </div>
+
+                <div class="p-8">
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-separate border-spacing-y-2">
+                            <thead>
+                                <tr class="text-slate-500 uppercase text-[10px] tracking-widest">
+                                    <th class="px-4 py-3 text-left">Category / <br><span class="italic text-[9px] normal-case text-slate-400">Catégorie</span></th>
+                                    <th class="px-4 py-3 text-left">Participation Type / <br><span class="italic text-[9px] normal-case text-slate-400">Type de Participation</span></th>
+                                    <th class="px-4 py-3 text-center bg-blue-50 rounded-t-xl text-blue-700 border-x border-t border-blue-100">Until June 15 / <br><span class="italic text-[9px] normal-case text-blue-500">Jusqu'au 15 Juin</span></th>
+                                    <th class="px-4 py-3 text-center bg-slate-50 rounded-t-xl border-x border-t border-slate-200">After June 15 / <br><span class="italic text-[9px] normal-case text-slate-400">Après le 15 Juin</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-slate-600">
+                                
+                                <tr class="group transition-all">
+                                    <td rowspan="2" class="px-6 py-4 bg-slate-50 rounded-l-xl border-y border-l border-slate-100 vertical-middle">
+                                        <span class="font-bold text-slate-800 block">PhD Students</span>
+                                        <span class="text-xs italic text-slate-400 block mt-1">Doctorants</span>
+                                    </td>
+                                    <td class="px-4 py-4 bg-white border-y border-slate-100">
+                                        <span class="font-semibold text-slate-700 block text-sm">Accepted Communication</span>
+                                        <span class="text-xs text-slate-400 block mt-0.5">Includes workshops of one theme</span>
+                                        <span class="text-xs italic text-slate-400 block mt-1 border-t border-slate-50 pt-1">Communication acceptée (Inclut l'accès aux ateliers d'un seul thème)</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-blue-50/30 border border-blue-100 font-black text-xl text-blue-700">
+                                        600 DH
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-white rounded-r-xl border-y border-r border-slate-200 font-bold text-xl text-slate-400 group-hover:text-slate-600">
+                                        800 DH
+                                    </td>
+                                </tr>
+                                <tr class="group transition-all">
+                                    <td class="px-4 py-4 bg-white border-y border-slate-100">
+                                        <span class="font-semibold text-slate-700 block text-sm">Access to Workshops only (Theme 1, 2, or 3)</span>
+                                        <span class="text-xs italic text-slate-400 block mt-1 border-t border-slate-50 pt-1">Accès aux Ateliers uniquement (Thème 1, 2 ou 3) <br>
+                                        <span class="text-[11px] font-medium text-emerald-600">Free for participants with accepted communication</span></span>
+                                        <span class="text-[11px] font-medium text-emerald-600">Gratuit pour les participants ayant une communication acceptée</span></span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-blue-50/30 border border-blue-100 font-black text-xl text-blue-700">
+                                        300 DH
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-white rounded-r-xl border-y border-r border-slate-200 font-bold text-xl text-slate-400 group-hover:text-slate-600">
+                                        400 DH
+                                    </td>
+                                </tr>
+
+                                <tr class="h-2"><td colspan="4"></td></tr>
+
+                                <tr class="group transition-all">
+                                    <td rowspan="2" class="px-6 py-4 bg-slate-50 rounded-l-xl border-y border-l border-slate-100 vertical-middle">
+                                        <span class="font-bold text-slate-800 block">Professors & Professionals</span>
+                                        <span class="text-xs italic text-slate-400 block mt-1">Enseignants & Professionnels</span>
+                                    </td>
+                                    <td class="px-4 py-4 bg-white border-y border-slate-100">
+                                        <span class="font-semibold text-slate-700 block text-sm">Accepted Communication</span>
+                                        <span class="text-xs text-slate-400 block mt-0.5">Includes workshops of one theme</span>
+                                        <span class="text-xs italic text-slate-400 block mt-1 border-t border-slate-50 pt-1">Communication acceptée (Inclut l'accès aux ateliers d'un seul thème)</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-blue-50/30 border border-blue-100 font-black text-xl text-blue-700">
+                                        800 DH
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-white rounded-r-xl border-y border-r border-slate-200 font-bold text-xl text-slate-400 group-hover:text-slate-600">
+                                        1,000 DH
+                                    </td>
+                                </tr>
+                                <tr class="group transition-all">
+                                    <td class="px-4 py-4 bg-white border-y border-slate-100">
+                                        <span class="font-semibold text-slate-700 block text-sm">Access to Workshops only (Theme 1, 2, or 3)</span>
+                                        <span class="text-xs italic text-slate-400 block mt-1 border-t border-slate-50 pt-1">Accès aux Ateliers uniquement (Thème 1, 2 ou 3) <br>
+                                        <span class="text-[11px] font-medium text-emerald-600">Free for participants with accepted communication</span></span>
+                                        <span class="text-[11px] font-medium text-emerald-600">Gratuit pour les participants ayant une communication acceptée</span></span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-blue-50/30 border border-blue-100 font-black text-xl text-blue-700">
+                                        400 DH
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-white rounded-r-xl border-y border-r border-slate-200 font-bold text-xl text-slate-400 group-hover:text-slate-600">
+                                        500 DH
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- <div class="mt-12 p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                        <h4 class="text-slate-800 font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-wider">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            Registration fees include / <span class="italic font-light">Les frais incluent:</span>
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Access to all sessions and workshops, welcome reception, ceremonies, coffee breaks, lunch, congress scientific dossier, and certificates.
+                            <br>
+                            <span class="text-slate-400 italic mt-2 block text-xs">
+                                Accès aux sessions plénières, sessions parallèles et ateliers, réception de bienvenue, cérémonies d'ouverture et de clôture, pauses café, déjeuner, dossier scientifique du congrès, certificats de participation et d'assiduité.
+                            </span>
+                        </p>
+                    </div> -->
+
+                    <div class="mt-10 grid md:grid-cols-2 gap-8 items-stretch">
+                        <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100 flex flex-col justify-center">
+                            <h3 class="font-bold text-blue-800 mb-6 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Payment / <span class="italic font-light">Paiement</span>
+                            </h3>
+                            <p class="text-sm text-slate-700 mb-4 font-medium">
+                                Inscription via le formulaire en ligne. Paiement par virement bancaire :
+                            </p>
+                            <div class="bg-white p-4 rounded-xl border border-blue-200 shadow-sm mb-4">
+                                <span class="text-[10px] text-blue-400 font-bold uppercase block mb-1">Code SWIFT</span>
+                                <code class="text-blue-700 font-black text-xl tracking-wider">BKAMMAMR</code>
+                            </div>
+                            <p class="text-[11px] text-blue-600 italic leading-snug">
+                                * Veuillez mentionner votre nom et "EPIA-2026" lors du virement.<br>
+                                * Please mention your name and "EPIA-2026" when transferring.
+                            </p>
+                        </div>
+
+                        <div class="relative group">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                            <div class="relative bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200 h-full flex flex-col items-center justify-center p-4">
+                                <img src="img/RIB.jpg" alt="RIB EPIA-1" class="max-h-48 object-contain hover:scale-110 transition duration-500 cursor-pointer" onclick="window.open(this.src)">
+                                <div class="mt-4 text-center text-[10px] text-slate-400 font-bold uppercase tracking-widest">RIB Bancaire (Cliquer pour agrandir)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="py-24 bg-slate-900 text-white font-poppins">
+    <div class="container mx-auto px-6">
+        <h2 class="section-title text-white" data-aos="fade-up">
+            Online Registration <span class="text-blue-400 font-light">/ Inscription en ligne</span>
+        </h2>
+        
+        <div class="max-w-4xl mx-auto mt-12 bg-white rounded-3xl p-8 md:p-12 text-slate-800 shadow-2xl overflow-hidden relative" data-aos="zoom-in">
+            <form id="registrationForm" enctype="multipart/form-data" class="grid md:grid-cols-2 gap-6">
+                <div class="col-span-1">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        Last Name <span class="text-slate-400 font-normal italic">/ Nom</span>
+                    </label>
+                    <input type="text" name="nom" class="w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <div class="col-span-1">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        First Name <span class="text-slate-400 font-normal italic">/ Prénom</span>
+                    </label>
+                    <input type="text" name="prenom" class="w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <div class="col-span-1">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        Country <span class="text-slate-400 font-normal italic">/ Pays</span>
+                    </label>
+                    <input type="text" name="pays" class="w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500" placeholder="Ex: Morocco" required>
+                </div>
+
+                <div class="col-span-1">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        City <span class="text-slate-400 font-normal italic">/ Ville</span>
+                    </label>
+                    <input type="text" name="ville" class="w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500" placeholder="Ex: Fès" required>
+                </div>
+
+                <div class="col-span-1">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        Phone Number <span class="text-slate-400 font-normal italic">/ N° Téléphone</span>
+                    </label>
+                    <input type="tel" name="tel" class="w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500" placeholder="+212600000000" required>
+                </div>
+
+                <div class="col-span-1">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        Email Address <span class="text-slate-400 font-normal italic">/ Adresse Email</span>
+                    </label>
+                    <input type="email" name="email" class="w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <div class="col-span-2">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        Institution <span class="text-slate-400 font-normal italic">/ Affiliation </span>
+                    </label>
+                    <input type="text" name="affiliation" class="w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500" placeholder="Ex: ENS de Fès - USMBA">
+                </div>
+
+                <div class="col-span-2">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        Position <span class="text-slate-400 font-normal italic">/ Fonction</span>
+                    </label>
+                    <select name="fonction" id="fonctionSelect" class="w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500" onchange="checkOtherFunction(this.value)" required>
+                        <option value="Research Professor">Research Professor / Enseignant-Chercheur</option>
+                        <option value="PhD Student">PhD Student / Doctorant</option>
+                        <option value="Researcher">Researcher / Chercheur</option>
+                        <option value="Health Professional">Health Professional / Professionnel de santé</option>
+                        <option value="Associate Actor">Associate Actor / Acteur associatif</option>
+                        <option value="Socio-economic Actor">Socio-economic Actor / Acteur socio-économique</option>
+                        <option value="Other">Other / Autre</option>
+                    </select>
+                    <input type="text" id="otherFunction" name="autre_fonction" class="hidden mt-2 w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500" placeholder="Please specify / Veuillez préciser">
+                </div>
+
+                <div class="col-span-2">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        Type of Participation <span class="text-slate-400 font-normal italic">/ Type de participation</span>
+                    </label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                        <label class="flex items-center p-3 bg-slate-100 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                            <input type="radio" name="participation_type" value="Attendance" class="mr-2 text-blue-600" checked onchange="toggleFormSections()">
+                            <span class="text-xs font-bold">Attendance <br><span class="font-normal italic text-[10px] text-slate-500">Présence</span></span>
+                        </label>
+                        <label class="flex items-center p-3 bg-slate-100 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                            <input type="radio" name="participation_type" value="Communication" class="mr-2 text-blue-600" onchange="toggleFormSections()">
+                            <span class="text-xs font-bold">Communication <br><span class="font-normal italic text-[10px] text-slate-500">Communication Seule</span></span>
+                        </label>
+                        <label class="flex items-center p-3 bg-slate-100 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                            <input type="radio" name="participation_type" value="Workshop" class="mr-2 text-blue-600" onchange="toggleFormSections()">
+                            <span class="text-xs font-bold">Workshops Only <br><span class="font-normal italic text-[10px] text-slate-500">Ateliers Seuls</span></span>
+                        </label>
+                        <label class="flex items-center p-3 bg-slate-100 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                            <input type="radio" name="participation_type" value="Communication_Workshop" class="mr-2 text-blue-600" onchange="toggleFormSections()">
+                            <span class="text-xs font-bold">Communication & Workshops<br><span class="font-normal italic text-[10px] text-slate-500">Communication & Ateliers</span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="themeSection" class="col-span-2 hidden">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        Theme <span class="text-slate-400 font-normal italic">/ Thème </span>
+                    </label>
+                    <select name="theme_communication" id="themeSelect" class="w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500" onchange="toggleFormSections()">
+                        <option value="none">-- Select a theme / Sélectionner un thème --</option>
+                        <option value="Theme 1">Theme 1: Epidemiology & Addiction</option>
+                        <option value="Theme 2">Theme 2: Epidemiology & Cancer</option>
+                        <option value="Theme 3">Theme 3: Vector-Borne Diseases</option>
+                    </select>
+                </div>
+
+                <div id="communicationSection" class="col-span-2 space-y-4 hidden">
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-2">
+                            Title <span class="text-slate-400 font-normal italic">/ Titre</span>
+                        </label>
+                        <input type="text" id="titreCommunication" name="titre_communication" class="w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500" placeholder="Your title here / Votre titre ici">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-2">
+                            Abstract Submission (.doc, .pdf) <span class="text-slate-400 font-normal italic">/ Résumé de communication</span>
+                        </label>
+                        <div class="border-2 border-dashed border-slate-300 rounded-xl p-6 text-center hover:bg-slate-50 transition cursor-pointer group">
+                            <input type="file" name="abstract" id="fileUpload" accept=".pdf,.doc,.docx" class="hidden">
+                            <label for="fileUpload" class="cursor-pointer">
+                                <span class="text-blue-600 font-bold group-hover:text-blue-700">Click to upload</span> 
+                                <span class="text-slate-500 font-medium italic">/ Cliquez pour téléverser</span> 
+                                <div class="text-slate-400 text-[10px] mt-1 italic">Max size: 5MB (DOCX, PDF)</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="workshopSection" class="col-span-2 hidden">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        Select Workshop <span class="text-slate-400 font-normal italic">/ Choisir l'atelier</span>
+                    </label>
+                    <select name="workshop" id="workshopSelect" class="w-full bg-slate-100 border-none rounded-lg p-3 focus:ring-2 focus:ring-blue-500">
+                        </select>
+                </div>
+
+                <div class="col-span-2">
+                    <label class="block text-xs font-bold uppercase mb-2">
+                        Payment Mode <span class="text-slate-400 font-normal italic">/ Mode de paiement</span>
+                    </label>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <label class="flex-1 flex items-center p-3 bg-slate-100 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                            <input type="radio" name="payment_mode" value="Bank Transfer" class="mr-2 text-blue-600" checked>
+                            <span class="text-xs font-bold">Bank Transfer <br><span class="font-normal italic">Transfert bancaire</span></span>
+                        </label>
+                        <label class="flex-1 flex items-center p-3 bg-slate-100 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                            <input type="radio" name="payment_mode" value="On-site" class="mr-2 text-blue-600">
+                            <span class="text-xs font-bold">On-site (during Congress) <br><span class="font-normal italic">Au moment du Congrès</span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="progressContainer" class="hidden col-span-2 mb-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <div class="flex justify-between text-xs font-bold text-slate-500 mb-2">
+                        <span>Uploading... / Téléchargement...</span>
+                        <span id="progressText" class="text-blue-600">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-2.5">
+                        <div id="progressBar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="col-span-2 pt-4">
+                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition-all shadow-xl hover:shadow-blue-900/20 flex flex-col items-center justify-center active:scale-[0.98]">
+                        <span>Confirm Registration</span>
+                        <span class="text-xs font-normal opacity-80 italic">Valider l'inscription</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="responseModal" class="fixed inset-0 z-[10000] hidden flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl transform transition-transform" id="modalContent">
+            <div class="text-center">
+                <div id="modalIcon" class="mx-auto flex items-center justify-center h-16 w-16 rounded-full mb-6"></div>
+                <h3 id="modalTitle" class="text-2xl font-bold text-slate-800 mb-1"></h3>
+                <p id="modalMessage" class="text-slate-600 mt-4 mb-8 text-sm font-medium"></p>
+                <button type="button" id="closeModalBtn" class="w-full bg-slate-800 text-white font-bold py-3 rounded-xl hover:bg-slate-900 transition-all">
+                    Fermer / Close
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="py-20 bg-white overflow-hidden">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-12">
+                Nos Partenaires & Collaborateurs <span class="mx-2">|</span> 
+                <span class="font-light">Partners & Collaborators</span>
+            </p>
+
+            <div class="relative flex overflow-hidden group">
+                
+                <div class="flex animate-scroll whitespace-nowrap items-center min-w-full">
+                    <div class="flex items-center gap-16 px-8">
+                        <img src="./img/fsdm.png" alt="FSDM" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/cnrst.png" alt="CNRST" class="h-16 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/FMPDF.png" alt="FMPDF" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/IRC.png" alt="IRC" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/IEDSR.png" alt="IEDSR" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/LSS.png" alt="LSS" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/ERESS.jpg" alt="ERESS" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/SMENCOM.jpg" alt="SMENCOM" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                    </div>
+                </div>
+
+                <div class="flex animate-scroll whitespace-nowrap items-center min-w-full" aria-hidden="true">
+                    <div class="flex items-center gap-16 px-8">
+                        <img src="./img/fsdm.png" alt="FSDM" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/cnrst.png" alt="CNRST" class="h-16 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/FMPDF.png" alt="FMPDF" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/IRC.png" alt="IRC" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/IEDSR.png" alt="IEDSR" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/LSS.png" alt="LSS" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/ERESS.jpg" alt="ERESS" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        <img src="./img/SMENCOM.jpg" alt="SMENCOM" class="h-20 w-auto opacity-60 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-blue-900 border-t" id="contact">
+        <div class="container mx-auto px-6 text-center">
+            <p class="font-bold text-blue-600 mb-2 uppercase tracking-tighter">EPIA-1 Congress 2026</p>
+            <p class="text-white text-sm mb-6">Laboratoire Innovation Scientifique en Durabilité, Environnement, Education et Santé à l'ère de l'IA <br> LISDEESEIA - ENS Fès, Maroc</p>
+            <div class="section-title text-white aos-init aos-animate flex justify-center font-bold space-x-6 mb-8">
+                <h1><a href="mailto:epia@usmba.ac.ma" class="hover:underline">epia@usmba.ac.ma</a></h1>
+            </div>
+            <p class="text-xs text-slate-400">&copy; 2026. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+        AOS.init({ duration: 800, once: true });
+        
+        // Force le démarrage de la vidéo au cas où le navigateur bloque l'autoplay
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const video = document.getElementById('bgVideo');
+            video.play().catch(error => {
+                console.log("Lecture automatique bloquée par le navigateur. L'utilisateur doit interagir.");
+            });
+        });
+        // tailwind.config.js
+        module.exports = {
+        theme: {
+            extend: {
+            fontFamily: {
+                'poppins': ['Poppins', 'sans-serif'],
+            },
+            },
+        },
+        }
+</script>
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            // Ouvrir le menu
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active'); // Ajoute la classe qui fait apparaître le menu
+                document.body.classList.add('menu-open'); // Empêche le défilement en arrière-plan
+            });
+
+            // Fermer le menu avec la croix
+            closeMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+
+            // Fermer le menu automatiquement quand on clique sur un lien
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                });
+            });
+        });
+</script>
+
+<script>
+    // 1. Gérer l'affichage de la zone "Autre" pour la fonction
+    function checkOtherFunction(val) {
+        const otherInput = document.getElementById('otherFunction');
+        if (val === 'Other') {
+            otherInput.classList.remove('hidden');
+            otherInput.required = true;
+        } else {
+            otherInput.classList.add('hidden');
+            otherInput.required = false;
+        }
+    }
+
+    // 2. Base de données des Ateliers par Thème
+    const workshopsData = {
+        'Theme 1': [
+            { value: 'WT1-1', text: 'Workshop 1 (WT1-1) : Addiction aux écrans : mythe ou réalité ? Comprendre pour mieux prévenir (Facilitator : FEKIH-ROMDHANE Feten ; Duration : 1H30)' },
+            { value: 'WT1-2', text: 'Workshop 2 (WT1-2) : L’entretien motivationnel : outils et applications thérapeutiques (Facilitator : TAOUFIQ Imane ; Duration : 1H30)' }
+        ],
+        'Theme 2': [
+            { value: 'WT2-1', text: 'Workshop 1 (WT2-1) : Sustainable lifestyle and health in the age of Artificial Intelligence (Facilitator : HUYBRECHTS Inge ; Duration : 1H30)' },
+            { value: 'WT2-2', text: 'Workshop 2 (WT2-2) : Epidémiologie du cancer et recherche interventionnelle : une application au cancer du col de l’utérus. (Facilitator : SELMOUNI Farida ; Duration : 1H30)' }
+        ],
+        'Theme 3': [
+            { value: 'WT3-1', text: 'Workshop 1 (WT3-1) : Entomologie et malacologie médicales (Facilitator : GUERNAOUI Souad ; Duration : 3H)' },
+            { value: 'WT3-2', text: 'Workshop 2 (WT3-2) : Utilisation de l\'intelligence artificielle pour l\'identification des moustiques du Maroc (Facilitators : SERENO Denis, BOURQUIA Maria & GUERNAOUI Souad ; Duration : 3H)' }
+        ]
+    };
+
+    // 3. Logique d'affichage dynamique des sections (Conditionnelle)
+    function toggleFormSections() {
+        const participationType = document.querySelector('input[name="participation_type"]:checked').value;
+        const themeSelect = document.getElementById('themeSelect');
+        const themeSection = document.getElementById('themeSection');
+        const commSection = document.getElementById('communicationSection');
+        const workshopSection = document.getElementById('workshopSection');
+        const workshopSelect = document.getElementById('workshopSelect');
+        const titreInput = document.getElementById('titreCommunication');
+
+        const selectedTheme = themeSelect.value;
+
+        // CAS 1 : Attendance (Présence Seule) -> On cache tout
+        if (participationType === 'Attendance') {
+            themeSection.classList.add('hidden');
+            themeSelect.required = false;
+            commSection.classList.add('hidden');
+            titreInput.required = false;
+            workshopSection.classList.add('hidden');
+            workshopSelect.required = false;
+            return;
+        }
+
+        // Pour tous les autres types, le thème est obligatoire
+        themeSection.classList.remove('hidden');
+        themeSelect.required = true;
+
+        // Gestion de la partie Communication
+        if (participationType === 'Communication' || participationType === 'Communication_Workshop') {
+            commSection.classList.remove('hidden');
+            titreInput.required = true;
+        } else {
+            commSection.classList.add('hidden');
+            titreInput.required = false;
+        }
+
+        // Gestion de la partie Ateliers (Workshop ou Communication_Workshop) + Thème valide requis
+        if ((participationType === 'Workshop' || participationType === 'Communication_Workshop') && selectedTheme !== 'none') {
+            
+            // Recharger dynamiquement les options de l'atelier
+            workshopSelect.innerHTML = '<option value="">-- Select a workshop / Choisir un atelier --</option>';
+            
+            if (workshopsData[selectedTheme]) {
+                workshopsData[selectedTheme].forEach(ws => {
+                    const opt = document.createElement('option');
+                    opt.value = ws.value;
+                    opt.textContent = ws.text;
+                    workshopSelect.appendChild(opt);
+                });
+            }
+
+            workshopSection.classList.remove('hidden');
+            workshopSelect.required = true;
+        } else {
+            // Si pas de thème sélectionné ou mauvais type de participation -> masquer les workshops
+            workshopSection.classList.add('hidden');
+            workshopSelect.required = false;
+        }
+    }
+
+    // Lancer au chargement initial du DOM pour calibrer le formulaire
+    document.addEventListener('DOMContentLoaded', () => {
+        toggleFormSections();
+    });
+</script>
+
+<script>
+    // 4. Soumission AJAX du formulaire
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+        const btn = form.querySelector('button[type="submit"]');
+        
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+
+        btn.disabled = true;
+        btn.innerHTML = "Traitement... / Processing...";
+        progressContainer.classList.remove('hidden');
+        progressBar.style.width = '0%';
+        progressText.innerText = '0%';
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'submit.php', true);
+
+        xhr.upload.onprogress = function(e) {
+            if (e.lengthComputable) {
+                const percentComplete = Math.round((e.loaded / e.total) * 100);
+                progressBar.style.width = percentComplete + '%';
+                progressText.innerText = percentComplete + '%';
+            }
+        };
+
+        xhr.onload = function() {
+            progressContainer.classList.add('hidden');
+            btn.disabled = false;
+            btn.innerHTML = `<span>Confirm Registration</span><span class="text-xs font-normal opacity-80 italic">Valider l'inscription</span>`;
+
+            if (xhr.status === 200) {
+                try {
+                    const data = JSON.parse(xhr.responseText);
+                    showModal(data.status, data.message);
+                    if(data.status === 'success') {
+                        form.reset(); 
+                        document.querySelector('label[for="fileUpload"] span.text-blue-600').innerText = "Click to upload";
+                        toggleFormSections(); // Réinitialise l'état visuel du formulaire
+                    }
+                } catch(err) {
+                    showModal('error', "Erreur de réponse du serveur. / Server response error.");
+                }
+            } else {
+                showModal('error', "Une erreur technique est survenue. / A technical error occurred.");
+            }
+        };
+
+        xhr.onerror = function() {
+            progressContainer.classList.add('hidden');
+            btn.disabled = false;
+            btn.innerHTML = `<span>Confirm Registration</span><span class="text-xs font-normal opacity-80 italic">Valider l'inscription</span>`;
+            showModal('error', "Erreur réseau. / Network error.");
+        };
+
+        xhr.send(formData);
+    });
+
+    // 5. Afficher la modale de réponse
+    function showModal(status, message) {
+        const modal = document.getElementById('responseModal');
+        const modalIcon = document.getElementById('modalIcon');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+
+        modal.classList.remove('hidden');
+
+        if (status === 'success') {
+            modalIcon.className = 'mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-600 mb-6';
+            modalIcon.innerHTML = `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>`;
+            modalTitle.innerHTML = 'Succès ! <span class="text-lg font-normal text-slate-400 block">Success!</span>';
+        } else {
+            modalIcon.className = 'mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-600 mb-6';
+            modalIcon.innerHTML = `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+            modalTitle.innerHTML = 'Erreur <span class="text-lg font-normal text-slate-400 block">Error</span>';
+        }
+
+        modalMessage.innerHTML = message.replace(' / ', '<br><span class="italic text-xs text-slate-400">') + '</span>';
+    }
+
+    // Fermer la Modale
+    document.getElementById('closeModalBtn').addEventListener('click', () => {
+        document.getElementById('responseModal').classList.add('hidden');
+    });
+
+    // Écouteur pour afficher le nom du fichier sélectionné
+    document.getElementById('fileUpload').addEventListener('change', function(e) {
+        const fileName = e.target.files[0] ? e.target.files[0].name : "Click to upload";
+        const labelSpan = document.querySelector('label[for="fileUpload"] span.text-blue-600');
+        labelSpan.innerText = fileName;
+    });
+</script>
+
+
+</body>
+</html>

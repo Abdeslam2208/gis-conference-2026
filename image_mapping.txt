@@ -1,0 +1,102 @@
+Loaded 38 relationships mapping to media.
+
+Found 22 paragraphs containing images:
+Paragraph #0 (Text: 'Presentation of the GIS-USERS’2026 Conference'):
+   - docPr:Image 13 (None)
+   - Image:image1.png
+Paragraph #37 (Text: 'Thématiques Principales'):
+   - docPr:Groupe 54 (None)
+   - Image:image2.png
+   - Image:image3.png
+   - Image:image4.png
+   - Image:image5.png
+   - Image:image6.png
+   - Image:image7.png
+Paragraph #39 (Text: 'Geographic Information Systems and Spatial Web TechnologiesGeographic Information Systems and Spatial Web Technologies'):
+   - docPr:Zone de texte 2 (None)
+Paragraph #44 (Text: 'Geo-Artificial Intelligence and Advanced Spatial Data ScienceGeo-Artificial Intelligence and Advanced Spatial Data ScienceGeomatics for Natural Hazard'):
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+Paragraph #58 (Text: ''):
+   - docPr:Image 4 (None)
+   - Image:image14.png
+Paragraph #62 (Text: ''):
+   - docPr:Image 26 (None)
+   - docPr:Image 14 (Anne GOBIN | Professor | PhD in Bio-science Engineering ...)
+   - docPr:Image 31 (Doç. Dr. ALİ BÜLBÜL)
+   - Image:image15.png
+   - Image:image16.jpeg
+   - Image:image17.jpeg
+Paragraph #67 (Text: 'Pr. Richard T. WALKERDepartment of Earth Sciences, University of Oxford, United KingdomPr. Richard T. WALKERDepartment of Earth Sciences, University o'):
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+Paragraph #81 (Text: ''):
+   - docPr:Image 16 (Abdelghani Boudhar)
+   - docPr:Image 11 (None)
+   - Image:image18.jpeg
+   - Image:image19.png
+Paragraph #88 (Text: 'Pr. Abdelghani BOUDHERFaculty of Sciences and Techniques, Cadi Ayyad University, Marrakech, MoroccoPr. Abdelghani BOUDHERFaculty of Sciences and Techn'):
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+Paragraph #106 (Text: ''):
+   - docPr:Image 56 (ConferenceIT)
+   - docPr:Image 47 (post2)
+   - docPr:Image 24 (https://www.usmba.ac.ma/~usmba2/new/wp-content/uploads/sites/4/2026/04/ejjaali.jpg)
+   - docPr:Image 46 (École Normale Supérieure de Fès)
+   - Image:image20.jpeg
+   - Image:image21.png
+   - Image:image22.jpeg
+   - Image:image23.jpeg
+Paragraph #107 (Text: ''):
+   - docPr:Image 57 (SIGER | Profile)
+   - Image:image24.jpeg
+Paragraph #112 (Text: 'President USMBAPr. Mustapha IJJAALI President USMBAPr. Mustapha IJJAALI'):
+   - docPr:Zone de texte 2 (None)
+Paragraph #117 (Text: 'Deputy Director ENS FEZPr. Saâd BENNANI DOSSEDeputy Director ENS FEZPr. Saâd BENNANI DOSSEDean FSDM FezPr. Mohammed BELKASMIDean FSDM FezPr. Mohammed'):
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+Paragraph #144 (Text: ''):
+   - docPr:Image 61 (None)
+   - docPr:Image 58 (Hassan Tabyaoui - University of Sidi Mohammed Ben Abdellah)
+   - docPr:Image 38 (None)
+   - Image:image25.jpeg
+   - Image:image26.jpeg
+   - Image:image27.png
+Paragraph #150 (Text: 'PROFESSOR FLSH OUJDAand coordinator, 3rd edition GIS USERS’ 2016, OUJDAPr. Abdelkader SBAIPROFESSOR FLSH OUJDAand coordinator, 3rd edition GIS USERS’'):
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+Paragraph #182 (Text: ''):
+   - docPr:Image 20 (None)
+   - docPr:Image 39 (None)
+   - docPr:Image 22 (C:\Users\ASUS\AppData\Local\Packages\AdobeSystemsIncorporated.AdobePhotoshopExpress_mtcwf2zmmt10c\LocalState\Share\Images\AdobeExpressPhotos_15971e5c58fc45b6bac7c9b283769125_CopyEdited.jpg)
+   - Image:image28.jpeg
+   - Image:image29.png
+   - Image:image30.jpeg
+Paragraph #188 (Text: 'PROFESSOR FST ERRACHIDIAand coordinator, 6th edition of the GIS USERS’ 2024, ERRACHIDIAPr. Amina KASSOUPROFESSOR FST ERRACHIDIAand coordinator, 6th ed'):
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+   - docPr:Zone de texte 2 (None)
+Paragraph #224 (Text: ''):
+   - docPr:Image 62 (None)
+   - Image:image31.emf
+Paragraph #385 (Text: ''):
+   - docPr:Google Shape;699;p14 (None)
+Paragraph #386 (Text: 'Conference Venue: Conference Center USMBA, Fez, Morocco'):
+   - docPr:Image 10 (None)
+   - Image:image32.png
+Paragraph #390 (Text: 'GPS InfographicsGPS Infographics'):
+   - docPr:Groupe 1 (None)
+   - docPr:Google Shape;685;p14 (None)
+   - Image:image33.jpeg
+   - Image:image34.jpeg
+   - Image:image35.png
+Paragraph #394 (Text: ''):
+   - docPr:Rectangle 8 (Photo)
+   - docPr:AutoShape 3 (Photo)

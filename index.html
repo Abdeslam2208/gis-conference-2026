@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEZ GIS-Users' 2026 | The 7th International Conference of GIS Users</title>
+    <!-- Phosphor Icons Web Font -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-lang="fr">
+
+    <!-- Top Official Logo Bar -->
+    <div id="top-logo-bar" class="official-logo-bar">
+        <div class="official-logo-container">
+            <div class="pre-header-left" style="display: flex; align-items: center;">
+                <img src="pre%20heder/ISDEESIA.png" alt="LISDEESEIA" style="height: 92px; width: auto; object-fit: contain;" class="logo-desktop-only">
+                <span class="mobile-header-title">FEZ GIS-Users' 2026</span>
+            </div>
+            <div class="pre-header-center" style="display: flex; justify-content: center; align-items: center;">
+                <img src="pre%20heder/logo.png" alt="GIS Users Logo" style="height: 100px; width: auto; object-fit: contain;" class="logo-desktop-only">
+            </div>
+            <div class="pre-header-right" style="display: flex; align-items: center; gap: 20px; justify-content: flex-end;">
+                <img src="pre%20heder/usmba50.png" alt="USMBA 50 ans" style="height: 92px; width: auto; object-fit: contain;" class="logo-desktop-only">
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu (Moved inside pre-header for absolute positioning relative to sticky pre-header on mobile) -->
+        <div class="mobile-menu-overlay" id="mobileMenu">
+            <a href="#home" class="mobile-link"><span class="lang-fr">Accueil</span><span class="lang-en">Home</span></a>
+            <a href="#overview" class="mobile-link"><span class="lang-fr">Aperçu & Portée</span><span class="lang-en">Overview</span></a>
+            <a href="#themes" class="mobile-link"><span class="lang-fr">Thématiques</span><span class="lang-en">Themes</span></a>
+            <a href="#keynotes" class="mobile-link"><span class="lang-fr">Conférenciers</span><span class="lang-en">Speakers</span></a>
+            <a href="#committees" class="mobile-link"><span class="lang-fr">Comités</span><span class="lang-en">Committees</span></a>
+            <a href="#fees" class="mobile-link"><span class="lang-fr">Tarifs</span><span class="lang-en">Fees</span></a>
+            <a href="#registration" class="mobile-register-btn"><span class="lang-fr">S'inscrire</span><span class="lang-en">Register</span></a>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="main-header">
+        <div class="nav-container">
+
+            <nav class="nav-links" id="navbar">
+                <a href="#home" class="active">
+                    <span class="lang-fr">Accueil</span>
+                    <span class="lang-en">Home</span>
+                </a>
+                
+                <!-- Dropdown: Le Congrès -->
+                <div class="nav-dropdown">
+                    <button class="dropdown-trigger">
+                        <span class="lang-fr">Le Congrès</span>
+                        <span class="lang-en">The Congress</span>
+                        <svg class="chevron-icon" viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#overview">
+                            <span class="lang-fr">Aperçu & Portée</span>
+                            <span class="lang-en">Overview</span>
+                        </a>
+                        <a href="#themes">
+                            <span class="lang-fr">Thématiques</span>
+                            <span class="lang-en">Themes</span>
+                        </a>
+                        <a href="#venue">
+                            <span class="lang-fr">Lieu & Contact</span>
+                            <span class="lang-en">Venue & Contact</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Dropdown: Membres -->
+                <div class="nav-dropdown">
+                    <button class="dropdown-trigger">
+                        <span class="lang-fr">Membres</span>
+                        <span class="lang-en">Members</span>
+                        <svg class="chevron-icon" viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#keynotes">
+                            <span class="lang-fr">Conférenciers</span>
+                            <span class="lang-en">Keynotes</span>
+                        </a>
+                        <a href="#committees">
+                            <span class="lang-fr">Comités</span>
+                            <span class="lang-en">Committees</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Dropdown: Participation -->
+                <div class="nav-dropdown">
+                    <button class="dropdown-trigger">
+                        <span class="lang-fr">Participation</span>
+                        <span class="lang-en">Participation</span>
+                        <svg class="chevron-icon" viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#fees">
+                            <span class="lang-fr">Tarifs & RIB</span>
+                            <span class="lang-en">Fees & Bank RIB</span>
+                        </a>
+                        <a href="#registration">
+                            <span class="lang-fr">Formulaire d'Inscription</span>
+                            <span class="lang-en">Registration Form</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="controls" style="display: flex; align-items: center; gap: 15px;">
+                <div class="lang-toggle-pills" id="langBtn" title="Switch Language" style="margin: 0;">
+                    <div class="lang-pill-bg"></div>
+                    <span class="lang-pill-item fr-item">FR</span>
+                    <span class="lang-pill-item en-item">EN</span>
+                </div>
+                <a href="#registration" class="btn-nav-register-premium">
+                    <span class="lang-fr">S'inscrire</span>
+                    <span class="lang-en">Register</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Moved inside header for absolute positioning relative to sticky parent) -->
+        <div class="mobile-menu-overlay" id="mobileMenu">
+            <a href="#home" class="mobile-link"><span class="lang-fr">Accueil</span><span class="lang-en">Home</span></a>
+            <a href="#overview" class="mobile-link"><span class="lang-fr">Aperçu & Portée</span><span class="lang-en">Overview</span></a>
+            <a href="#themes" class="mobile-link"><span class="lang-fr">Thématiques</span><span class="lang-en">Themes</span></a>
+            <a href="#keynotes" class="mobile-link"><span class="lang-fr">Conférenciers</span><span class="lang-en">Speakers</span></a>
+            <a href="#committees" class="mobile-link"><span class="lang-fr">Comités</span><span class="lang-en">Committees</span></a>
+            <a href="#fees" class="mobile-link"><span class="lang-fr">Tarifs</span><span class="lang-en">Fees</span></a>
+            <a href="#registration" class="mobile-register-btn"><span class="lang-fr">S'inscrire</span><span class="lang-en">Register</span></a>
+        </div>
+    </header>
+
+    <!-- Pre-Hero Banner Section -->
+    <div class="pre-hero-banner" style="width: 100%; background-color: #01091F; padding: 0; text-align: center; overflow: hidden; position: relative;">
+        <img src="assets/image1.png" alt="FEZ GIS-Users 2026 Banner" style="width: 100%; max-height: 280px; height: auto; object-fit: contain; display: block; margin: 0 auto;">
+    </div>
+
+    <!-- Hero Section (Presentation of the Conference) -->
+    <section id="home" class="hero-wrapper">
+        <div class="hero-container">
+            <div class="hero-badge-wrapper">
+                <span class="hero-tag">
+                    <span class="lang-fr">7ème Édition — Congrès International</span>
+                    <span class="lang-en">7th Edition — International Congress</span>
+                </span>
+            </div>
+            <h1>
+                <span class="lang-fr">Conférence Internationale des Utilisateurs de SIG</span>
+                <span class="lang-en">International Conference of GIS Users</span>
+                <span class="hero-acronym">(FEZ GIS-Users’ 2026)</span>
+            </h1>
+            <p class="hero-sub">
+                <span class="lang-fr">Une plateforme scientifique et technique dédiée aux avancées en géomatique, Géo-IA, et gouvernance des territoires.</span>
+                <span class="lang-en">A scientific and technical platform dedicated to advances in geomatics, Geo-AI, and territorial governance.</span>
+            </p>
+            
+            <!-- Unified Hero Info Bar -->
+            <div class="hero-info-bar">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                    </div>
+                    <div class="info-text">
+                        <span class="info-lbl"><span class="lang-fr">Lieu du Congrès</span><span class="lang-en">Location</span></span>
+                        <span class="info-val"><span class="lang-fr">Fès, Maroc</span><span class="lang-en">Fez, Morocco</span></span>
+                    </div>
+                </div>
+                
+                <div class="info-divider"></div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
+                    <div class="info-text">
+                        <span class="info-lbl"><span class="lang-fr">Dates du Congrès</span><span class="lang-en">Conference Dates</span></span>
+                        <span class="info-val"><span class="lang-fr">24 - 25 Nov. 2026</span><span class="lang-en">Nov. 24 - 25, 2026</span></span>
+                    </div>
+                </div>
+                
+                <div class="info-divider"></div>
+                
+                <div class="info-item info-item-gold">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="info-text">
+                        <span class="info-lbl"><span class="lang-fr">Activités</span><span class="lang-en">Format</span></span>
+                        <span class="info-val"><span class="lang-fr">Conférences &amp; Ateliers</span><span class="lang-en">Lectures &amp; Workshops</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#registration" class="btn btn-hero-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+                    <span class="lang-fr">S'inscrire</span>
+                    <span class="lang-en">Register</span>
+                </a>
+                <a href="#overview" class="btn btn-hero-secondary" style="display: inline-flex; align-items: center; gap: 8px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span class="lang-fr">Programme</span>
+                    <span class="lang-en">Program</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Official Important Dates Table -->
+    <div class="dates-ribbon">
+        <div class="dates-grid">
+            <div class="date-col">
+                <div class="date-lbl">
+                    <span class="lang-fr">Type d'Inscription :<br><span>Communication (Soumission des résumés) / ateliers / Présence</span></span>
+                    <span class="lang-en">Registration Type:<br><span>Communication (abstract submission)/ Workshops/ Attendance</span></span>
+                </div>
+                <div class="date-val">GIS-USERS 2026</div>
+                <div class="date-sub"><span class="lang-fr">Modalités</span><span class="lang-en">Options</span></div>
+            </div>
+            <div class="date-col">
+                <div class="date-lbl">
+                    <span class="lang-fr">Notification d'acceptation<br><span>de la communication</span></span>
+                    <span class="lang-en">Notification of Acceptance<br><span>of communication</span></span>
+                </div>
+                <div class="date-val">
+                    <span class="lang-fr">25 JUILLET 2026</span>
+                    <span class="lang-en">JULY 25, 2026</span>
+                </div>
+                <div class="date-sub"><span class="lang-fr">Échéance 1</span><span class="lang-en">Deadline 1</span></div>
+            </div>
+            <div class="date-col">
+                <div class="date-lbl">
+                    <span class="lang-fr">Soumission du<br><span>Résumé Étendu</span></span>
+                    <span class="lang-en">Submission of<br><span>Extended Abstract</span></span>
+                </div>
+                <div class="date-val">
+                    <span class="lang-fr">10 SEPTEMBRE 2026</span>
+                    <span class="lang-en">SEPTEMBER 10, 2026</span>
+                </div>
+                <div class="date-sub"><span class="lang-fr">Échéance 2</span><span class="lang-en">Deadline 2</span></div>
+            </div>
+            <div class="date-col">
+                <div class="date-lbl">
+                    <span class="lang-fr">Délai de paiement anticipé<br><span>(Transfert bancaire)</span></span>
+                    <span class="lang-en">Prepayment deadline<br><span>(Bank transfer)</span></span>
+                </div>
+                <div class="date-val">
+                    <span class="lang-fr">1 OCTOBRE 2026</span>
+                    <span class="lang-en">OCTOBER 1, 2026</span>
+                </div>
+                <div class="date-sub"><span class="lang-fr">Tarif Préférentiel</span><span class="lang-en">Early Bird</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overview of GIS USERS and Scientific Scope / Aperçu et Portée Scientifique -->
+    <section id="overview">
+        <h2 class="section-title text-center">
+            <span class="lang-fr">Aperçu et Portée Scientifique</span>
+            <span class="lang-en">Overview of GIS USERS and Scientific Scope</span>
+        </h2>
+        <p class="section-desc text-center">
+            <span class="lang-fr">Découvrez le contexte, l'historique et les ambitions de cette 7ème édition de la conférence GIS-USERS.</span>
+            <span class="lang-en">Discover the context, history and ambitions of this 7th edition of the GIS-USERS conference.</span>
+        </p>
+        <div class="section-divider-decor"></div>
+
+        <div class="about-section">
+            <div class="about-text">
+                <div class="lang-fr">
+                    <p class="lead">Les Systèmes d'Information Géographique (SIG) occupent actuellement une position stratégique dans l'analyse, la gestion et la valorisation des données spatiales. Ils fournissent des outils avancés qui aident à comprendre la complexité des dynamiques territoriales et soutiennent les processus de prise de décision. Dans un contexte caractérisé par le changement climatique, l'urbanisation accélérée et la pression croissante sur les ressources naturelles, les SIG représentent un instrument clé pour une gouvernance territoriale durable. Au Maroc, l'utilisation des SIG a connu une expansion significative dans les secteurs public, semi-public et privé.</p>
+                    <p>C'est dans ce cadre que la Conférence Internationale des Utilisateurs de SIG (FEZ GIS-Users’2026) s'est imposée comme une plateforme scientifique et technique dédiée à la promotion et à la diffusion des avancées en géomatique. Depuis sa première édition tenue en 2012 à Taza, suivie des éditions de Meknès (2014), Oujda (2016), Meknès (2018), Fès (2023) après une interruption causée par la pandémie de COVID-19, et Errachidia (2024), cet événement a contribué à bâtir une communauté nationale dynamique qui reste fortement ouverte sur les collaborations internationales.</p>
+                    <p>La conférence vise à promouvoir l'innovation dans des domaines émergents tels que la télédétection, la modélisation spatiale, la Géo-Intelligence Artificielle (Géo-IA) et le Big Data géospatial. Elle encourage également l'interdisciplinarité et favorise les interactions entre chercheurs, décideurs et acteurs socio-économiques. Ainsi, la conférence GIS-USERS constitue un cadre stratégique pour le développement des compétences, le transfert de connaissances et la mise en œuvre de solutions innovantes face aux défis actuels et futurs du développement durable.</p>
+                </div>
+                <div class="lang-en">
+                    <p class="lead">Geographic Information Systems (GIS) currently occupy a strategic position in the analysis, management, and valorization of spatial data. They provide advanced tools that help understand the complexity of territorial dynamics and support decision-making processes. In a context characterized by climate change, accelerated urbanization, and increasing pressure on natural resources, GIS represents a key instrument for sustainable territorial governance. In Morocco, the use of GIS has experienced significant expansion across public, semi-public, and private sectors.</p>
+                    <p>Within this context, the International GIS Users Conference (FEZ GIS-Users’2026) has emerged as a scientific and technical platform dedicated to the promotion and dissemination of advances in geomatics. Since its first edition held in 2012 at the Faculty of Multidisciplinary Studies of Taza, followed by subsequent editions in Meknes (2014), Oujda (2016), Meknes (2018), Fez (2023) after an interruption caused by the COVID-19 pandemic, and Errachidia (2024), this event has contributed to building a dynamic national community that remains strongly open to international collaborations.</p>
+                    <p>The conference aims to promote innovation in emerging fields such as remote sensing, spatial modeling, Geo-Artificial Intelligence (Geo-AI), and geospatial Big Data. It also encourages interdisciplinarity and fosters interactions among researchers, decision-makers, and socio-economic stakeholders. Thus, the GIS-USERS Conference serves as a strategic framework for skills development, knowledge transfer, and the implementation of innovative solutions addressing current and future challenges of sustainable development.</p>
+                </div>
+
+                <!-- Stats Grid inside Left Column -->
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        </div>
+                        <div class="stat-num">6</div>
+                        <div class="stat-lbl">
+                            <span class="lang-fr">Éditions Précédentes</span>
+                            <span class="lang-en">Previous Editions</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+                        </div>
+                        <div class="stat-num">57</div>
+                        <div class="stat-lbl">
+                            <span class="lang-fr">Comité Scientifique</span>
+                            <span class="lang-en">Scientific Committee</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <div class="stat-num">35</div>
+                        <div class="stat-lbl">
+                            <span class="lang-fr">Comité d'Organisation</span>
+                            <span class="lang-en">Organizing Committee</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Research Themes / Thématiques Principales (Harmonized Academic Design) -->
+    <section id="themes">
+        <div class="text-center">
+            <h2 class="section-title">
+                <span class="lang-fr">Thématiques Principales</span>
+                <span class="lang-en">Main Research Themes</span>
+            </h2>
+            <p class="section-desc">
+                <span class="lang-fr">Les axes scientifiques majeurs structurant les sessions et les travaux du congrès.</span>
+                <span class="lang-en">The main scientific tracks structuring the sessions and proceedings of the congress.</span>
+            </p>
+        </div>
+
+        <div class="themes-grid-official">
+            <!-- Theme 1 -->
+            <div class="theme-card-official theme-card-blue">
+                <span class="theme-card-number">01</span>
+                <div class="theme-icon-wrapper-official">
+                    <i class="ph ph-map-trifold"></i>
+                </div>
+                <h3 class="theme-card-title-official">
+                    <span class="lang-fr">Systèmes d'Information Géographique et Technologies Web Spatiales</span>
+                    <span class="lang-en">Geographic Information Systems and Spatial Web Technologies</span>
+                </h3>
+                <div class="theme-card-divider"></div>
+            </div>
+
+            <!-- Theme 2 -->
+            <div class="theme-card-official theme-card-green">
+                <span class="theme-card-number">02</span>
+                <div class="theme-icon-wrapper-official">
+                    <i class="ph ph-leaf"></i>
+                </div>
+                <h3 class="theme-card-title-official">
+                    <span class="lang-fr">SIG pour la Gestion Durable des Territoires et la Gouvernance des Ressources</span>
+                    <span class="lang-en">GIS for Sustainable Territorial Management and Resource Governance</span>
+                </h3>
+                <div class="theme-card-divider"></div>
+            </div>
+
+            <!-- Theme 3 -->
+            <div class="theme-card-official theme-card-purple">
+                <span class="theme-card-number">03</span>
+                <div class="theme-icon-wrapper-official">
+                    <i class="ph ph-compass"></i>
+                </div>
+                <h3 class="theme-card-title-official">
+                    <span class="lang-fr">Télédétection, Photogrammétrie et Applications GPS</span>
+                    <span class="lang-en">Remote Sensing, Photogrammetry and GPS Applications</span>
+                </h3>
+                <div class="theme-card-divider"></div>
+            </div>
+
+            <!-- Theme 4 -->
+            <div class="theme-card-official theme-card-orange">
+                <span class="theme-card-number">04</span>
+                <div class="theme-icon-wrapper-official">
+                    <i class="ph ph-buildings"></i>
+                </div>
+                <h3 class="theme-card-title-official">
+                    <span class="lang-fr">Changement Climatique, Aménagement du Territoire et Systèmes Urbains Durables</span>
+                    <span class="lang-en">Climate Change, Spatial Planning and Sustainable Urban Systems</span>
+                </h3>
+                <div class="theme-card-divider"></div>
+            </div>
+
+            <!-- Theme 5 -->
+            <div class="theme-card-official theme-card-brown">
+                <span class="theme-card-number">05</span>
+                <div class="theme-icon-wrapper-official">
+                    <i class="ph ph-warning"></i>
+                </div>
+                <h3 class="theme-card-title-official">
+                    <span class="lang-fr">Géomatique pour les Risques Naturels et la Gestion des Catastrophes</span>
+                    <span class="lang-en">Geomatics for Natural Hazards and Disaster Risk Management</span>
+                </h3>
+                <div class="theme-card-divider"></div>
+            </div>
+
+            <!-- Theme 6 -->
+            <div class="theme-card-official theme-card-teal">
+                <span class="theme-card-number">06</span>
+                <div class="theme-icon-wrapper-official">
+                    <i class="ph ph-brain"></i>
+                </div>
+                <h3 class="theme-card-title-official">
+                    <span class="lang-fr">Géo-Intelligence Artificielle et Science Avancée des Données Spatiales</span>
+                    <span class="lang-en">Geo-Artificial Intelligence and Advanced Spatial Data Science</span>
+                </h3>
+                <div class="theme-card-divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="keynotes">
+        <div class="text-center">
+            <h2 class="section-title">
+                <span class="lang-fr">Conférenciers d'Honneur</span>
+                <span class="lang-en">Keynote Speakers</span>
+            </h2>
+            <p class="section-desc">
+                <span class="lang-fr">Des experts internationaux renommés partageront leurs travaux et perspectives scientifiques.</span>
+                <span class="lang-en">Renowned international experts sharing their latest research developments and scientific insights.</span>
+            </p>
+        </div>
+        <div class="speakers-grid-unified" style="margin-top: 35px;">
+            <!-- Speaker 1 -->
+            <div class="speaker-card-unified">
+                <div class="speaker-banner"></div>
+                <div class="speaker-img-wrapper"><img src="assets/image15.png" alt="Pr. Richard T. WALKER"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Pr. Richard T. WALKER</h3>
+                    <p class="speaker-title">Department of Earth Sciences, University of Oxford, United Kingdom</p>
+                </div>
+            </div>
+
+            <!-- Speaker 2 -->
+            <div class="speaker-card-unified">
+                <div class="speaker-banner"></div>
+                <div class="speaker-img-wrapper"><img src="assets/image17.jpeg" alt="Pr. Ali BULBUL"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Pr. Ali BULBUL</h3>
+                    <p class="speaker-title">Pamukkale University, Denizli, Türkiye</p>
+                </div>
+            </div>
+
+            <!-- Speaker 3 -->
+            <div class="speaker-card-unified">
+                <div class="speaker-banner"></div>
+                <div class="speaker-img-wrapper"><img src="assets/image16.jpeg" alt="Pr. Anne GOBIN"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Pr. Anne GOBIN</h3>
+                    <p class="speaker-title">KU Leuven University, Belgium</p>
+                </div>
+            </div>
+
+            <!-- Speaker 4 -->
+            <div class="speaker-card-unified">
+                <div class="speaker-banner"></div>
+                <div class="speaker-img-wrapper"><img src="assets/image18.jpeg" alt="Pr. Abdelghani BOUDHER"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Pr. Abdelghani BOUDHER</h3>
+                    <p class="speaker-title">Faculty of Sciences and Techniques, Cadi Ayyad University, Marrakech, Morocco</p>
+                </div>
+            </div>
+
+            <!-- Speaker 5 -->
+                <div class="speaker-card-unified">
+                <div class="speaker-banner"></div>
+                <div class="speaker-img-wrapper"><img src="assets/image19.png" alt="Pr. Anas EMRAN"></div>
+                <div class="speaker-info">
+                    <h3 class="speaker-name">Pr. Anas EMRAN</h3>
+                    <p class="speaker-title">Director of the African Regional Center for Space Science and Technology in Rabat, Morocco</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committees / Comités Portal Section -->
+    <section id="committees">
+        <div class="text-center">
+            <h2 class="section-title">
+                <span class="lang-fr">Comités d'Organisation & Scientifiques</span>
+                <span class="lang-en">Organizing & Scientific Committees</span>
+            </h2>
+            <p class="section-desc" style="max-width: 700px; margin: -10px auto 40px auto;">
+                <span class="lang-fr">Découvrez les personnalités académiques et experts internationaux qui pilotent la conférence GIS-Users 2026. Cliquez pour accéder directement à chaque section.</span>
+                <span class="lang-en">Discover the distinguished academic figures and international experts steering the GIS-Users 2026 conference. Click to jump directly to each section.</span>
+            </p>
+        </div>
+
+        <div class="committees-portal-grid">
+            <!-- Card 1: Honorary Committee -->
+            <a href="#honorary" class="committee-portal-card">
+                <div class="portal-card-icon">
+                    <i class="ph ph-crown"></i>
+                </div>
+                <h3>
+                    <span class="lang-fr">Comité d'Honneur</span>
+                    <span class="lang-en">Honorary Committee</span>
+                </h3>
+                <p>
+                    <span class="lang-fr">Présidents d'universités et directeurs d'établissements de premier plan.</span>
+                    <span class="lang-en">Leading university presidents and institution directors.</span>
+                </p>
+                <span class="portal-card-link">
+                    <span class="lang-fr">Découvrir les membres</span>
+                    <span class="lang-en">View members</span>
+                    <i class="ph ph-arrow-down"></i>
+                </span>
+            </a>
+
+            <!-- Card 2: Coordinators of Previous Editions -->
+            <a href="#coordinators" class="committee-portal-card">
+                <div class="portal-card-icon">
+                    <i class="ph ph-clock-counter-clockwise"></i>
+                </div>
+                <h3>
+                    <span class="lang-fr">Coordinateurs des Éditions Précédentes</span>
+                    <span class="lang-en">Coordinators of Previous Editions</span>
+                </h3>
+                <p>
+                    <span class="lang-fr">Les coordinateurs historiques ayant piloté le congrès depuis 2012.</span>
+                    <span class="lang-en">Historical coordinators who have steered the congress since 2012.</span>
+                </p>
+                <span class="portal-card-link">
+                    <span class="lang-fr">Découvrir les membres</span>
+                    <span class="lang-en">View members</span>
+                    <i class="ph ph-arrow-down"></i>
+                </span>
+            </a>
+
+            <!-- Card 3: Scientific Committee -->
+            <a href="#scientific" class="committee-portal-card">
+                <div class="portal-card-icon">
+                    <i class="ph ph-chalkboard-teacher"></i>
+                </div>
+                <h3>
+                    <span class="lang-fr">Comité Scientifique International</span>
+                    <span class="lang-en">International Scientific Committee</span>
+                </h3>
+                <p>
+                    <span class="lang-fr">Professeurs et chercheurs experts internationaux dans le domaine des SIG.</span>
+                    <span class="lang-en">International expert professors and researchers in the field of GIS.</span>
+                </p>
+                <span class="portal-card-link">
+                    <span class="lang-fr">Découvrir les membres</span>
+                    <span class="lang-en">View members</span>
+                    <i class="ph ph-arrow-down"></i>
+                </span>
+            </a>
+
+            <!-- Card 4: Organizing Committee -->
+            <a href="#organizing" class="committee-portal-card">
+                <div class="portal-card-icon">
+                    <i class="ph ph-users-three"></i>
+                </div>
+                <h3>
+                    <span class="lang-fr">Comité d'Organisation</span>
+                    <span class="lang-en">Organizing Committee</span>
+                </h3>
+                <p>
+                    <span class="lang-fr">Enseignants-chercheurs et doctorants assurant le succès opérationnel.</span>
+                    <span class="lang-en">Professors, researchers, and PhD students ensuring operational success.</span>
+                </p>
+                <span class="portal-card-link">
+                    <span class="lang-fr">Découvrir les membres</span>
+                    <span class="lang-en">View members</span>
+                    <i class="ph ph-arrow-down"></i>
+                </span>
+            </a>
+        </div>
+    </section>
+
+    <!-- 1. Honorary Committee (Light Background / Clair) -->
+    <section id="honorary" class="section-light-committee">
+        <div class="committees-wrapper" style="max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 20px;">
+
+            <!-- Section header -->
+            <div class="honorary-section-header">
+                <div class="honorary-badge">
+                    <i class="ph ph-crown"></i>
+                    <span class="lang-fr">Comité d'Honneur</span>
+                    <span class="lang-en">Honorary Committee</span>
+                </div>
+                <h3 class="honorary-main-title">
+                    <span class="lang-fr">Les Figures Institutionnelles</span>
+                    <span class="lang-en">Institutional Figures</span>
+                </h3>
+                <p class="honorary-subtitle">
+                    <span class="lang-fr">Présidents d'universités et directeurs d'établissements de premier plan qui honorent le congrès de leur présence.</span>
+                    <span class="lang-en">University presidents and directors of leading institutions who honour the congress with their presence.</span>
+                </p>
+            </div>
+
+            <!-- Cards grid -->
+            <div class="honorary-grid">
+                <!-- Member 1 -->
+                <div class="honorary-card">
+                    <div class="honorary-avatar-ring">
+                        <img src="assets/image22.jpeg" alt="Pr. Mustapha IJJAALI">
+                    </div>
+                    <div class="honorary-card-body">
+                        <div class="honorary-card-name">Pr. Mustapha IJJAALI</div>
+                        <div class="honorary-card-role">
+                            <span class="lang-fr">Président, USMBA</span>
+                            <span class="lang-en">President, USMBA</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Member 2 -->
+                <div class="honorary-card">
+                    <div class="honorary-avatar-ring">
+                        <img src="assets/image23.jpeg" alt="Pr. Ali AHAITOUF">
+                    </div>
+                    <div class="honorary-card-body">
+                        <div class="honorary-card-name">Pr. Ali AHAITOUF</div>
+                        <div class="honorary-card-role">
+                            <span class="lang-fr">Directeur, ENS Fès</span>
+                            <span class="lang-en">Director, ENS Fez</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Member 3 -->
+                <div class="honorary-card">
+                    <div class="honorary-avatar-ring">
+                        <img src="assets/image24.jpeg" alt="Pr. Mohammed BELKASMI">
+                    </div>
+                    <div class="honorary-card-body">
+                        <div class="honorary-card-name">Pr. Mohammed BELKASMI</div>
+                        <div class="honorary-card-role">
+                            <span class="lang-fr">Doyen, FSDM Fès</span>
+                            <span class="lang-en">Dean, FSDM Fez</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Member 4 -->
+                <div class="honorary-card">
+                    <div class="honorary-avatar-ring">
+                        <img src="assets/image21.png" alt="Pr. Abderrahim LAHRACH">
+                    </div>
+                    <div class="honorary-card-body">
+                        <div class="honorary-card-name">Pr. Abderrahim LAHRACH</div>
+                        <div class="honorary-card-role">
+                            <span class="lang-fr">Directeur, ENSA Fès</span>
+                            <span class="lang-en">Director, ENSA Fez</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Member 5 -->
+                <div class="honorary-card">
+                    <div class="honorary-avatar-ring">
+                        <img src="assets/image20.jpeg" alt="Pr. Saâd BENNANI DOSSE">
+                    </div>
+                    <div class="honorary-card-body">
+                        <div class="honorary-card-name">Pr. Saâd BENNANI DOSSE</div>
+                        <div class="honorary-card-role">
+                            <span class="lang-fr">Directeur Adjoint, ENS Fès</span>
+                            <span class="lang-en">Deputy Director, ENS Fez</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Coordinators of Previous Editions (Dark Background / Sombre) -->
+    <section id="coordinators" class="section-dark-committee">
+        <div class="committees-wrapper" style="max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 20px;">
+            <h3 class="committee-left-title">
+                <span class="lang-fr">Coordinateurs des Éditions Précédentes</span>
+                <span class="lang-en">Coordinators of Previous Editions</span>
+            </h3>
+            <div class="committee-grid-coordinators">
+                <!-- Coord 1 -->
+                <div class="committee-avatar-card">
+                    <div class="committee-avatar-wrapper">
+                        <img src="assets/image26.jpeg" alt="Pr. Hassan TABYAOUI">
+                    </div>
+                    <div class="committee-card-name-avatar">Pr. Hassan TABYAOUI</div>
+                    <div class="committee-card-desc-avatar">
+                        <span class="lang-fr">Doyen FP Taza - Coordinateur 1<sup>ère</sup> Édition (2012, Taza)</span>
+                        <span class="lang-en">Dean FP Taza - Coordinator 1<sup>st</sup> Edition (2012, Taza)</span>
+                    </div>
+                </div>
+                <!-- Coord 2 -->
+                <div class="committee-avatar-card">
+                    <div class="committee-avatar-wrapper">
+                        <img src="assets/image25.jpeg" alt="Pr. Ali ESSAHLAOUI">
+                    </div>
+                    <div class="committee-card-name-avatar">Pr. Ali ESSAHLAOUI</div>
+                    <div class="committee-card-desc-avatar">
+                        <span class="lang-fr">Directeur EST Khénifra - Coordinateur 2<sup>ème</sup> Édition (2014, Meknès)</span>
+                        <span class="lang-en">Director EST Khenifra - Coordinator 2<sup>nd</sup> Edition (2014, Meknes)</span>
+                    </div>
+                </div>
+                <!-- Coord 3 -->
+                <div class="committee-avatar-card">
+                    <div class="committee-avatar-wrapper">
+                        <img src="assets/image27.png" alt="Pr. Abdelkader SBAI">
+                    </div>
+                    <div class="committee-card-name-avatar">Pr. Abdelkader SBAI</div>
+                    <div class="committee-card-desc-avatar">
+                        <span class="lang-fr">Professeur FLSH Oujda - Coordinateur 3<sup>ème</sup> Édition (2016, Oujda)</span>
+                        <span class="lang-en">Professor FLSH Oujda - Coordinator 3<sup>rd</sup> Edition (2016, Oujda)</span>
+                    </div>
+                </div>
+                <!-- Coord 4 -->
+                <div class="committee-avatar-card">
+                    <div class="committee-avatar-wrapper">
+                        <img src="assets/image28.jpeg" alt="Pr. Elmostafa MILI">
+                    </div>
+                    <div class="committee-card-name-avatar">Pr. Elmostafa MILI</div>
+                    <div class="committee-card-desc-avatar">
+                        <span class="lang-fr">Professeur FS Meknès - Coordinateur 4<sup>ème</sup> Édition (2018, Meknès)</span>
+                        <span class="lang-en">Professor FS Meknes - Coordinator 4<sup>th</sup> Edition (2018, Meknes)</span>
+                    </div>
+                </div>
+                <!-- Coord 5 -->
+                <div class="committee-avatar-card">
+                    <div class="committee-avatar-wrapper">
+                        <img src="assets/image29.png" alt="Pr. Bouchta El KHAZZAN">
+                    </div>
+                    <div class="committee-card-name-avatar">Pr. Bouchta El KHAZZAN</div>
+                    <div class="committee-card-desc-avatar">
+                        <span class="lang-fr">Professeur FLDM Fès - Coordinateur 5<sup>ème</sup> Édition (2023, Fès)</span>
+                        <span class="lang-en">Professor FLDM Fez - Coordinator 5<sup>th</sup> Edition (2023, Fez)</span>
+                    </div>
+                </div>
+                <!-- Coord 6 -->
+                <div class="committee-avatar-card">
+                    <div class="committee-avatar-wrapper">
+                        <img src="assets/image30.jpeg" alt="Pr. Amina KASSOU">
+                    </div>
+                    <div class="committee-card-name-avatar">Pr. Amina KASSOU</div>
+                    <div class="committee-card-desc-avatar">
+                        <span class="lang-fr">Professeur FST Errachidia - Coordinatrice 6<sup>ème</sup> Édition (2024, Errachidia)</span>
+                        <span class="lang-en">Professor FST Errachidia - Coordinator 6<sup>th</sup> Edition (2024, Errachidia)</span>
+                    </div>
+                </div>
+                <!-- Coord 7 -->
+                <div class="committee-avatar-card">
+                    <div class="committee-avatar-wrapper">
+                        <div class="committee-avatar-placeholder">HB</div>
+                    </div>
+                    <div class="committee-card-name-avatar">Pr. Hicham BENBAQQAL</div>
+                    <div class="committee-card-desc-avatar">
+                        <span class="lang-fr">Professeur ENS, USMBA, Fès - Coordinateur de l'édition actuelle 2026</span>
+                        <span class="lang-en">Professor ENS, USMBA, Fez - Coordinator of the current 2026 edition</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. International Scientific Committee (Light Background / Clair) -->
+    <section id="scientific" class="section-light-committee" style="border-top: 1px solid #e2e8f0;">
+        <div class="committees-wrapper" style="max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 20px;">
+            <h3 class="committee-left-title">
+                <span class="lang-fr">Comité Scientifique International</span>
+                <span class="lang-en">International Scientific Committee</span>
+            </h3>
+            <div class="strict-members-grid">
+                <div class="member-item">
+                    <div class="member-name">Dr. Achibane Hassan</div>
+                    <div class="member-affil">ANEF / Ifrane</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Anton Van Rompaey</div>
+                    <div class="member-affil">Univ. KU Luven, Belgique</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Ahmed Mohamed Saqr</div>
+                    <div class="member-affil">Univ. Mansoura, Egypte</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Dr. Alitane Abdennabi</div>
+                    <div class="member-affil">UM6 / Ben Guerir</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Amine Afaf</div>
+                    <div class="member-affil">FS, UM5 / Rabat</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Azyat Abdelilah</div>
+                    <div class="member-affil">ENSA, UAE / Tanger</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Belmahi Mohamed</div>
+                    <div class="member-affil">ENS, UM5 / Rabat</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Benamar Saad</div>
+                    <div class="member-affil">ENS, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Benamara Ahmed</div>
+                    <div class="member-affil">ENSAM, UMI / Meknès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Ben Abbou Soumaya</div>
+                    <div class="member-affil">ENSAM, UMI / Meknès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Ben Achab Nizar</div>
+                    <div class="member-affil">ENSA, UAE / Tanger</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Benbaqqal Hicham</div>
+                    <div class="member-affil">ENS, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Benyassine El Mehdi</div>
+                    <div class="member-affil">INSAP, Rabat</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Benzoughar Brahim</div>
+                    <div class="member-affil">IS, UM5 / Rabat</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Bouchaou Lhoussaine</div>
+                    <div class="member-affil">FS, UIZ / Agadir</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Boudher Abdelghani</div>
+                    <div class="member-affil">FST, UCA / Marrakech</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Dr. Bourhzali Mohammed</div>
+                    <div class="member-affil">FLDM, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Deffontaines Benoit</div>
+                    <div class="member-affil">Univ. G. Eiffel, Paris-Est / France</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Elaloui Abdenabi</div>
+                    <div class="member-affil">FST, USMS / Béni Mellal</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. El Aroussi Omar</div>
+                    <div class="member-affil">FLSHJ, UCD / El Jadida</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. El Asmi Hicham</div>
+                    <div class="member-affil">ENS, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. El Hafyani Mohammed</div>
+                    <div class="member-affil">FS, UIZ, Agadir</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. El Hamdouny Malika</div>
+                    <div class="member-affil">FLDM, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. El Khazzan Bouchta</div>
+                    <div class="member-affil">FLDM, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Dr. Elkourchia Abdelfettah</div>
+                    <div class="member-affil">EST, USMS, Fkih Ben Salah</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. El Kharki Omar</div>
+                    <div class="member-affil">FST, Tanger</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. El Myr Ali</div>
+                    <div class="member-affil">ENS, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. EL Monhim Bilal</div>
+                    <div class="member-affil">ENS, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. El Ouali Abdelhadi</div>
+                    <div class="member-affil">FS, UMI / Meknès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Emran Anas</div>
+                    <div class="member-affil">CRAST-LF / Rabat</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Erraji Ahmed</div>
+                    <div class="member-affil">Ex. Cadre du CRTS, ADN, Rabat</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Essahale Adil</div>
+                    <div class="member-affil">ENS, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Essalek Bouchaibe</div>
+                    <div class="member-affil">FSE, UM5/ Rabat</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Essahlaoui Ali</div>
+                    <div class="member-affil">EST, USMS / Khénifra</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Erragragui Mohamed</div>
+                    <div class="member-affil">FST, UCA / Marrakech</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Gobin Anne</div>
+                    <div class="member-affil">Univ. KU Luven, Belgique</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Hamdach Youssef</div>
+                    <div class="member-affil">FLSHJ, UCD / El Jadida</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Karaoui Ismail</div>
+                    <div class="member-affil">FST, USMS / Béni Mellal</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Kassou Amina</div>
+                    <div class="member-affil">FST, UMI / Errachidia</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Laaribya Said</div>
+                    <div class="member-affil">FSHS, UIT / Kénitra</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Laguenini Fouzia</div>
+                    <div class="member-affil">ENS, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Lamhasni Taibi</div>
+                    <div class="member-affil">INSAP, Rabat</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Lhachmi Ali</div>
+                    <div class="member-affil">FP, USMBA / Taza</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Louaya Abdelkarim</div>
+                    <div class="member-affil">FSDM, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Masrour Aissa</div>
+                    <div class="member-affil">FS, UMI / Meknès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Mdiker Nabil</div>
+                    <div class="member-affil">FS, UM5 / Rabat</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Midaoui Abdelbaset</div>
+                    <div class="member-affil">FLDM, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Mili El-Mostafa</div>
+                    <div class="member-affil">FS, UMI / Meknès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Raissouni Naoufal</div>
+                    <div class="member-affil">ENSA, Tétouan</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Rajhi Hayfa</div>
+                    <div class="member-affil">Univ. Gabbes / Tunisie</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Redouane Meryem</div>
+                    <div class="member-affil">FSDM, Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Rudan Jean-Paul</div>
+                    <div class="member-affil">Univ. G. Eiffel, Paris-Est / France</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Sallah Amine</div>
+                    <div class="member-affil">ENS, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Slali Hamid</div>
+                    <div class="member-affil">ENS, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Souab Majda</div>
+                    <div class="member-affil">FLDM, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Zakaria Othmane</div>
+                    <div class="member-affil">ENS, USMBA / Fès</div>
+                </div>
+                <div class="member-item">
+                    <div class="member-name">Pr. Zouhri Driss</div>
+                    <div class="member-affil">FLDM, USMBA / Fès</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Show More / Show Less button -->
+        <div class="scientific-show-more-wrapper">
+            <button class="scientific-show-more-btn" id="scientificToggleBtn" onclick="toggleScientificGrid()">
+                <span class="lang-fr">Voir plus <i class="ph ph-caret-down"></i></span>
+                <span class="lang-en">Show more <i class="ph ph-caret-down"></i></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- 4. Organizing Committee (Dark Background / Sombre) -->
+    <section id="organizing" class="section-dark-committee">
+        <div class="committees-wrapper" style="max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 20px;">
+            <div class="organizing-header-row" style="display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 15px;">
+                <h3 class="committee-left-title" style="margin-bottom:0; border-left: 4px solid var(--accent-gold); padding-left: 15px; line-height: 1;">
+                    <span class="lang-fr">Comité d'Organisation</span>
+                    <span class="lang-en">Organizing Committee</span>
+                </h3>
+                <!-- Organizing Sub-Tabs Switcher -->
+                <div class="organizing-tabs-wrapper" style="margin-bottom: 0;">
+                    <button class="organizing-tab-btn active" data-org-tab="org-professors">
+                        <span class="lang-fr">Enseignants-Chercheurs</span>
+                        <span class="lang-en">Professors &amp; Researchers</span>
+                    </button>
+                    <button class="organizing-tab-btn" data-org-tab="org-students">
+                        <span class="lang-fr">Doctorants</span>
+                        <span class="lang-en">PhD Students</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Subtitle Container based on Active Tab -->
+            <div class="organizing-subtitle-container" style="margin-top: 15px; margin-bottom: 15px; font-size: 0.95rem; color: #94a3b8; font-weight: 500;">
+                <div id="subtitle-org-professors" class="org-subtitle-item active">
+                    <span class="lang-fr">Les enseignants-chercheurs et experts académiques qui pilotent la logistique et la coordination.</span>
+                    <span class="lang-en">The professors, researchers and academic experts steering logistics and coordination.</span>
+                </div>
+                <div id="subtitle-org-students" class="org-subtitle-item" style="display: none;">
+                    <span class="lang-fr">Les doctorants dévoués impliqués activement dans le support technique et l'organisation quotidienne.</span>
+                    <span class="lang-en">Dedicated PhD students actively involved in technical support and daily organization.</span>
+                </div>
+            </div>
+
+            <div class="organizing-tabs-content">
+                <!-- Sub-Pane 1: Professors & Researchers -->
+                <div class="organizing-tab-pane active" id="org-professors">
+                    <ul class="compact-bullet-list">
+                        <li>Pr. Belmahi Mohamed <span class="affil-inline">(ENS, UM5 / Rabat)</span></li>
+                        <li>Pr. Baslam Abdelmounaim <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Benamar Saad <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Benbaqqal Hicham <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Ben Fares Samiha <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Benyassine El Mehdi <span class="affil-inline">(INSAP, Rabat)</span></li>
+                        <li>Dr. Bourhzali Mohammed <span class="affil-inline">(FLDM, USMBA / Fès)</span></li>
+                        <li>Pr. El Asmi Hicham <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. El Khattabi Khalid <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. El Myr Ali <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Essahale Adil <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Essahlaoui Ali <span class="affil-inline">(EST, USMS / Khénifra)</span></li>
+                        <li>Pr. Laguenini Fouzia <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Lamhasni Taibi <span class="affil-inline">(INSAP, Rabat)</span></li>
+                        <li>Pr. Lamsaadi Nadia <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Nouiga Abdesslam <span class="affil-inline">(CRMEF de Fès-Meknès)</span></li>
+                        <li>Pr. Slali Hamid <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Squalli Wafae <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Zarrouq Btissame <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Zakaria Othmane <span class="affil-inline">(ENS, USMBA / Fès)</span></li>
+                        <li>Pr. Zouhri Driss <span class="affil-inline">(FLDM, USMBA / Fès)</span></li>
+                    </ul>
+                </div> <!-- end of org-professors tab pane -->
+
+                <!-- Sub-Pane 2: PhD Students / Doctorants -->
+                <div class="organizing-tab-pane" id="org-students">
+                    <ul class="compact-bullet-list">
+                        <li>Bellatik Issame <span class="affil-inline">(ENS, Fès)</span></li>
+                        <li>Boukarai Asmae <span class="affil-inline">(ENS, Fès)</span></li>
+                        <li>Chamcham Mohammed <span class="affil-inline">(FLDM, Fès)</span></li>
+                        <li>Cherkaouy Fadwa <span class="affil-inline">(ENS, Fès)</span></li>
+                        <li>El Abedy Meryem <span class="affil-inline">(FLDM, Fès)</span></li>
+                        <li>El-Ouali Salma <span class="affil-inline">(ENS, Fès)</span></li>
+                        <li>Ettifouri Salma <span class="affil-inline">(ENS, Fès)</span></li>
+                        <li>Fergougui Mohamed <span class="affil-inline">(FSDM, Fès)</span></li>
+                        <li>Hilali Adil <span class="affil-inline">(FLDM, Fès)</span></li>
+                        <li>Lamriss Abderrazzak <span class="affil-inline">(ENS, Fès)</span></li>
+                        <li>Lyazidi Aziza <span class="affil-inline">(FSDM, Fès)</span></li>
+                        <li>Mardi Souhaila <span class="affil-inline">(FLDM, Fès)</span></li>
+                        <li>Masrar Mohamed <span class="affil-inline">(ENS, Fès)</span></li>
+                        <li>Moubtassim Youssef <span class="affil-inline">(FLDM, Fès)</span></li>
+                    </ul>
+                </div> <!-- end of org-students tab pane -->
+            </div> <!-- end of organizing-tabs-content -->
+        </div>
+    </section>
+
+    <!-- Registration Fees / Frais de participation -->
+    <section id="fees">
+        <div class="text-center">
+            <h2 class="section-title">
+                <span class="lang-fr">Frais d'Inscription</span>
+                <span class="lang-en">Registration Fees</span>
+            </h2>
+            <p class="section-desc">GIS USERS CONFERENCE 2026</p>
+        </div>
+
+
+
+        <div class="pricing-container" style="max-width: 1200px; margin: 25px auto 0 auto;">
+            <!-- Integrated Pre-registration banner at the head of the table -->
+            <div class="pricing-banner-head" style="background: linear-gradient(135deg, rgba(250, 170, 2, 0.08) 0%, rgba(250, 170, 2, 0.02) 100%); border-bottom: 1.5px solid rgba(250, 170, 2, 0.2); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 280px; text-align: left;">
+                    <h4 style="margin: 0 0 4px 0; color: #01091F; font-size: 1rem; font-weight: 700; font-family: var(--font-heading);">
+                        <span class="lang-fr">Inscription &amp; Soumission des Résumés</span>
+                        <span class="lang-en">Registration &amp; Abstract Submission</span>
+                    </h4>
+                    <p style="margin: 0; color: #475569; font-size: 0.85rem; line-height: 1.4; font-weight: 500;">
+                        <span class="lang-fr">L'inscription et le dépôt du résumé s'effectuent directement en ligne sur ce site.</span>
+                        <span class="lang-en">Registration and abstract submission are handled directly online on this website.</span>
+                    </p>
+                </div>
+                <a href="#registration" class="google-form-btn" style="padding: 10px 22px; font-size: 0.82rem; margin: 0; text-decoration: none;">
+                    <i class="ph ph-note-pencil" style="font-size: 1rem;"></i>
+                    <span class="lang-fr">S'inscrire en ligne</span>
+                    <span class="lang-en">Register online</span>
+                </a>
+            </div>
+
+            <div class="pricing-header">
+                <h3>GIS USERS CONFERENCE 2026</h3>
+                <button class="pricing-currency-switch" id="currencyToggle">
+                    <span class="lang-fr">Devise: MAD</span>
+                    <span class="lang-en">Currency: MAD</span>
+                </button>
+            </div>
+            <div class="pricing-table-wrapper">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="lang-fr">Catégorie</span>
+                                <span class="lang-en">Category</span>
+                            </th>
+                            <th>
+                                <span class="lang-fr">Avant le 1er Octobre 2026</span>
+                                <span class="lang-en">Before October 1, 2026</span>
+                            </th>
+                            <th>
+                                <span class="lang-fr">Après le 1er Octobre 2026</span>
+                                <span class="lang-en">After October 1, 2026</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="pricingBody">
+                        <tr data-mad-before="400" data-mad-after="600" data-eur-before="40" data-eur-after="60">
+                            <td>
+                                <span class="lang-fr">Doctorant Marocain</span>
+                                <span class="lang-en">Moroccan PhD Student</span>
+                            </td>
+                            <td class="price-tag val-before">400.00 MAD</td>
+                            <td class="price-tag val-after after-date">600.00 MAD</td>
+                        </tr>
+                        <tr data-mad-before="800" data-mad-after="1000" data-eur-before="80" data-eur-after="100">
+                            <td>
+                                <span class="lang-fr">Doctorant International</span>
+                                <span class="lang-en">International PhD Student</span>
+                            </td>
+                            <td class="price-tag val-before">800.00 MAD</td>
+                            <td class="price-tag val-after after-date">1000.00 MAD</td>
+                        </tr>
+                        <tr data-mad-before="800" data-mad-after="1000" data-eur-before="80" data-eur-after="100">
+                            <td>
+                                <span class="lang-fr">Enseignant-Chercheur Marocain</span>
+                                <span class="lang-en">Moroccan Faculty Member / Researcher</span>
+                            </td>
+                            <td class="price-tag val-before">800.00 MAD</td>
+                            <td class="price-tag val-after after-date">1000.00 MAD</td>
+                        </tr>
+                        <tr data-mad-before="1000" data-mad-after="1200" data-eur-before="100" data-eur-after="120">
+                            <td>
+                                <span class="lang-fr">Enseignant-Chercheur International</span>
+                                <span class="lang-en">International Faculty Member / Researcher</span>
+                            </td>
+                            <td class="price-tag val-before">1000.00 MAD</td>
+                            <td class="price-tag val-after after-date">1200.00 MAD</td>
+                        </tr>
+                        <tr data-mad-before="1000" data-mad-after="1200" data-eur-before="100" data-eur-after="120">
+                            <td>
+                                <span class="lang-fr">Participants d'Établissements Publics / Institutionnels</span>
+                                <span class="lang-en">Participants from Public Governmental / Independent Institutions</span>
+                            </td>
+                            <td class="price-tag val-before">1000.00 MAD</td>
+                            <td class="price-tag val-after after-date">1200.00 MAD</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bank Details Section (EPIA-1 Layout style) -->
+        <div class="bank-details-wrapper" style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: stretch;">
+            <!-- Bank Details Card -->
+            <div class="bank-details-card" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 30px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03); display: flex; flex-direction: column; justify-content: space-between; gap: 20px; text-align: left;">
+                <div>
+                    <h3 class="bank-title" style="margin: 0; color: #01091F; font-size: 1.25rem; font-weight: 700; font-family: var(--font-heading); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--accent-gold); padding-bottom: 12px; width: 100%;">
+                        <i class="ph ph-bank" style="color: #b47b02; font-size: 1.5rem;"></i>
+                        <span class="lang-fr">Coordonnées Bancaires</span>
+                        <span class="lang-en">Bank Details</span>
+                    </h3>
+                    
+                    <p class="bank-desc" style="margin: 15px 0 0 0; color: #475569; font-size: 0.92rem; line-height: 1.5; font-weight: 500;">
+                        <span class="lang-fr">Paiement sécurisé par virement bancaire sur le compte officiel de l'ENS :</span>
+                        <span class="lang-en">Secure payment by bank transfer to the official ENS account:</span>
+                    </p>
+                </div>
+
+                <div class="swift-row" style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <div class="swift-box" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; flex: 1; min-width: 200px;">
+                        <span class="swift-lbl" style="font-size: 0.72rem; color: #64748b; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px;">
+                            <span class="lang-fr">Bénéficiaire</span>
+                            <span class="lang-en">Beneficiary</span>
+                        </span>
+                        <strong style="color: #01091F; font-size: 0.95rem;">Ecole Normale Supérieure de Fès</strong>
+                    </div>
+
+                    <div class="swift-box" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; width: fit-content; min-width: 140px;">
+                        <span class="swift-lbl" style="font-size: 0.72rem; color: #64748b; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px;">
+                            <span class="lang-fr">Code SWIFT</span>
+                            <span class="lang-en">SWIFT Code</span>
+                        </span>
+                        <code class="swift-code" style="color: #b47b02; font-size: 1.15rem; font-weight: 800; font-family: monospace;">BKAMMAMR</code>
+                    </div>
+                </div>
+
+                <div class="bank-instructions" style="background: rgba(250, 170, 2, 0.04); border-left: 4px solid var(--accent-gold); padding: 15px; border-radius: 4px;">
+                    <ul class="bank-instructions-list" style="margin: 0; padding: 0 0 0 15px; list-style-type: disc; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #334155; font-weight: 500; line-height: 1.45;">
+                        <li class="bank-note">
+                            <span class="lang-fr">Veuillez mentionner votre <strong>Nom complet</strong> et <strong>"GIS-USERS-2026"</strong> lors du virement.</span>
+                            <span class="lang-en">Please mention your <strong>Full Name</strong> and <strong>"GIS-USERS-2026"</strong> during the transfer.</span>
+                        </li>
+                        <li class="bank-note">
+                            <span class="lang-fr">Conservez et joignez le reçu de virement lors de votre arrivée au congrès.</span>
+                            <span class="lang-en">Keep and attach the transfer receipt upon arrival at the conference.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- RIB Image Card -->
+            <div class="bank-image-card" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 30px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03); display: flex; flex-direction: column; justify-content: space-between; gap: 20px; text-align: left;">
+                <div>
+                    <h3 class="rib-header" style="margin: 0; color: #01091F; font-size: 1.25rem; font-weight: 700; font-family: var(--font-heading); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--accent-gold); padding-bottom: 12px; width: 100%;">
+                        <i class="ph ph-file-text" style="color: #b47b02; font-size: 1.5rem;"></i>
+                        <span class="lang-fr">RIB GIS-USERS 2026</span>
+                        <span class="lang-en">RIB GIS-USERS 2026</span>
+                    </h3>
+                    <p class="rib-desc" style="margin: 15px 0 0 0; color: #475569; font-size: 0.92rem; line-height: 1.5; font-weight: 500;">
+                        <span class="lang-fr">Relevé d'identité bancaire officiel pour effectuer votre virement :</span>
+                        <span class="lang-en">Official bank identity statement to perform your transfer:</span>
+                    </p>
+                </div>
+                
+                <div style="display: flex; justify-content: center; align-items: center; flex: 1;">
+                    <img src="assets/RIB.jpg" alt="RIB GIS-USERS 2026" id="ribImg" class="rib-img" style="border: 1px solid #cbd5e1; max-height: 140px; width: auto; border-radius: 8px; cursor: pointer; transition: transform 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                </div>
+
+                <div class="rib-lbl" style="font-size: 0.8rem; color: #64748b; font-weight: 600; text-align: center; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px; border-radius: 6px;">
+                    <span class="lang-fr"><i class="ph ph-magnifying-glass-plus" style="margin-right: 4px; vertical-align: middle; font-size: 1.1rem; color: #b47b02;"></i> Cliquer pour agrandir &amp; copier</span>
+                    <span class="lang-en"><i class="ph ph-magnifying-glass-plus" style="margin-right: 4px; vertical-align: middle; font-size: 1.1rem; color: #b47b02;"></i> Click to enlarge &amp; copy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Online Pre-Registration Form & Calculator (Interactive interface requested) -->
+    <section id="registration" class="section-dark-committee" style="border-top: 1px solid rgba(255,255,255,0.08);">
+        <div class="registration-container" id="formContainer">
+            <!-- Left Column: Title, Description & Procedure -->
+            <div class="reg-info-side">
+                <div class="reg-header-left">
+                    <h2 class="section-title" style="color: #ffffff !important; text-align: left; font-size: 2.2rem; margin-bottom: 12px;">
+                        <span class="lang-fr">Inscription &amp; Soumission des Résumés</span>
+                        <span class="lang-en">Registration &amp; Abstract Submission</span>
+                    </h2>
+                    <div class="section-divider-decor" style="margin: 0 0 20px 0; width: 60px; height: 3px;"></div>
+                    <p class="section-desc" style="color: #cbd5e1 !important; text-align: left; margin: 0; max-width: none; font-size: 0.95rem; line-height: 1.6;">
+                        <span class="lang-fr">Générez votre reçu de pré-inscription imprimable avec calcul automatique des frais avant votre virement bancaire. Remplissez le formulaire à droite pour commencer.</span>
+                        <span class="lang-en">Generate your printable pre-registration receipt with automatic fee calculation before bank transfer. Fill out the form on the right to start.</span>
+                    </p>
+                </div>
+                
+                <div class="reg-sidebar-left">
+                    <h3>
+                        <span class="lang-fr">Procédure d'Inscription</span>
+                        <span class="lang-en">Registration Procedure</span>
+                    </h3>
+                    <div class="sidebar-step">
+                        <div class="step-num">1</div>
+                        <div class="sidebar-txt">
+                            <h4>
+                                <span class="lang-fr">Remplir le Formulaire</span>
+                                <span class="lang-en">Fill out the Form</span>
+                            </h4>
+                            <p>
+                                <span class="lang-fr">Complétez les informations requises et chargez votre fichier de résumé si vous participez par communication.</span>
+                                <span class="lang-en">Complete the required information and upload your abstract file if you participate with a communication.</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sidebar-step">
+                        <div class="step-num">2</div>
+                        <div class="sidebar-txt">
+                            <h4>
+                                <span class="lang-fr">Générer le Reçu</span>
+                                <span class="lang-en">Generate the Receipt</span>
+                            </h4>
+                            <p>
+                                <span class="lang-fr">Calculez automatiquement vos frais de participation et obtenez votre reçu avec votre code unique.</span>
+                                <span class="lang-en">Automatically calculate your participation fees and get your receipt with your unique code.</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sidebar-step">
+                        <div class="step-num">3</div>
+                        <div class="sidebar-txt">
+                            <h4>
+                                <span class="lang-fr">Virement Bancaire</span>
+                                <span class="lang-en">Bank Transfer</span>
+                            </h4>
+                            <p>
+                                <span class="lang-fr">Effectuez le virement vers le compte officiel de l'ENS en mentionnant votre nom et le code unique généré.</span>
+                                <span class="lang-en">Perform the bank transfer to the official ENS account, mentioning your full name and the unique generated code.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: The Light Theme Form Box -->
+            <div class="registration-form-box">
+                <form id="regForm">
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="lastName">
+                                <span class="lang-fr">Nom <span style="color: var(--accent-gold);">*</span></span>
+                                <span class="lang-en">Last Name <span style="color: var(--accent-gold);">*</span></span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <i class="ph ph-user"></i>
+                                <input type="text" id="lastName" name="nom" class="form-control" placeholder="Ex: ALAOUI" data-placeholder-fr="Ex: ALAOUI" data-placeholder-en="Ex: ALAOUI" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">
+                                <span class="lang-fr">Prénom <span style="color: var(--accent-gold);">*</span></span>
+                                <span class="lang-en">First Name <span style="color: var(--accent-gold);">*</span></span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <i class="ph ph-user"></i>
+                                <input type="text" id="firstName" name="prenom" class="form-control" placeholder="Ex: Abdeslam" data-placeholder-fr="Ex: Abdeslam" data-placeholder-en="Ex: Youssef" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="country">
+                                <span class="lang-fr">Pays <span style="color: var(--accent-gold);">*</span></span>
+                                <span class="lang-en">Country <span style="color: var(--accent-gold);">*</span></span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <i class="ph ph-globe"></i>
+                                <select id="country" name="pays" class="form-control" required>
+                                    <option value="Morocco" selected>Maroc / Morocco</option>
+                                    <option value="France">France</option>
+                                    <option value="Algeria">Algérie / Algeria</option>
+                                    <option value="Tunisia">Tunisie / Tunisia</option>
+                                    <option value="Spain">Espagne / Spain</option>
+                                    <option value="Senegal">Sénégal / Senegal</option>
+                                    <option value="Mauritania">Mauritanie / Mauritania</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="USA">États-Unis / United States</option>
+                                    <option value="Belgium">Belgique / Belgium</option>
+                                    <option value="Switzerland">Suisse / Switzerland</option>
+                                    <option value="UAE">Émirats Arabes Unis / United Arab Emirates</option>
+                                    <option value="Saudi Arabia">Arabie Saoudite / Saudi Arabia</option>
+                                    <option value="Other">Autre / Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">
+                                <span class="lang-fr">Ville <span style="color: var(--accent-gold);">*</span></span>
+                                <span class="lang-en">City <span style="color: var(--accent-gold);">*</span></span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <i class="ph ph-map-pin"></i>
+                                <input type="text" id="city" name="ville" class="form-control" placeholder="Ex: Fès" data-placeholder-fr="Ex: Fès" data-placeholder-en="Ex: Fez" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="phone">
+                                <span class="lang-fr">Téléphone <span style="color: var(--accent-gold);">*</span></span>
+                                <span class="lang-en">Phone <span style="color: var(--accent-gold);">*</span></span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <i class="ph ph-phone"></i>
+                                <input type="tel" id="phone" name="tel" class="form-control" placeholder="+212 600 000 000" data-placeholder-fr="+212 600 000 000" data-placeholder-en="+212 600 000 000" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                <span class="lang-fr">E-mail <span style="color: var(--accent-gold);">*</span></span>
+                                <span class="lang-en">Email <span style="color: var(--accent-gold);">*</span></span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <i class="ph ph-envelope"></i>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Ex: nom@domaine.com" data-placeholder-fr="Ex: nom@domaine.com" data-placeholder-en="Ex: name@domain.com" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="institution">
+                                <span class="lang-fr">Affiliation / Organisme <span style="color: var(--accent-gold);">*</span></span>
+                                <span class="lang-en">Affiliation / Institution <span style="color: var(--accent-gold);">*</span></span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <i class="ph ph-buildings"></i>
+                                <input type="text" id="institution" name="affiliation" class="form-control" placeholder="Ex: ENS, USMBA / Fès" data-placeholder-fr="Ex: ENS, USMBA / Fès" data-placeholder-en="Ex: ENS, USMBA / Fez" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="position">
+                                <span class="lang-fr">Fonction / Catégorie <span style="color: var(--accent-gold);">*</span></span>
+                                <span class="lang-en">Position / Category <span style="color: var(--accent-gold);">*</span></span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <i class="ph ph-identification-card"></i>
+                                <select id="position" name="fonction" class="form-control" required>
+                                    <option value="" disabled selected data-fr="Sélectionnez une catégorie..." data-en="Select a category...">Sélectionnez une catégorie...</option>
+                                    <option value="student_maroc">Moroccan PhD Student (400 / 600 MAD)</option>
+                                    <option value="student_inter">International PhD Student (800 / 1000 MAD)</option>
+                                    <option value="faculty_maroc">Moroccan Faculty / Researcher (800 / 1000 MAD)</option>
+                                    <option value="faculty_inter">International Faculty / Researcher (1000 / 1200 MAD)</option>
+                                    <option value="public_org">Public Governmental / Independent Institutions (1000 / 1200 MAD)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <span class="lang-fr">Type de Participation <span style="color: var(--accent-gold);">*</span></span>
+                            <span class="lang-en">Type of Participation <span style="color: var(--accent-gold);">*</span></span>
+                        </label>
+                        <div class="radio-group-container">
+                            <label class="radio-label">
+                                <input type="radio" name="participation_type" value="attendance" checked required>
+                                <span>
+                                    <span class="lang-fr">Présence Simple</span>
+                                    <span class="lang-en">Attendance Only</span>
+                                </span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="participation_type" value="communication">
+                                <span>
+                                    <span class="lang-fr">Communication Seule</span>
+                                    <span class="lang-en">Communication Only</span>
+                                </span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="participation_type" value="workshops">
+                                <span>
+                                    <span class="lang-fr">Ateliers / Workshops</span>
+                                    <span class="lang-en">Workshops Only</span>
+                                </span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="participation_type" value="comm_workshops">
+                                <span>
+                                    <span class="lang-fr">Communication &amp; Ateliers</span>
+                                    <span class="lang-en">Communication &amp; Workshops</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="conditional-field" id="commFields">
+                        <div class="form-group-row">
+                            <div class="form-group">
+                                <label for="communicantName">
+                                    <span class="lang-fr">Nom &amp; Prénom communiquant <span style="color: var(--accent-gold);">*</span></span>
+                                    <span class="lang-en">Presenter's Full Name <span style="color: var(--accent-gold);">*</span></span>
+                                </label>
+                                <div class="input-icon-wrapper">
+                                    <i class="ph ph-user-circle"></i>
+                                    <input type="text" id="communicantName" name="nom_prenom_communiquant" class="form-control" placeholder="Ex: Pr. Youssef ALAOUI" data-placeholder-fr="Ex: Pr. Youssef ALAOUI" data-placeholder-en="Ex: Pr. Youssef ALAOUI">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="communicantAffiliation">
+                                    <span class="lang-fr">Affiliation communiquant <span style="color: var(--accent-gold);">*</span></span>
+                                    <span class="lang-en">Presenter's Affiliation <span style="color: var(--accent-gold);">*</span></span>
+                                </label>
+                                <div class="input-icon-wrapper">
+                                    <i class="ph ph-buildings"></i>
+                                    <input type="text" id="communicantAffiliation" name="affiliation_communiquant" class="form-control" placeholder="Ex: ENS de Fès, USMBA" data-placeholder-fr="Ex: ENS de Fès, USMBA" data-placeholder-en="Ex: ENS Fez, USMBA">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <div class="form-group">
+                                <label for="abstractTitle">
+                                    <span class="lang-fr">Titre de Communication <span style="color: var(--accent-gold);">*</span></span>
+                                    <span class="lang-en">Communication Title <span style="color: var(--accent-gold);">*</span></span>
+                                </label>
+                                <div class="input-icon-wrapper">
+                                    <i class="ph ph-file-text"></i>
+                                    <input type="text" id="abstractTitle" name="titre_communication" class="form-control" placeholder="Ex: Application des SIG pour..." data-placeholder-fr="Ex: Application des SIG pour..." data-placeholder-en="Ex: GIS applications for...">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="coAuthors">
+                                    <span class="lang-fr">Co-auteurs (ou 'Aucun') <span style="color: var(--accent-gold);">*</span></span>
+                                    <span class="lang-en">Co-authors (or 'None') <span style="color: var(--accent-gold);">*</span></span>
+                                </label>
+                                <div class="input-icon-wrapper">
+                                    <i class="ph ph-users"></i>
+                                    <input type="text" id="coAuthors" name="co_auteurs" class="form-control" placeholder="Ex: Pr. Nom, Dr. Nom (ou 'Aucun')" data-placeholder-fr="Ex: Pr. Nom, Dr. Nom (ou 'Aucun')" data-placeholder-en="Ex: Pr. Name, Dr. Name (or 'None')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <span class="lang-fr">Fichier du Résumé (DOCX, PDF - Max 5MB) <span style="color: var(--accent-gold);">*</span></span>
+                                <span class="lang-en">Abstract File (DOCX, PDF - Max 5MB) <span style="color: var(--accent-gold);">*</span></span>
+                            </label>
+                            <div class="file-upload-wrapper">
+                                <div class="file-upload-card" id="fileUploadCard">
+                                    <i class="ph ph-cloud-arrow-up upload-card-icon"></i>
+                                    <div class="upload-card-text">
+                                        <span class="lang-fr">Glissez-déposez ou <strong style="color: var(--accent-gold);">cliquez ici</strong> pour charger le résumé</span>
+                                        <span class="lang-en">Drag &amp; drop or <strong style="color: var(--accent-gold);">click here</strong> to upload your abstract</span>
+                                    </div>
+                                    <div class="file-name-preview" id="fileNamePreview">
+                                        <i class="ph ph-file-text"></i>
+                                        <span id="fileNameSpan"></span>
+                                        <i class="ph ph-x-circle remove-file-btn" id="removeFileBtn" title="Remove file"></i>
+                                    </div>
+                                </div>
+                                <input type="file" id="abstractFile" name="fichier_resume" accept=".pdf,.doc,.docx" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="conditional-field" id="workshopFields">
+                        <div class="form-group" style="width: 100%;">
+                            <label for="workshopSelect">
+                                <span class="lang-fr">Sélection de l'Atelier <span style="color: var(--accent-gold);">*</span></span>
+                                <span class="lang-en">Workshop Selection <span style="color: var(--accent-gold);">*</span></span>
+                            </label>
+                            <div class="input-icon-wrapper">
+                                <i class="ph ph-chalkboard-teacher"></i>
+                                <select id="workshopSelect" name="choix_workshop" class="form-control">
+                                    <option value="" disabled selected data-fr="-- Sélectionnez un atelier --" data-en="-- Select a workshop --">-- Sélectionnez un atelier --</option>
+                                    <option value="GIS7-W1">GIS7-W1</option>
+                                    <option value="GIS7-W2">GIS7-W2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <span class="lang-fr">Générer le Reçu de Pré-Inscription</span>
+                        <span class="lang-en">Generate Pre-Registration Receipt</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Receipt View -->
+        <div class="receipt-wrapper" id="receiptView">
+            <div class="receipt-header">
+                <div class="receipt-success-badge">
+                    <i class="ph ph-check"></i>
+                </div>
+                <h2>Reçu de Pré-Inscription / Pre-Registration Receipt</h2>
+                <p>FEZ GIS-Users' 2026 Conference</p>
+            </div>
+            
+            <!-- Ticket divider with side notches and dashed line -->
+            <div class="ticket-divider-row">
+                <div class="ticket-notch notch-left"></div>
+                <div class="ticket-notch notch-right"></div>
+                <div class="ticket-dashed-line"></div>
+            </div>
+
+            <div class="receipt-content">
+                <div class="receipt-code-box">
+                    <div class="receipt-code-label">Unique Registration Code</div>
+                    <div class="receipt-code" id="receiptCode">GIS-2026-X8F2</div>
+                </div>
+
+                <div class="receipt-grid">
+                    <div class="receipt-item">
+                        <label>Nom Complet / Full Name</label>
+                        <span id="recName">-</span>
+                    </div>
+                    <div class="receipt-item">
+                        <label>Email</label>
+                        <span id="recEmail">-</span>
+                    </div>
+                    <div class="receipt-item">
+                        <label>Institution</label>
+                        <span id="recAffiliation">-</span>
+                    </div>
+                    <div class="receipt-item">
+                        <label>Participation</label>
+                        <span id="recPartType">-</span>
+                    </div>
+                    <!-- Dynamic communication details block -->
+                    <div id="recCommDetails" class="receipt-item full-width" style="display: none; border-top: 1px dashed #cbd5e1; padding-top: 15px; margin-top: 5px; flex-direction: column; gap: 10px;">
+                        <div>
+                            <label style="font-size: 0.68rem; color: #64748b; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; letter-spacing: 0.3px;">Titre de la Communication / Communication Title</label>
+                            <span id="recCommTitle" style="font-size: 0.9rem; font-weight: 700; color: #01091F;">-</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <label style="font-size: 0.68rem; color: #64748b; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; letter-spacing: 0.3px;">Communiquant / Presenter</label>
+                                <span id="recCommName" style="font-size: 0.9rem; font-weight: 600; color: #0f172a;">-</span>
+                            </div>
+                            <div>
+                                <label style="font-size: 0.68rem; color: #64748b; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; letter-spacing: 0.3px;">Affiliation du Communiquant / Affiliation</label>
+                                <span id="recCommAffil" style="font-size: 0.9rem; font-weight: 600; color: #0f172a;">-</span>
+                            </div>
+                        </div>
+                        <div id="recCoAuthorsContainer">
+                            <label style="font-size: 0.68rem; color: #64748b; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; letter-spacing: 0.3px;">Co-auteurs / Co-authors</label>
+                            <span id="recCoAuthors" style="font-size: 0.9rem; font-weight: 600; color: #0f172a;">-</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Dynamic workshop details block -->
+                    <div id="recWorkshopDetails" class="receipt-item full-width" style="display: none; border-top: 1px dashed #cbd5e1; padding-top: 15px; margin-top: 5px;">
+                        <div>
+                            <label style="font-size: 0.68rem; color: #64748b; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; letter-spacing: 0.3px;">Atelier Sélectionné / Selected Workshop</label>
+                            <span id="recWorkshop" style="font-size: 0.9rem; font-weight: 700; color: #01091F;">-</span>
+                        </div>
+                    </div>
+
+                    <div class="receipt-item full-width">
+                        <label>Montant des Frais / Total Amount</label>
+                        <span id="recAmount" class="price-tag" style="font-size: 1.3rem;">-</span>
+                    </div>
+                </div>
+
+                <div class="receipt-instructions">
+                    <h4>
+                        <span class="lang-fr">Instructions de Paiement</span>
+                        <span class="lang-en">Payment Instructions</span>
+                    </h4>
+                    <p class="lang-fr">
+                        1. Effectuez votre virement bancaire vers le compte ENS (SWIFT: <strong>BKAMMAMR</strong>).<br>
+                        2. Mentionnez votre nom et le code d'inscription ci-dessus lors de l'opération.<br>
+                        3. Joignez votre reçu de virement lors de votre arrivée au congrès pour valider votre badge d'accès.
+                    </p>
+                    <p class="lang-en">
+                        1. Perform your bank transfer to the ENS account (SWIFT: <strong>BKAMMAMR</strong>).<br>
+                        2. Mention your full name and the registration code above during the operation.<br>
+                        3. Attach your transfer receipt upon arrival at the conference to validate your access badge.
+                    </p>
+                </div>
+
+                <div class="receipt-actions">
+                    <button class="btn btn-primary" onclick="window.print()" style="display: inline-flex; align-items: center; gap: 8px; justify-content: center;">
+                        <i class="ph ph-printer" style="font-size: 1.1rem;"></i>
+                        <span class="lang-fr">Imprimer / PDF</span>
+                        <span class="lang-en">Print / PDF</span>
+                    </button>
+                    <button class="btn btn-secondary" id="backToFormBtn" style="display: inline-flex; align-items: center; gap: 8px; justify-content: center;">
+                        <i class="ph ph-arrow-left" style="font-size: 1.1rem;"></i>
+                        <span class="lang-fr">Nouvelle Inscription</span>
+                        <span class="lang-en">New Registration</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conference Venue -->
+    <section id="venue">
+        <div class="venue-wrapper">
+            <div class="venue-details">
+                <h2 class="section-title">
+                    <span class="lang-fr">Lieu de la Conférence</span>
+                    <span class="lang-en">Conference Venue</span>
+                </h2>
+                <h3>Conference Center USMBA, Fez, Morocco</h3>
+                <p style="margin-bottom: 15px;">
+                    <a href="https://maps.app.goo.gl/AkrFEko1ef5KyzQSA?g_st=awb" target="_blank" class="venue-map-link">
+                        <i class="ph ph-map-pin"></i>
+                        <span class="lang-fr">Lien Google Maps Officiel</span>
+                        <span class="lang-en">Official Google Maps Link</span>
+                    </a>
+                </p>
+                <div class="venue-info-list">
+                    <div class="venue-info-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <div class="venue-info-text">
+                            <h4>Lieu</h4>
+                            <p>Centre de Conférence USMBA, Route d'Imouzzer, Fès, Maroc</p>
+                        </div>
+                    </div>
+                    <div class="venue-info-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <div class="venue-info-text">
+                            <h4>Support Officiel</h4>
+                            <p><a href="mailto:epia@usmba.ac.ma" class="hover:underline">epia@usmba.ac.ma</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="venue-map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.728956972709!2d-5.0069411999999995!3d34.00466399999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd9f8bdf9b3b0dfb%3A0x67300c144e55e5b6!2sCentre%20de%20Conf%C3%A9rence%20USMBA!5e0!3m2!1sfr!2sma!4v1700000000000!5m2!1sfr!2sma" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>FEZ GIS-Users' 2026</h3>
+                <p>Laboratoire Innovation Scientifique en Durabilité, Environnement, Education et Santé à l'ère de l'IA (LISDEESEIA) - ENS Fès, Maroc.</p>
+                <div class="logo-bar-container" style="justify-content: flex-start; gap: 15px; margin-top: 20px;">
+                    <img src="assets/image23.jpeg" alt="ENS Fès" style="height: 35px; border-radius: 4px; filter: brightness(0.8);">
+                    <img src="assets/image21.png" alt="USMBA" style="height: 35px; border-radius: 4px; filter: brightness(0.8);">
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#home">Accueil / Home</a></li>
+                    <li><a href="#overview">Aperçu / Overview</a></li>
+                    <li><a href="#themes">Thématiques / Themes</a></li>
+                    <li><a href="#keynotes">Conférenciers / Speakers</a></li>
+                    <li><a href="#committees">Comités / Committees</a></li>
+                    <li><a href="#fees">Tarifs / Fees</a></li>
+                    <li><a href="#registration">Inscription / Registration</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-partners">
+                <h4>Éditions Précédentes</h4>
+                <div style="font-size: 0.9rem; line-height: 1.6;">
+                    Taza (2012) • Meknès (2014) • Oujda (2016) • Meknès (2018) • Fès (2023) • Errachidia (2024).
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 GIS-USERS' USMBA. All rights reserved.</p>
+            <p>Contact: <a href="mailto:epia@usmba.ac.ma" style="color: var(--accent);">epia@usmba.ac.ma</a></p>
+        </div>
+    </footer>
+
+    <!-- Lightbox modal for zooming RIB image -->
+    <div id="ribLightbox" class="rib-lightbox" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(1, 9, 31, 0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+        <span class="lightbox-close" style="position: absolute; top: 20px; right: 35px; color: #f1f5f9; font-size: 40px; font-weight: bold; cursor: pointer; transition: color 0.2s ease; z-index: 10100;">&times;</span>
+        
+        <div style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 90%; max-height: 80%;">
+            <img class="lightbox-content" id="lightboxImg" style="max-width: 100%; max-height: 70vh; border-radius: 8px; border: 3px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); transform: scale(0.95); transition: transform 0.3s ease; object-fit: contain;">
+            
+            <div id="lightboxCaption" style="margin-top: 15px; text-align: center; color: #cbd5e1; font-weight: 600; font-size: 0.95rem; font-family: var(--font-heading);"></div>
+            
+            <!-- Copy RIB Button -->
+            <button id="lightboxCopyBtn" class="btn" style="margin-top: 15px; background: var(--accent-gold); color: #01091F; border: none; padding: 10px 24px; border-radius: 50px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(250,170,2,0.2);">
+                <i class="ph ph-copy" style="font-size: 1.1rem; font-weight: bold;"></i>
+                <span class="lang-fr">Copier le RIB (24 chiffres)</span>
+                <span class="lang-en">Copy RIB (24 digits)</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

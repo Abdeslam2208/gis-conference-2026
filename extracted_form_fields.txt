@@ -1,0 +1,26 @@
+Label: 'Last Name  / Nom' | Name: 'nom' | Type: 'text' | Required: Yes
+Label: 'First Name  / Prénom' | Name: 'prenom' | Type: 'text' | Required: Yes
+Label: 'Country  / Pays' | Name: 'pays' | Type: 'text' | Required: Yes
+Label: 'City  / Ville' | Name: 'ville' | Type: 'text' | Required: Yes
+Label: 'Phone Number  / N° Téléphone' | Name: 'tel' | Type: 'tel' | Required: Yes
+Label: 'Email Address  / Adresse Email' | Name: 'email' | Type: 'email' | Required: Yes
+Label: 'Institution  / Affiliation' | Name: 'affiliation' | Type: 'text' | Required: No
+Label: 'Position  / Fonction' | Name: 'fonction' | Type: 'select' | Required: Yes
+   Options: ['Research Professor / Enseignant-Chercheur', 'PhD Student / Doctorant', 'Researcher / Chercheur', 'Health Professional / Professionnel de santé', 'Associate Actor / Acteur associatif', 'Socio-economic Actor / Acteur socio-économique', 'Other / Autre']
+Label: 'Type of Participation  / Type de participation' | Name: 'participation_type' | Type: 'radio' | Required: No
+Label: 'Attendance  Présence' | Name: 'participation_type' | Type: 'radio' | Required: No
+Label: 'Communication  Communication Seule' | Name: 'participation_type' | Type: 'radio' | Required: No
+Label: 'Workshops Only  Ateliers Seuls' | Name: 'participation_type' | Type: 'radio' | Required: No
+Label: 'Communication & Workshops Communication & Ateliers' | Name: 'participation_type' | Type: 'radio' | Required: No
+Label: 'Theme  / Thème' | Name: 'theme_communication' | Type: 'select' | Required: No
+   Options: ['-- Select a theme / Sélectionner un thème --', 'Theme 1: Epidemiology & Addiction', 'Theme 2: Epidemiology & Cancer', 'Theme 3: Vector-Borne Diseases']
+Label: 'Title  / Titre' | Name: 'titre_communication' | Type: 'text' | Required: No
+Label: 'Abstract Submission (.doc, .pdf)  / Résumé de communication' | Name: 'abstract' | Type: 'file' | Required: No
+Label: 'Click to upload 
+ / Cliquez pour téléverser 
+ Max size: 5MB (DOCX, PDF)' | Name: 'abstract' | Type: 'file' | Required: No
+Label: 'Select Workshop  / Choisir l'atelier' | Name: 'workshop' | Type: 'select' | Required: No
+   Options: []
+Label: 'Payment Mode  / Mode de paiement' | Name: 'payment_mode' | Type: 'radio' | Required: No
+Label: 'Bank Transfer  Transfert bancaire' | Name: 'payment_mode' | Type: 'radio' | Required: No
+Label: 'On-site (during Congress)  Au moment du Congrès' | Name: 'payment_mode' | Type: 'radio' | Required: No
