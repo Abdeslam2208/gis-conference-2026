@@ -5134,4 +5134,283 @@ body[data-lang="en"] .en-item {
 .scientific-show-more-btn:hover {
     background: #f8fafc;
 }
+
+/* --- SUBMISSION GUIDELINES SECTION --- */
+.guidelines-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 30px;
+    align-items: stretch;
+    margin-top: 20px;
+}
+
+@media (max-width: 992px) {
+    .guidelines-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.guidelines-left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.guidelines-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.guidelines-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.05);
+}
+
+.format-card {
+    border-left: 5px solid var(--primary-color);
+}
+
+.guidelines-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.blue-icon {
+    background: rgba(37, 99, 235, 0.08);
+    color: #2563eb;
+    font-size: 1.5rem;
+}
+
+.guidelines-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.guidelines-text-en {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: #334155;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.guidelines-text-fr {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: #64748b;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Criteria Card (Dark variant) */
+.criteria-card {
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.criteria-card .guidelines-card-title {
+    color: #ffffff;
+}
+
+.text-white {
+    color: #ffffff !important;
+}
+
+.text-slate-300 {
+    color: #cbd5e1 !important;
+}
+
+.text-slate-400 {
+    color: #94a3b8 !important;
+}
+
+.criteria-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 20px;
+}
+
+.criteria-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--accent-gold);
+}
+
+.criteria-list li i {
+    font-size: 1.1rem;
+    color: var(--accent-gold);
+}
+
+/* Right Column: Procedures Card */
+.procedures-card {
+    border-left: 5px solid var(--accent-gold);
+}
+
+.procedures-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 35px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+.procedures-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.procedures-timeline::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: #e2e8f0;
+    z-index: 1;
+}
+
+.timeline-step {
+    position: relative;
+    display: flex;
+    gap: 25px;
+    z-index: 2;
+}
+
+.step-number {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #2563eb;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.08);
+}
+
+.green-step {
+    border-color: #10b981;
+    color: #10b981;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.08);
+}
+
+.step-content {
+    flex-grow: 1;
+    padding-top: 8px;
+}
+
+.step-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 10px;
+}
+
+.step-title .en-sub,
+.step-title .fr-sub {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.highlight-text {
+    color: #1e3a8a;
+    font-weight: 600;
+}
+
+/* Formatting Box inside Step 2 */
+.formatting-box {
+    margin-top: 15px;
+    background: rgba(37, 99, 235, 0.02);
+    border: 1px solid rgba(37, 99, 235, 0.08);
+    border-radius: 14px;
+    padding: 16px 20px;
+}
+
+.formatting-title {
+    font-family: var(--font-heading);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #2563eb;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.formatting-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 576px) {
+    .formatting-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .formatting-col.border-left {
+        border-left: none !important;
+        border-top: 1px dashed rgba(37, 99, 235, 0.15);
+        padding-top: 12px;
+        padding-left: 0 !important;
+    }
+}
+
+.formatting-col p {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: #475569;
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.formatting-col p:last-child {
+    margin-bottom: 0;
+}
+
+.formatting-col.border-left {
+    border-left: 1px dashed rgba(37, 99, 235, 0.15);
+    padding-left: 20px;
+}
 

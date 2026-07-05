@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const animTargets = document.querySelectorAll(
         '.theme-card, .theme-card-official, .keynote-card, .member-item, .committee-avatar-card, .pricing-card, ' +
         '.venue-wrapper, .section-title, .about-card, ' +
-        '.speaker-card-unified, .footer-brand, .footer-links, .footer-partners, ' +
+        '.speaker-card-unified, .footer-brand, .footer-links, .footer-partners, .guidelines-card, ' +
         '.fee-table-container, #formContainer, ' +
         '.venue-details, .venue-map-container, .receipt-view, ' +
         '.date-col, .about-text, .stat-card'
