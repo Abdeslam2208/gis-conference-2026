@@ -3713,7 +3713,12 @@ footer {
 
 .animate-in {
     opacity: 1;
-    transform: translateY(0) !important;
+    transform: translateY(0);
+}
+
+/* Allow hover transforms on already-animated elements */
+.animate-in:hover {
+    opacity: 1;
 }
 
 /* Section titles scale-in */
@@ -4220,23 +4225,12 @@ footer {
 .committee-avatar-card-light {
     background: #ffffff;
     border: 1px solid #e2e8f0;
+    border-top: 4px solid #e2e8f0;
     border-radius: 16px;
     padding: 28px 18px;
     text-align: center;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
-    position: relative;
-    overflow: hidden;
-}
-
-.committee-avatar-card-light::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent-gold), #f59e0b);
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
 
 .committee-avatar-card-light:hover {
@@ -4244,10 +4238,7 @@ footer {
     transform: translateY(-6px);
     box-shadow: 0 12px 32px rgba(15, 23, 42, 0.14);
     border-color: var(--accent-gold);
-}
-
-.committee-avatar-card-light:hover::before {
-    opacity: 1;
+    border-top-color: var(--accent-gold);
 }
 
 .committee-avatar-card-light .committee-avatar-wrapper {
