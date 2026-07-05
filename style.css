@@ -3914,31 +3914,7 @@ body[data-lang="en"] .en-item {
 
 /* Top Banner with modern gradient */
 .speaker-banner {
-    height: 95px;
-    width: 100%;
-    background: linear-gradient(135deg, #01091F 0%, #0c1c3f 100%);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Subtle gold decorative ring inside the banner */
-.speaker-banner::after {
-    content: '';
-    position: absolute;
-    top: -40px;
-    right: -40px;
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    border: 2px solid rgba(250, 170, 2, 0.08);
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.speaker-card-unified:hover .speaker-banner::after {
-    transform: scale(1.5);
-    border-color: rgba(250, 170, 2, 0.2);
+    display: none !important;
 }
 
 /* Circular Avatar overlapping the banner */
@@ -3948,15 +3924,19 @@ body[data-lang="en"] .en-item {
     min-width: 115px;
     border-radius: 50%;
     overflow: hidden;
-    border: 4px solid white;
-    box-shadow: 0 4px 12px rgba(1, 9, 31, 0.08);
-    margin-top: -57px;
-    /* Pull overlap */
+    border: 3px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 12px rgba(1, 9, 31, 0.05);
+    margin-top: 30px;
     z-index: 2;
     background: #f8fafc;
     position: relative;
     padding-top: 0;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.speaker-card-unified:hover .speaker-img-wrapper {
+    border-color: var(--accent-gold);
+    box-shadow: 0 6px 16px rgba(250, 170, 2, 0.2);
 }
 
 .speaker-card-unified .speaker-img-wrapper img {
