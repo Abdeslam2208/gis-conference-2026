@@ -686,16 +686,19 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', () => {
                 const bioContainer = btn.nextElementSibling;
                 const icon = btn.querySelector('i');
+                const card = btn.closest('.speaker-card-unified');
                 if (bioContainer) {
                     const isOpen = bioContainer.classList.toggle('open');
                     if (isOpen) {
                         bioContainer.style.maxHeight = bioContainer.scrollHeight + 'px';
                         if (icon) icon.className = "ph ph-caret-up";
                         btn.classList.add('active');
+                        if (card) card.classList.add('expanded');
                     } else {
                         bioContainer.style.maxHeight = '0';
                         if (icon) icon.className = "ph ph-caret-down";
                         btn.classList.remove('active');
+                        if (card) card.classList.remove('expanded');
                     }
                 }
             });
