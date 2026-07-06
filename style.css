@@ -2834,6 +2834,15 @@ details.mobile-accordion[open] .chevron-icon {
         grid-template-columns: 1fr;
         gap: 30px;
     }
+    .venue-qr-container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    .venue-header-details {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
 /* Premium Footer Section */
@@ -4480,6 +4489,20 @@ details.mobile-accordion[open] .chevron-icon {
 }
 
 /* Light Theme Overrides for Bank Details (under Registration Fees) */
+.bank-details-wrapper {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: stretch;
+}
+
+@media (max-width: 991px) {
+    .bank-details-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
 #fees .bank-details-card {
     background: #ffffff !important;
     border: 1px solid #cbd5e1 !important;

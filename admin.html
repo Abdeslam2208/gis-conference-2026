@@ -470,7 +470,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzFWcXr4Hf_Hh26zC1LD5dyIRveX_9CwtuyhuHm5ZmAFJkgMiF6lvlW-f1x_faTBPiz/exec'; // Collez votre URL Google Apps Script Web App ici pour charger depuis Google Sheets
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzFWcXr4Hf_Hh26zC1LD5dyIRveX_9CwtuyhuHm5ZmAFJkgMiF6lvlW-f1x_faTBPiz/exec'; // Collez votre URL unique Google Apps Script Web App ici (doit être la même dans app.js et admin.html)
 
             const loginCard = document.getElementById('loginCard');
             const dashboardContainer = document.getElementById('dashboardContainer');
@@ -526,51 +526,60 @@
             }
 
             function loadSubmissions() {
-                if (GOOGLE_SCRIPT_URL) {
-                    tableBody.innerHTML = `<tr><td colspan="12" class="no-data">Chargement des données en ligne...</td></tr>`;
-                    fetch(GOOGLE_SCRIPT_URL)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (Array.isArray(data)) {
-                                // Normalize keys from Google Sheets headers to standard object keys
-                                allSubmissions = data.map(item => {
-                                    if (!item || !item["Code Inscription"]) return null;
-                                    return {
-                                        code: item["Code Inscription"],
-                                        lastName: item["Nom"],
-                                        firstName: item["Prénom"],
-                                        country: item["Pays"],
-                                        city: item["Ville"],
-                                        phone: item["Téléphone"],
-                                        email: item["Email"],
-                                        affiliation: item["Affiliation"],
-                                        position: item["Fonction"],
-                                        participationType: item["Type Participation"],
-                                        communicantName: item["Nom Communiquant"],
-                                        communicantAffiliation: item["Affiliation Communiquant"],
-                                        communicationTitle: item["Titre Communication"],
-                                        coAuthors: item["Co-Auteurs"],
-                                        abstractFileBase64: item["Lien Fichier Résumé"],
-                                        abstractFileName: "Download",
-                                        workshopSelection: item["Atelier"],
-                                        fee: item["Montant Calculé"],
-                                        dateRegistered: item["Timestamp"] || item["Date Soumission"]
-                                    };
-                                }).filter(Boolean);
-                            } else if (data && data.result === 'error') {
-                                console.error("Google Sheets Error:", data.error);
-                                loadLocalSubmissions();
-                                return;
-                            }
-                            finalizeSubmissionsLoad();
-                        })
-                        .catch(err => {
-                            console.error("Failed to fetch online submissions, falling back to local:", err);
-                            loadLocalSubmissions();
-                        });
-                } else {
-                    loadLocalSubmissions();
+                const isLocalFile = window.location.protocol === 'file:';
+                let endpoint = '/api/submissions';
+
+                if (isLocalFile) {
+                    if (typeof GOOGLE_SCRIPT_URL !== 'undefined' && GOOGLE_SCRIPT_URL) {
+                        endpoint = GOOGLE_SCRIPT_URL;
+                    } else {
+                        loadLocalSubmissions();
+                        return;
+                    }
                 }
+
+                tableBody.innerHTML = `<tr><td colspan="12" class="no-data">Chargement des données...</td></tr>`;
+                
+                fetch(endpoint)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (Array.isArray(data)) {
+                            // Normalize keys to standard object keys
+                            allSubmissions = data.map(item => {
+                                if (!item || !item["Code Inscription"]) return null;
+                                return {
+                                    code: item["Code Inscription"],
+                                    lastName: item["Nom"],
+                                    firstName: item["Prénom"],
+                                    country: item["Pays"],
+                                    city: item["Ville"],
+                                    phone: item["Téléphone"],
+                                    email: item["Email"],
+                                    affiliation: item["Affiliation"],
+                                    position: item["Fonction"],
+                                    participationType: item["Type Participation"],
+                                    communicantName: item["Nom Communiquant"],
+                                    communicantAffiliation: item["Affiliation Communiquant"],
+                                    communicationTitle: item["Titre Communication"],
+                                    coAuthors: item["Co-Auteurs"],
+                                    abstractFileBase64: item["Lien Fichier Résumé"],
+                                    abstractFileName: "Download",
+                                    workshopSelection: item["Atelier"],
+                                    fee: item["Montant Calculé"],
+                                    dateRegistered: item["Timestamp"] || item["Date Soumission"]
+                                };
+                            }).filter(Boolean);
+                        } else if (data && data.result === 'error') {
+                            console.error("Backend Error:", data.error);
+                            loadLocalSubmissions();
+                            return;
+                        }
+                        finalizeSubmissionsLoad();
+                    })
+                    .catch(err => {
+                        console.error("Failed to fetch submissions, falling back to local storage:", err);
+                        loadLocalSubmissions();
+                    });
             }
 
             function loadLocalSubmissions() {
