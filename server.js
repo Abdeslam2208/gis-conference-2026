@@ -73,7 +73,22 @@ app.post('/api/register', (req, res) => {
         
         // Assainir le nom de fichier pour éviter les failles de traversée de dossier
         const safeFileName = data.abstractFileName.replace(/[^a-zA-Z0-9.\-_]/g, '_');
-        const diskFileName = `${code}_${safeFileName}`;
+        
+        // Extraire l'initiale du prénom (sans accent, en majuscule)
+        const rawFirst = (data.firstName || "").trim();
+        const initial = rawFirst ? rawFirst.charAt(0).toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+        
+        // Nettoyer le nom de famille (sans espace, sans accent)
+        const rawLast = (data.lastName || "").trim();
+        const cleanLast = rawLast.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]/g, "");
+        
+        // Générer le nom du fichier sous la forme : GIS-2026-initiale.nom_MonResume.pdf (ou fallback vers le code d'inscription si vide)
+        let namePrefix = code;
+        if (initial && cleanLast) {
+            namePrefix = `GIS-2026-${initial}.${cleanLast}`;
+        }
+        
+        const diskFileName = `${namePrefix}_${safeFileName}`;
         const savePath = path.join(uploadsDir, diskFileName);
         
         fs.writeFileSync(savePath, buffer);
