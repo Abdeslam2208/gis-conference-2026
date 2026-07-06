@@ -316,16 +316,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
         localStorage.setItem(uniqueRegCode, JSON.stringify(regRecord));
 
+
         // Envoi vers Google Sheets si l'URL est configurée
         if (GOOGLE_SCRIPT_URL) {
+            // Construire le payload léger (sans base64 lourd) pour Google Sheets
+            const sheetsPayload = {
+                code:                   regRecord.code,
+                lastName:               regRecord.lastName,
+                firstName:              regRecord.firstName,
+                country:                regRecord.country,
+                city:                   regRecord.city,
+                phone:                  regRecord.phone,
+                email:                  regRecord.email,
+                affiliation:            regRecord.affiliation,
+                position:               regRecord.position,
+                participationType:      regRecord.participationType,
+                fee:                    regRecord.fee,
+                dateRegistered:         regRecord.dateRegistered,
+                communicationTitle:     regRecord.communicationTitle    || '',
+                communicantName:        regRecord.communicantName       || '',
+                communicantAffiliation: regRecord.communicantAffiliation|| '',
+                coAuthors:              regRecord.coAuthors             || '',
+                workshopSelection:      regRecord.workshopSelection     || '',
+                // Le nom du fichier uniquement (pas le base64) – l'upload Drive sera géré côté Apps Script si présent
+                abstractFileName:       regRecord.abstractFileName      || ''
+            };
+
+            console.log('[GIS] Envoi vers Google Sheets :', sheetsPayload);
+
+            // mode: no-cors impose Content-Type text/plain — Apps Script lit le JSON via e.postData.contents
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(regRecord)
-            }).catch(err => console.error("Échec de l'envoi vers Google Sheets:", err));
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify(sheetsPayload)
+            })
+            .then(() => console.log('[GIS] Données envoyées à Google Sheets avec succès.'))
+            .catch(err => console.error("[GIS] Échec de l'envoi vers Google Sheets:", err));
         }
 
         // 5. Populate Receipt Details
