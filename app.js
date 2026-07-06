@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 5. Populate Receipt Details
         document.getElementById('receiptCode').innerText = uniqueRegCode;
-        document.getElementById('recName').innerText = `${firstName} ${lastName.toUpperCase()}`;
+        document.getElementById('recName').innerText = `${lastName.toUpperCase()} ${firstName}`;
         document.getElementById('recEmail').innerText = email;
         document.getElementById('recAffiliation').innerText = `${affiliation} (${city}, ${country})`;
         
