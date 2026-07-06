@@ -5772,7 +5772,7 @@ details.mobile-accordion[open] .chevron-icon {
 }
 
 #submission-guidelines {
-    background-color: #f8fafc !important; /* Same as other light sections */
+    background-color: #f1f5f9 !important; /* Slightly darker slate-gray to make white cards pop */
     padding: 85px 0 !important;
     max-width: 100% !important;
     width: 100% !important;
