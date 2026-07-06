@@ -5771,13 +5771,13 @@ details.mobile-accordion[open] .chevron-icon {
     padding-left: 20px;
 }
 
-/* Minimalist light-theme adjustments for Submission Guidelines — Coherent with Site Colors */
 #submission-guidelines {
     background-color: #f8fafc !important; /* Same as other light sections */
     padding: 85px 0 !important;
     max-width: 100% !important;
     width: 100% !important;
     margin: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important; /* Separator with fees */
 }
 
 /* 2-Column Equal-Height Grid Layout */
@@ -5830,7 +5830,7 @@ details.mobile-accordion[open] .chevron-icon {
     font-weight: 700 !important;
 }
 
-/* Premium Cards with colored left border accents */
+/* Premium Cards with normal borders (no color left border accents) */
 #submission-guidelines .guidelines-card {
     background: #ffffff !important;
     border: 1px solid #e2e8f0 !important;
@@ -5842,38 +5842,24 @@ details.mobile-accordion[open] .chevron-icon {
 }
 
 #submission-guidelines .guidelines-card:hover {
-    border-color: #cbd5e1 !important;
+    border-color: #2563eb !important; /* Accent border on hover */
     box-shadow: 0 12px 32px rgba(15, 23, 42, 0.09) !important;
     transform: translateY(-4px) !important;
 }
 
-/* Colored left borders per card type */
-#submission-guidelines .format-card {
-    border-left: 4px solid #2563eb !important;
-}
-
-#submission-guidelines .criteria-card {
-    border-left: 4px solid var(--accent-gold) !important;
-}
-
 #submission-guidelines .procedures-card {
-    background:
-        radial-gradient(ellipse 100% 60% at 50% 110%, rgba(37, 99, 235, 0.22) 0%, transparent 65%),
-        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(96, 165, 250, 0.07) 0%, transparent 60%),
-        linear-gradient(175deg, #010c22 0%, #020b24 40%, #051333 70%, #0c2145 100%) !important;
-    border: 1px solid rgba(255,255,255,0.07) !important;
-    border-left: 4px solid var(--accent-gold) !important;
-    box-shadow: 0 10px 40px rgba(1, 9, 31, 0.3), inset 0 1px 0 rgba(255,255,255,0.05) !important;
-    color: #e2e8f0 !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05) !important;
+    color: #0f172a !important;
     position: relative !important;
     overflow: hidden !important;
 }
 
 #submission-guidelines .procedures-card:hover {
-    box-shadow: 0 20px 45px rgba(1, 9, 31, 0.35) !important;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.09) !important;
     transform: translateY(-4px) !important;
-    border-color: rgba(250, 170, 2, 0.3) !important;
-    border-left-color: var(--accent-gold) !important;
+    border-color: #2563eb !important;
 }
 
 /* Icon Box & Horizontal Header Styling */
@@ -5938,9 +5924,9 @@ details.mobile-accordion[open] .chevron-icon {
     letter-spacing: -0.01em;
 }
 
-/* Dark card title override */
+/* Procedures card title */
 #submission-guidelines .procedures-card .procedures-title {
-    color: #ffffff !important;
+    color: #0f172a !important;
     font-size: 1.2rem !important;
 }
 
@@ -5958,11 +5944,11 @@ details.mobile-accordion[open] .chevron-icon {
     margin-bottom: 0 !important;
 }
 
-/* Dark card text overrides */
+/* Procedures card text */
 #submission-guidelines .procedures-card .guidelines-text-en,
 #submission-guidelines .procedures-card .guidelines-text-fr,
 #submission-guidelines .procedures-card .step-content p {
-    color: #94a3b8 !important;
+    color: #475569 !important;
 }
 
 /* Criteria List — pill badge style */
@@ -6006,9 +5992,9 @@ details.mobile-accordion[open] .chevron-icon {
     font-size: 1.1rem !important;
 }
 
-/* Procedures Section — Dark Card */
+/* Procedures Section */
 #submission-guidelines .procedures-title {
-    color: #ffffff !important;
+    color: #0f172a !important;
     font-size: 1.25rem !important;
 }
 
@@ -6023,23 +6009,23 @@ details.mobile-accordion[open] .chevron-icon {
     align-items: flex-start !important;
     padding: 16px !important;
     border-radius: 10px !important;
-    background: rgba(255,255,255,0.03) !important;
-    border: 1px solid rgba(255,255,255,0.06) !important;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
     transition: background 0.2s ease !important;
 }
 
 #submission-guidelines .timeline-step:hover {
-    background: rgba(255,255,255,0.06) !important;
-    border-color: rgba(255,255,255,0.1) !important;
+    background: rgba(37, 99, 235, 0.04) !important;
+    border-color: rgba(37, 99, 235, 0.15) !important;
 }
 
 #submission-guidelines .step-number {
     width: 32px !important;
     height: 32px !important;
     border-radius: 50% !important;
-    background: rgba(37, 99, 235, 0.2) !important;
-    border: 1px solid rgba(37, 99, 235, 0.4) !important;
-    color: #60a5fa !important;
+    background: rgba(37, 99, 235, 0.1) !important;
+    border: 1px solid rgba(37, 99, 235, 0.25) !important;
+    color: #2563eb !important;
     font-size: 0.9rem !important;
     font-weight: 700 !important;
     display: flex !important;
@@ -6058,7 +6044,7 @@ details.mobile-accordion[open] .chevron-icon {
 }
 
 #submission-guidelines .step-title {
-    color: #f1f5f9 !important;
+    color: #0f172a !important;
     font-size: 0.95rem !important;
     font-weight: 700 !important;
     margin-bottom: 5px !important;
@@ -6071,7 +6057,7 @@ details.mobile-accordion[open] .chevron-icon {
 }
 
 #submission-guidelines .highlight-text {
-    color: #94a3b8 !important;
+    color: #475569 !important;
     border-left: none !important;
     padding-left: 0 !important;
     margin-left: 0 !important;
@@ -6079,9 +6065,9 @@ details.mobile-accordion[open] .chevron-icon {
 
 /* Formatting Box */
 #submission-guidelines .formatting-box {
-    background: rgba(37, 99, 235, 0.08) !important;
-    border: 1px solid rgba(37, 99, 235, 0.18) !important;
-    border-left: 3px solid #60a5fa !important;
+    background: rgba(37, 99, 235, 0.05) !important;
+    border: 1px solid rgba(37, 99, 235, 0.15) !important;
+    border-left: 3px solid #2563eb !important;
     box-shadow: none !important;
     border-radius: 8px !important;
     padding: 12px 16px !important;
@@ -6089,7 +6075,7 @@ details.mobile-accordion[open] .chevron-icon {
 }
 
 #submission-guidelines .formatting-title {
-    color: #60a5fa !important;
+    color: #2563eb !important;
     font-size: 0.7rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.8px !important;
@@ -6098,7 +6084,7 @@ details.mobile-accordion[open] .chevron-icon {
 }
 
 #submission-guidelines .formatting-col p {
-    color: #94a3b8 !important;
+    color: #64748b !important;
     font-size: 0.8rem !important;
     margin-bottom: 3px !important;
     line-height: 1.45 !important;
