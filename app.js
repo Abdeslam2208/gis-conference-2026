@@ -1,4 +1,4 @@
-const GOOGLE_SCRIPT_URL = ''; // Collez votre URL Google Apps Script Web App ici pour stocker sur Google Sheets
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzFWcXr4Hf_Hh26zC1LD5dyIRveX_9CwtuyhuHm5ZmAFJkgMiF6lvlW-f1x_faTBPiz/exec'; // Collez votre URL Google Apps Script Web App ici pour stocker sur Google Sheets
 
 document.addEventListener('DOMContentLoaded', () => {
     
