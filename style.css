@@ -2636,7 +2636,7 @@ details.mobile-accordion[open] .chevron-icon {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 40px;
-    align-items: start;
+    align-items: stretch;
 }
 
 .venue-card-info {
@@ -2821,16 +2821,16 @@ details.mobile-accordion[open] .chevron-icon {
     border: 1px solid #cbd5e1;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     min-height: 380px;
-    height: auto;
+    height: 100%;
 }
 
 .venue-map-card iframe,
 .venue-map-card img {
     width: 100%;
-    height: auto;
+    height: 100%;
     border: none;
     display: block;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 @media (max-width: 991px) {
@@ -2871,12 +2871,12 @@ details.mobile-accordion[open] .chevron-icon {
         justify-content: center;
     }
     .venue-map-card {
-        min-height: auto !important;
-        height: auto !important;
+        min-height: 300px !important;
+        height: 300px !important;
     }
     .venue-map-card img {
-        height: auto !important;
-        object-fit: contain !important;
+        height: 100% !important;
+        object-fit: cover !important;
     }
 }
 
