@@ -2834,7 +2834,7 @@ details.mobile-accordion[open] .chevron-icon {
 }
 
 @media (max-width: 991px) {
-    .venue-container-premium {
+    #venue .venue-container-premium {
         grid-template-columns: 1fr;
         gap: 30px;
     }
