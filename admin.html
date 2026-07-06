@@ -6,6 +6,8 @@
     <title>Dashboard Administrateur | GIS-Users 2026</title>
     <!-- Phosphor Icons Web Font -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+    <!-- SheetJS Excel Library for exporting native .xlsx files -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <style>
         /* Specific Admin Styles (Light Theme Redesign) */
@@ -436,7 +438,7 @@
                 </div>
             </div>
             <button class="btn-action btn-export" id="exportBtn">
-                <i class="ph ph-microsoft-excel-logo"></i> Exporter vers Excel (.xls)
+                <i class="ph ph-microsoft-excel-logo"></i> Exporter vers Excel (.xlsx)
             </button>
         </div>
 
@@ -445,23 +447,28 @@
             <table class="admin-table">
                 <thead>
                     <tr>
-                        <th>Code</th>
-                        <th>Nom & Prénom / Name</th>
-                        <th>Email / Phone</th>
-                        <th>Affiliation</th>
-                        <th>Catégorie / Category</th>
-                        <th>Type / Participation</th>
-                        <th>Frais / Fee</th>
-                        <th>Titre Comm. / Title</th>
-                        <th>Auteurs / Authors</th>
-                        <th>Atelier / Workshop</th>
-                        <th>Fichier / File</th>
-                        <th>Date</th>
+                        <th>Code d'inscription</th>
+                        <th>Nom (Last Name)</th>
+                        <th>Prénom (First Name)</th>
+                        <th>Pays (Country)</th>
+                        <th>Ville (City)</th>
+                        <th>Téléphone (Phone)</th>
+                        <th>E-mail (Email)</th>
+                        <th>Affiliation / Organisme</th>
+                        <th>Fonction / Catégorie</th>
+                        <th>Type de Participation</th>
+                        <th>Nom &amp; Prénom communiquant</th>
+                        <th>Affiliation communiquant</th>
+                        <th>Titre de Communication</th>
+                        <th>Co-auteurs</th>
+                        <th>Sélection de l'Atelier</th>
+                        <th>Lien Fichier Résumé</th>
+                        <th>Horodateur (Date &amp; Heure)</th>
                     </tr>
                 </thead>
                 <tbody id="adminTableBody">
                     <tr>
-                        <td colspan="12" class="no-data">Chargement des données...</td>
+                        <td colspan="17" class="no-data">Chargement des données...</td>
                     </tr>
                 </tbody>
             </table>
@@ -538,7 +545,7 @@
                     }
                 }
 
-                tableBody.innerHTML = `<tr><td colspan="12" class="no-data">Chargement des données...</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="17" class="no-data">Chargement des données...</td></tr>`;
                 
                 fetch(endpoint)
                     .then(response => response.json())
@@ -633,7 +640,7 @@
                     const type = sub.participationType || "";
                     if (type === 'Attendance Only') {
                         attendanceCount++;
-                    } else if (type === 'Oral/Poster Communication' || type === 'Oral/Poster Communication') {
+                    } else if (type === 'Oral/Poster Communication') {
                         commCount++;
                     } else if (type === 'Workshops Only') {
                         workshopCount++;
@@ -653,7 +660,7 @@
             function renderTable(data) {
                 tableBody.innerHTML = '';
                 if (data.length === 0) {
-                    tableBody.innerHTML = `<tr><td colspan="12" class="no-data">Aucune inscription trouvée / No registrations found</td></tr>`;
+                    tableBody.innerHTML = `<tr><td colspan="17" class="no-data">Aucune inscription trouvée / No registrations found</td></tr>`;
                     return;
                 }
 
@@ -661,10 +668,10 @@
                     if (!sub) return;
                     const row = document.createElement('tr');
                     
-                    // Format Date
+                    // Format Date (horodateur)
                     const regDate = new Date(sub.dateRegistered);
                     const formattedDate = regDate.toLocaleDateString('fr-FR', {
-                        year: 'numeric', month: 'short', day: 'numeric',
+                        year: 'numeric', month: 'numeric', day: 'numeric',
                         hour: '2-digit', minute: '2-digit'
                     });
 
@@ -682,46 +689,41 @@
                         typeBadge = `<span class="badge-type badge-attendance">${sub.participationType}</span>`;
                     }
 
-                    // Split fields
-                    let commTitle = '-';
-                    let authorsHtml = '-';
-                    let workshopSelection = '-';
+                    // Clickable File Link showing absolute URL
                     let fileLinkHtml = '-';
-
-                    if (sub.participationType.includes('Communication')) {
-                        commTitle = sub.communicationTitle || '-';
-                        authorsHtml = `
-                            <div class="comm-details-pop" style="margin-bottom: 0;">
-                                <strong>Auteur:</strong> ${sub.communicantName || '-'}<br>
-                                <span style="font-size: 0.76rem; color: #64748b;">(${sub.communicantAffiliation || '-'})</span><br>
-                                <strong>Co-auteurs:</strong> ${sub.coAuthors || 'Aucun'}
-                            </div>
-                        `;
-                        if (sub.abstractFileBase64 && sub.abstractFileName) {
-                            fileLinkHtml = `<a href="${sub.abstractFileBase64}" download="${sub.abstractFileName}" class="btn-action" style="padding: 5px 12px; font-size: 0.75rem; background: rgba(37, 99, 235, 0.08); color: #2563eb; border: 1px solid rgba(37, 99, 235, 0.15); border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;"><i class="ph ph-download-simple"></i> DOC/PDF</a>`;
+                    if (sub.abstractFileBase64) {
+                        const isBase64 = sub.abstractFileBase64.startsWith('data:');
+                        let urlText = sub.abstractFileBase64;
+                        
+                        // If relative path from backend (like /uploads/...), prepend host to show absolute URL
+                        if (urlText.startsWith('/')) {
+                            urlText = window.location.origin + urlText;
                         }
-                    }
-                    if (sub.participationType.includes('Workshops')) {
-                        workshopSelection = `<strong style="color: #0284c7; font-family: monospace;">${sub.workshopSelection || '-'}</strong>`;
+                        
+                        let displayText = isBase64 ? 'Base64 Data' : urlText;
+                        if (displayText.length > 30) {
+                            displayText = displayText.substring(0, 27) + '...';
+                        }
+                        
+                        fileLinkHtml = `<a href="${sub.abstractFileBase64}" download target="_blank" style="color: #2563eb; font-weight: 600; text-decoration: underline;" title="${isBase64 ? 'Download base64 file' : urlText}">${displayText}</a>`;
                     }
 
                     row.innerHTML = `
                         <td style="font-weight: 700; color: #ca8a04; font-family: monospace;">${sub.code}</td>
-                        <td><strong>${sub.lastName.toUpperCase()} ${sub.firstName}</strong></td>
-                        <td>
-                            <div>${sub.email}</div>
-                            <div style="font-size: 0.75rem; color: #64748b; font-family: monospace; margin-top: 2px;">${sub.phone || '-'}</div>
-                        </td>
-                        <td>
-                            <div>${sub.affiliation}</div>
-                            <div style="font-size: 0.75rem; color: #64748b; margin-top: 2px;">${sub.city || '-'}, ${sub.country || '-'}</div>
-                        </td>
-                        <td style="font-size: 0.8rem;">${sub.position}</td>
+                        <td><strong>${sub.lastName ? sub.lastName.toUpperCase() : ''}</strong></td>
+                        <td>${sub.firstName || ''}</td>
+                        <td>${sub.country || ''}</td>
+                        <td>${sub.city || ''}</td>
+                        <td>${sub.phone || ''}</td>
+                        <td>${sub.email || ''}</td>
+                        <td>${sub.affiliation || ''}</td>
+                        <td>${sub.position || ''}</td>
                         <td>${typeBadge}</td>
-                        <td style="font-weight: 700;">${sub.fee}</td>
-                        <td style="max-width: 200px; word-wrap: break-word;">${commTitle}</td>
-                        <td>${authorsHtml}</td>
-                        <td>${workshopSelection}</td>
+                        <td>${sub.communicantName || '-'}</td>
+                        <td>${sub.communicantAffiliation || '-'}</td>
+                        <td style="max-width: 250px; word-wrap: break-word;">${sub.communicationTitle || '-'}</td>
+                        <td>${sub.coAuthors || '-'}</td>
+                        <td>${sub.workshopSelection || '-'}</td>
                         <td>${fileLinkHtml}</td>
                         <td style="font-size: 0.78rem; white-space: nowrap; color: #64748b;">${formattedDate}</td>
                     `;
@@ -756,34 +758,23 @@
             searchInput.addEventListener('input', applyFilters);
             filterSelect.addEventListener('change', applyFilters);
 
-            // Export to XLS (Excel) Function
+            // Export to XLSX (Excel Native OpenXML) Function using SheetJS
             exportBtn.addEventListener('click', () => {
                 if (allSubmissions.length === 0) {
                     alert("Aucune donnée à exporter / No data to export.");
                     return;
                 }
 
-                // Headers (aligned with the exact form and Sheets columns order)
+                // Headers matching the exact dashboard fields
                 const headers = [
-                    "Code Inscription", "Nom", "Prénom", "Pays", "Ville", "Téléphone", "Email", 
-                    "Affiliation", "Fonction", "Type Participation", "Nom Communiquant", 
-                    "Affiliation Communiquant", "Titre Communication", "Co-Auteurs", 
-                    "Lien Fichier Résumé", "Atelier", "Montant Calculé", "Date Inscription"
+                    "Code d'inscription", "Nom", "Prénom", "Pays", "Ville", "Téléphone", "E-mail", 
+                    "Affiliation / Organisme", "Fonction / Catégorie", "Type de Participation", 
+                    "Nom & Prénom communiquant", "Affiliation communiquant", "Titre de Communication", 
+                    "Co-auteurs", "Sélection de l'Atelier", "Lien Fichier Résumé", "Horodateur"
                 ];
 
-                // Create HTML Table structure with Excel XML namespace for native Excel alignment
-                let html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">';
-                html += '<head><meta charset="utf-8"><' + '!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Inscriptions</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--' + '></head>';
-                html += '<body><table border="1">';
-                
-                // Add Header Row
-                html += '<tr>';
-                headers.forEach(h => {
-                    html += `<th style="background-color: #0f172a; color: #ffffff; font-weight: bold; padding: 6px; text-align: left;">${h}</th>`;
-                });
-                html += '</tr>';
+                const excelData = [headers];
 
-                // Add Data Rows
                 allSubmissions.forEach(sub => {
                     if (!sub) return;
                     
@@ -793,7 +784,16 @@
                         hour: '2-digit', minute: '2-digit'
                     });
 
-                    const rowData = [
+                    // Build absolute file URL
+                    let fileUrl = "";
+                    if (sub.abstractFileBase64) {
+                        fileUrl = sub.abstractFileBase64;
+                        if (fileUrl.startsWith('/')) {
+                            fileUrl = window.location.origin + fileUrl;
+                        }
+                    }
+
+                    excelData.push([
                         sub.code || "",
                         sub.lastName || "",
                         sub.firstName || "",
@@ -808,34 +808,20 @@
                         sub.communicantAffiliation || "-",
                         sub.communicationTitle || "-",
                         sub.coAuthors || "-",
-                        sub.abstractFileBase64 || "-",
                         sub.workshopSelection || "-",
-                        sub.fee || "",
+                        fileUrl || "-",
                         formattedDate
-                    ];
-
-                    html += '<tr>';
-                    rowData.forEach(val => {
-                        // XML/HTML safety escape
-                        const cleanVal = String(val)
-                            .replace(/&/g, '&amp;')
-                            .replace(/</g, '&lt;')
-                            .replace(/>/g, '&gt;');
-                        html += `<td>${cleanVal}</td>`;
-                    });
-                    html += '</tr>';
+                    ]);
                 });
 
-                html += '</table></body></html>';
+                // Generate XLSX sheet and workbook using SheetJS library
+                const worksheet = XLSX.utils.aoa_to_sheet(excelData);
+                const workbook = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(workbook, worksheet, "Inscriptions");
 
-                const blob = new Blob([html], { type: 'application/vnd.ms-excel;charset=utf-8;' });
-                const url = URL.createObjectURL(blob);
-                const link = document.createElement("a");
-                link.setAttribute("href", url);
-                link.setAttribute("download", `Inscriptions_GIS_Users_2026_${new Date().toISOString().split('T')[0]}.xls`);
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                // Download XLSX file natively
+                const dateStr = new Date().toISOString().split('T')[0];
+                XLSX.writeFile(workbook, `Inscriptions_GIS_Users_2026_${dateStr}.xlsx`);
             });
         });
     </script>
