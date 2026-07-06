@@ -1,7 +1,7 @@
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzFWcXr4Hf_Hh26zC1LD5dyIRveX_9CwtuyhuHm5ZmAFJkgMiF6lvlW-f1x_faTBPiz/exec'; // Collez votre URL Google Apps Script Web App ici pour stocker sur Google Sheets
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxTASxrPMjNhaijfaG7gAbOizDn4Um6_-csPtFH__I3ReOCnt2PmQ8sU8Du6GPw8SM/exec'; // Collez votre URL Google Apps Script Web App ici pour stocker sur Google Sheets
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // --- 1. Language Toggle Logic ---
     const body = document.body;
     const langBtn = document.getElementById('langBtn');
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currencyToggle.addEventListener('click', () => {
         currentCurrency = currentCurrency === 'MAD' ? 'EUR' : 'MAD';
-        
+
         // Update currency button bilingually
         const frBtn = currencyToggle.querySelector('.lang-fr');
         const enBtn = currencyToggle.querySelector('.lang-en');
@@ -167,10 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function toggleFormSections() {
         const selectedRadio = document.querySelector('input[name="participation_type"]:checked');
         const selectedVal = selectedRadio ? selectedRadio.value : 'attendance';
-        
+
         const isComm = (selectedVal === 'communication' || selectedVal === 'comm_workshops');
         const isWork = (selectedVal === 'workshops' || selectedVal === 'comm_workshops');
-        
+
         // Communication fields
         if (isComm) {
             commFields.classList.add('show');
@@ -233,8 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Validate phone number: must start with '+' followed by country code and digits
         const cleanPhone = phone.replace(/[\s-]/g, '');
         if (!/^\+\d{7,18}$/.test(cleanPhone)) {
-            alert(currentLang === 'fr' 
-                ? 'Veuillez entrer un numéro de téléphone valide avec code de pays (ex: +212 600 000 000).' 
+            alert(currentLang === 'fr'
+                ? 'Veuillez entrer un numéro de téléphone valide avec code de pays (ex: +212 600 000 000).'
                 : 'Please enter a valid phone number with country code (e.g., +212 600 000 000).');
             return;
         }
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const categoryData = feeMatrix[positionKey];
         let calculatedFee = '';
-        
+
         if (categoryData) {
             if (categoryData.currency === 'MAD') {
                 const amount = isBeforeDeadline ? categoryData.madBefore : categoryData.madAfter;
@@ -321,25 +321,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (GOOGLE_SCRIPT_URL) {
             // Construire le payload léger (sans base64 lourd) pour Google Sheets
             const sheetsPayload = {
-                code:                   regRecord.code,
-                lastName:               regRecord.lastName,
-                firstName:              regRecord.firstName,
-                country:                regRecord.country,
-                city:                   regRecord.city,
-                phone:                  regRecord.phone,
-                email:                  regRecord.email,
-                affiliation:            regRecord.affiliation,
-                position:               regRecord.position,
-                participationType:      regRecord.participationType,
-                fee:                    regRecord.fee,
-                dateRegistered:         regRecord.dateRegistered,
-                communicationTitle:     regRecord.communicationTitle    || '',
-                communicantName:        regRecord.communicantName       || '',
-                communicantAffiliation: regRecord.communicantAffiliation|| '',
-                coAuthors:              regRecord.coAuthors             || '',
-                workshopSelection:      regRecord.workshopSelection     || '',
+                code: regRecord.code,
+                lastName: regRecord.lastName,
+                firstName: regRecord.firstName,
+                country: regRecord.country,
+                city: regRecord.city,
+                phone: regRecord.phone,
+                email: regRecord.email,
+                affiliation: regRecord.affiliation,
+                position: regRecord.position,
+                participationType: regRecord.participationType,
+                fee: regRecord.fee,
+                dateRegistered: regRecord.dateRegistered,
+                communicationTitle: regRecord.communicationTitle || '',
+                communicantName: regRecord.communicantName || '',
+                communicantAffiliation: regRecord.communicantAffiliation || '',
+                coAuthors: regRecord.coAuthors || '',
+                workshopSelection: regRecord.workshopSelection || '',
                 // Le nom du fichier uniquement (pas le base64) – l'upload Drive sera géré côté Apps Script si présent
-                abstractFileName:       regRecord.abstractFileName      || ''
+                abstractFileName: regRecord.abstractFileName || ''
             };
 
             console.log('[GIS] Envoi vers Google Sheets :', sheetsPayload);
@@ -351,8 +351,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'text/plain' },
                 body: JSON.stringify(sheetsPayload)
             })
-            .then(() => console.log('[GIS] Données envoyées à Google Sheets avec succès.'))
-            .catch(err => console.error("[GIS] Échec de l'envoi vers Google Sheets:", err));
+                .then(() => console.log('[GIS] Données envoyées à Google Sheets avec succès.'))
+                .catch(err => console.error("[GIS] Échec de l'envoi vers Google Sheets:", err));
         }
 
         // 5. Populate Receipt Details
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('recName').innerText = `${lastName.toUpperCase()} ${firstName}`;
         document.getElementById('recEmail').innerText = email;
         document.getElementById('recAffiliation').innerText = `${affiliation} (${city}, ${country})`;
-        
+
         // Show translations of values
         document.getElementById('recPartType').innerHTML = `
             <span class="lang-fr">${partTypeFr}</span>
@@ -482,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fileUploadCard.style.borderColor = 'rgba(255, 255, 255, 0.1)';
 
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 uploadedFileBase64 = e.target.result;
                 uploadedFileName = file.name;
             };
@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             orgTabBtns.forEach(b => b.classList.remove('active'));
             orgTabPanes.forEach(p => p.classList.remove('active'));
-            
+
             // Hide all dynamic subtitles
             const subtitles = document.querySelectorAll('.org-subtitle-item');
             subtitles.forEach(s => {
@@ -604,8 +604,8 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxImg.src = ribImg.src;
             if (lightboxCaption) {
                 const isFr = document.body.getAttribute('data-lang') === 'fr';
-                lightboxCaption.innerText = isFr 
-                    ? 'RIB Bancaire Officiel - ENS Fès' 
+                lightboxCaption.innerText = isFr
+                    ? 'RIB Bancaire Officiel - ENS Fès'
                     : 'Official Bank RIB - ENS Fez';
             }
         });
@@ -726,15 +726,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Open State
                         btn.classList.add('active');
                         if (icon) icon.className = "ph ph-caret-up";
-                        
+
                         // Set bio max-height
                         bioContainer.style.maxHeight = bioContainer.scrollHeight + 'px';
-                        
+
                         // Smoothly transition card height from 345px to expanded height
                         card.style.height = '345px';
                         card.offsetHeight; // Force reflow
                         card.style.height = (345 + bioContainer.scrollHeight) + 'px';
-                        
+
                         // After transition completes, set to auto so it stays responsive
                         setTimeout(() => {
                             if (bioContainer.classList.contains('open')) {
@@ -745,14 +745,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Close State
                         btn.classList.remove('active');
                         if (icon) icon.className = "ph ph-caret-down";
-                        
+
                         // Force explicit pixel height on card so it can transition
                         card.style.height = card.offsetHeight + 'px';
                         card.offsetHeight; // Force reflow
-                        
+
                         // Collapse biography text
                         bioContainer.style.maxHeight = '0';
-                        
+
                         // Collapse card back to its default 345px
                         card.style.height = '345px';
                     }
