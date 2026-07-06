@@ -532,7 +532,31 @@
                         .then(response => response.json())
                         .then(data => {
                             if (Array.isArray(data)) {
-                                allSubmissions = data;
+                                // Normalize keys from Google Sheets headers to standard object keys
+                                allSubmissions = data.map(item => {
+                                    if (!item || !item["Code Inscription"]) return null;
+                                    return {
+                                        code: item["Code Inscription"],
+                                        lastName: item["Nom"],
+                                        firstName: item["Prénom"],
+                                        country: item["Pays"],
+                                        city: item["Ville"],
+                                        phone: item["Téléphone"],
+                                        email: item["Email"],
+                                        affiliation: item["Affiliation"],
+                                        position: item["Fonction"],
+                                        participationType: item["Type Participation"],
+                                        communicantName: item["Nom Communiquant"],
+                                        communicantAffiliation: item["Affiliation Communiquant"],
+                                        communicationTitle: item["Titre Communication"],
+                                        coAuthors: item["Co-Auteurs"],
+                                        abstractFileBase64: item["Lien Fichier Résumé"],
+                                        abstractFileName: "Download",
+                                        workshopSelection: item["Atelier"],
+                                        fee: item["Montant Calculé"],
+                                        dateRegistered: item["Timestamp"] || item["Date Soumission"]
+                                    };
+                                }).filter(Boolean);
                             } else if (data && data.result === 'error') {
                                 console.error("Google Sheets Error:", data.error);
                                 loadLocalSubmissions();
