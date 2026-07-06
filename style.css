@@ -3033,7 +3033,7 @@ details.mobile-accordion[open] .chevron-icon {
     margin: 0;
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: repeat(6, auto);
+    grid-template-rows: repeat(4, auto);
     grid-template-columns: repeat(2, 1fr);
     gap: 12px 20px;
 }
