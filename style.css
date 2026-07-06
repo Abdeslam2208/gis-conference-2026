@@ -4264,7 +4264,7 @@ details.mobile-accordion[open] .chevron-icon {
 
     .speaker-card-unified:nth-child(5) {
         grid-column: span 2 !important;
-        max-width: 290px;
+        max-width: 320px;
         margin: 0 auto;
         width: 100%;
     }
@@ -4273,7 +4273,7 @@ details.mobile-accordion[open] .chevron-icon {
 @media (max-width: 640px) {
     .speakers-grid-unified {
         grid-template-columns: 1fr;
-        max-width: 290px;
+        max-width: 320px;
         margin: 40px auto 0 auto;
     }
 
