@@ -5834,11 +5834,17 @@ details.mobile-accordion[open] .chevron-icon {
 }
 
 #submission-guidelines .procedures-card {
-    background: linear-gradient(135deg, #01091F 0%, #030d29 100%) !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
+    background:
+        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(37, 99, 235, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(250, 170, 2, 0.09) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 35% at 20% 80%, rgba(96, 165, 250, 0.08) 0%, transparent 55%),
+        linear-gradient(160deg, #01091F 0%, #020b24 35%, #051333 65%, #0c2145 100%) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
     border-left: 4px solid var(--accent-gold) !important;
-    box-shadow: 0 10px 30px rgba(1, 9, 31, 0.25) !important;
+    box-shadow: 0 10px 40px rgba(1, 9, 31, 0.3), inset 0 1px 0 rgba(255,255,255,0.05) !important;
     color: #e2e8f0 !important;
+    position: relative !important;
+    overflow: hidden !important;
 }
 
 #submission-guidelines .procedures-card:hover {
