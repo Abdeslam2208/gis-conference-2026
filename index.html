@@ -1786,32 +1786,27 @@
 
         </div>
 
-        <!-- Receipt View (Now clean Success Message) -->
-        <div class="receipt-wrapper" id="receiptView" style="text-align: center; padding: 40px 30px; max-width: 600px; margin: 0 auto;">
-            <div class="receipt-header" style="margin-bottom: 25px;">
-                <div class="receipt-success-badge" style="width: 70px; height: 70px; font-size: 2.2rem; background: rgba(52, 211, 153, 0.1); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.2); margin: 0 auto 20px auto; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
-                    <i class="ph ph-check" style="font-size: 2.2rem; color: #10b981;"></i>
-                </div>
-                <h2 style="font-size: 1.8rem; font-weight: 800; color: #ffffff; margin-bottom: 10px;">
-                    <span class="lang-fr">Inscription Réussie !</span>
-                    <span class="lang-en">Registration Successful!</span>
-                </h2>
-                <p style="font-size: 0.95rem; color: #cbd5e1; max-width: 500px; margin: 0 auto 25px auto; line-height: 1.5;">
-                    <span class="lang-fr">Votre demande de pré-inscription a été enregistrée avec succès. Veuillez copier ou noter votre code unique d'inscription ci-dessous.</span>
-                    <span class="lang-en">Your pre-registration request has been successfully recorded. Please copy or note down your unique registration code below.</span>
-                </p>
+    <!-- Success Modal Popup (Receipt View) -->
+    <div id="receiptView" class="rib-lightbox" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(1, 9, 31, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+        <div style="background: rgba(13, 20, 38, 0.95); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 35px; max-width: 450px; width: 90%; text-align: center; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6); transform: scale(0.95); transition: transform 0.3s ease;">
+            <!-- Icon -->
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(52, 211, 153, 0.15); border: 1px solid rgba(52, 211, 153, 0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; color: #34d399;">
+                <i class="ph ph-check" style="font-size: 2rem;"></i>
             </div>
             
-            <div class="receipt-code-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); padding: 20px; border-radius: 12px; max-width: 400px; margin: 0 auto 30px auto; text-align: center;">
-                <div class="receipt-code-label" style="font-size: 0.72rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 1px; margin-bottom: 6px;">
-                    <span class="lang-fr">Code Unique d'Inscription</span>
-                    <span class="lang-en">Unique Registration Code</span>
-                </div>
-                <div class="receipt-code" id="receiptCode" style="font-size: 2.1rem; font-weight: 900; color: var(--accent-gold); font-family: monospace; letter-spacing: 2px;">-</div>
-            </div>
-
+            <h3 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 12px; font-weight: 700; font-family: var(--font-heading);">
+                <span class="lang-fr">Inscription Réussie !</span>
+                <span class="lang-en">Registration Successful!</span>
+            </h3>
+            
+            <p style="color: #cbd5e1; font-size: 0.98rem; line-height: 1.5; margin-bottom: 25px;">
+                <span class="lang-fr">Votre demande de pré-inscription a été enregistrée avec succès.</span>
+                <span class="lang-en">Your pre-registration request has been successfully recorded.</span>
+            </p>
+            
             <!-- Hidden elements container for app.js data-binding compatibility -->
             <div style="display: none;">
+                <span id="receiptCode">-</span>
                 <span id="recName">-</span>
                 <span id="recEmail">-</span>
                 <span id="recAffiliation">-</span>
@@ -1830,14 +1825,12 @@
                 <span id="recAmount">-</span>
             </div>
 
-            <div class="receipt-actions" style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
-                <button class="btn btn-secondary" id="backToFormBtn" style="display: inline-flex; align-items: center; gap: 8px; justify-content: center; padding: 10px 22px; border-radius: 30px; font-weight: 700; cursor: pointer; transition: var(--transition); background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.1);">
-                    <i class="ph ph-arrow-left" style="font-size: 1.1rem;"></i>
-                    <span class="lang-fr">Retour au Formulaire</span>
-                    <span class="lang-en">Back to Form</span>
-                </button>
-            </div>
+            <button id="backToFormBtn" class="btn" style="background: var(--accent-gold); color: #01091F; border: none; padding: 10px 32px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(250,170,2,0.2);">
+                <span class="lang-fr">Fermer</span>
+                <span class="lang-en">Close</span>
+            </button>
         </div>
+    </div>
     </section>
 
     <!-- Congress Venue -->

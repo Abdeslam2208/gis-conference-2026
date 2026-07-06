@@ -373,12 +373,15 @@ document.addEventListener('DOMContentLoaded', () => {
             el.innerText = uniqueRegCode;
         });
 
-        // 6. Toggle view
-        formContainer.style.display = 'none';
-        receiptView.style.display = 'block';
-
-        // Smooth scroll to top of section
-        document.getElementById('registration').scrollIntoView({ behavior: 'smooth' });
+        // 6. Toggle view (Show modal)
+        receiptView.style.display = 'flex';
+        setTimeout(() => {
+            receiptView.style.opacity = '1';
+            const innerContent = receiptView.querySelector('div');
+            if (innerContent) {
+                innerContent.style.transform = 'scale(1)';
+            }
+        }, 10);
     });
 
     // --- Custom File Upload Card Handling ---
@@ -469,17 +472,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     backToFormBtn.addEventListener('click', () => {
+        // Fade out modal
+        receiptView.style.opacity = '0';
+        const innerContent = receiptView.querySelector('div');
+        if (innerContent) {
+            innerContent.style.transform = 'scale(0.95)';
+        }
+        setTimeout(() => {
+            receiptView.style.display = 'none';
+        }, 300);
+
         // Reset form
         regForm.reset();
         resetCustomFileUpload();
         toggleFormSections();
-
-        // Toggle view back
-        receiptView.style.display = 'none';
-        formContainer.style.display = '';
-
-        // Smooth scroll to registration
-        document.getElementById('registration').scrollIntoView({ behavior: 'smooth' });
     });
 
     // --- 7. Main Committee Tabs Logic ---
