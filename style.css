@@ -3032,6 +3032,8 @@ details.mobile-accordion[open] .chevron-icon {
     padding: 0;
     margin: 0;
     display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(6, auto);
     grid-template-columns: repeat(2, 1fr);
     gap: 12px 20px;
 }
@@ -3127,6 +3129,12 @@ details.mobile-accordion[open] .chevron-icon {
     
     .footer-editions-premium {
         grid-column: span 1;
+    }
+    
+    .footer-links-list {
+        grid-auto-flow: row;
+        grid-template-rows: none;
+        grid-template-columns: 1fr;
     }
     
     .footer-bottom-premium {
