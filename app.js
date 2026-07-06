@@ -591,6 +591,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetSub.style.display = 'block';
                 targetSub.classList.add('active');
             }
+
+            // Reset grid expand states when switching tabs
+            const allOrgGrids = document.querySelectorAll('.organizing-grid');
+            allOrgGrids.forEach(g => g.classList.remove('expanded'));
+            const orgBtn = document.getElementById('organizingToggleBtn');
+            if (orgBtn) {
+                orgBtn.classList.remove('expanded');
+                const frSpan = orgBtn.querySelector('.lang-fr');
+                const enSpan = orgBtn.querySelector('.lang-en');
+                if (frSpan) frSpan.innerHTML = 'Voir plus <i class="ph ph-caret-down"></i>';
+                if (enSpan) enSpan.innerHTML = 'Show more <i class="ph ph-caret-down"></i>';
+            }
         });
     });
 });
@@ -599,6 +611,29 @@ document.addEventListener('DOMContentLoaded', () => {
 function toggleScientificGrid() {
     const grid = document.querySelector('.strict-members-grid');
     const btn = document.getElementById('scientificToggleBtn');
+    if (!grid || !btn) return;
+
+    const isExpanded = grid.classList.toggle('expanded');
+    btn.classList.toggle('expanded', isExpanded);
+
+    // Update button text for both langs
+    const frSpan = btn.querySelector('.lang-fr');
+    const enSpan = btn.querySelector('.lang-en');
+    if (frSpan) frSpan.innerHTML = isExpanded
+        ? 'Voir moins <i class="ph ph-caret-down"></i>'
+        : 'Voir plus <i class="ph ph-caret-down"></i>';
+    if (enSpan) enSpan.innerHTML = isExpanded
+        ? 'Show less <i class="ph ph-caret-down"></i>'
+        : 'Show more <i class="ph ph-caret-down"></i>';
+}
+
+// --- Organizing Committee Show More / Show Less ---
+function toggleOrganizingGrid() {
+    const activePane = document.querySelector('.organizing-tab-pane.active');
+    if (!activePane) return;
+
+    const grid = activePane.querySelector('.organizing-grid');
+    const btn = document.getElementById('organizingToggleBtn');
     if (!grid || !btn) return;
 
     const isExpanded = grid.classList.toggle('expanded');
@@ -790,5 +825,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        // --- 10. Premium Back to Top Button ---
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    if (backToTopBtn.style.display === 'none') {
+                        backToTopBtn.style.display = 'flex';
+                        backToTopBtn.offsetHeight; // trigger reflow
+                    }
+                    backToTopBtn.style.opacity = '1';
+                    backToTopBtn.style.transform = 'translateY(0) scale(1)';
+                    backToTopBtn.style.pointerEvents = 'auto';
+                } else {
+                    backToTopBtn.style.opacity = '0';
+                    backToTopBtn.style.transform = 'translateY(20px) scale(0.9)';
+                    backToTopBtn.style.pointerEvents = 'none';
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            backToTopBtn.addEventListener('mouseenter', () => {
+                backToTopBtn.style.background = 'rgba(1, 9, 31, 1)';
+                backToTopBtn.style.border = '1px solid rgba(250,170,2,0.8)';
+                backToTopBtn.style.boxShadow = '0 10px 25px rgba(250,170,2,0.3)';
+                const icon = backToTopBtn.querySelector('i');
+                if (icon) icon.style.transform = 'translateY(-3px)';
+            });
+            backToTopBtn.addEventListener('mouseleave', () => {
+                backToTopBtn.style.background = 'rgba(1, 9, 31, 0.85)';
+                backToTopBtn.style.border = '1px solid rgba(250,170,2,0.3)';
+                backToTopBtn.style.boxShadow = '0 8px 24px rgba(0,0,0,0.15)';
+                const icon = backToTopBtn.querySelector('i');
+                if (icon) icon.style.transform = 'translateY(0)';
+            });
+        }
     }
 });
