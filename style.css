@@ -5798,14 +5798,24 @@ details.mobile-accordion[open] .chevron-icon {
 #submission-guidelines .guidelines-top-row {
     display: flex !important;
     flex-direction: column !important;
-    gap: 30px !important;
+    gap: 20px !important;
     width: 100% !important;
     height: 100% !important;
 }
 
-/* Each card in the left column shares height equally */
-#submission-guidelines .guidelines-top-row .guidelines-card {
+/* Presentation Formats: compact, natural height */
+#submission-guidelines .guidelines-top-row .format-card {
+    flex: 0 0 auto !important;
+}
+
+/* Evaluation Criteria: fills remaining space */
+#submission-guidelines .guidelines-top-row .criteria-card {
     flex: 1 !important;
+}
+
+/* Banner: natural aspect ratio, no stretch */
+#submission-guidelines .guidelines-top-row .guidelines-banner-wrap {
+    flex: 0 0 auto !important;
 }
 
 /* Right column (procedures) fills full grid row height */
