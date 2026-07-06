@@ -970,6 +970,27 @@ details.mobile-accordion[open] .chevron-icon {
         font-size: 1.05rem;
         margin-bottom: 30px;
     }
+
+    /* Section Titles and Descriptions Responsive Scaling */
+    .section-title,
+    #submission-guidelines .section-title {
+        font-size: 1.65rem !important;
+    }
+
+    .section-desc,
+    .honorary-subtitle {
+        font-size: 0.9rem !important;
+        margin-bottom: 2.2rem !important;
+    }
+
+    .committee-left-title {
+        font-size: 1.45rem !important;
+        margin-bottom: 25px !important;
+    }
+
+    .honorary-main-title {
+        font-size: 1.65rem !important;
+    }
 }
 
 .btn {
