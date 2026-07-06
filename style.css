@@ -5773,7 +5773,7 @@ details.mobile-accordion[open] .chevron-icon {
 
 /* Minimalist light-theme adjustments for Submission Guidelines — Coherent with Site Colors */
 #submission-guidelines {
-    background-color: #e3ecf7 !important; /* Elegant slate blue-gray (gris bleu) background */
+    background-color: #f8fafc !important; /* Same as other light sections */
     padding: 85px 0 !important;
     max-width: 100% !important;
     width: 100% !important;
