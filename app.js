@@ -38,17 +38,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. Mobile Menu Toggle ---
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
+    // Only select actual links (anchors), not the <summary> tags
+    const mobileLinks = document.querySelectorAll('a.mobile-link, a.mobile-sublink, a.mobile-register-btn');
+    const mobileAccordions = document.querySelectorAll('details.mobile-accordion');
 
     menuToggle.addEventListener('click', () => {
         menuToggle.classList.toggle('open');
         mobileMenu.classList.toggle('open');
+        // Close accordions when closing the main menu
+        if (!mobileMenu.classList.contains('open')) {
+            mobileAccordions.forEach(acc => acc.removeAttribute('open'));
+        }
     });
 
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
             menuToggle.classList.remove('open');
             mobileMenu.classList.remove('open');
+            // Close accordions
+            mobileAccordions.forEach(acc => acc.removeAttribute('open'));
         });
     });
 

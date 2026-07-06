@@ -29,20 +29,7 @@
                 </button>
             </div>
         </div>
-        <!-- Mobile Menu (Moved inside pre-header for absolute positioning relative to sticky pre-header on mobile) -->
-        <div class="mobile-menu-overlay" id="mobileMenu">
-            <a href="#home" class="mobile-link"><span class="lang-fr">Accueil</span><span class="lang-en">Home</span></a>
-            <a href="#overview" class="mobile-link"><span class="lang-fr">Aperçu & Portée</span><span class="lang-en">Overview</span></a>
-            <a href="#themes" class="mobile-link"><span class="lang-fr">Thématiques</span><span class="lang-en">Themes</span></a>
-            <a href="#keynotes" class="mobile-link"><span class="lang-fr">Conférenciers d'Honneur</span><span class="lang-en">Keynote Speakers</span></a>
-            <a href="#honorary" class="mobile-link"><span class="lang-fr">Comité d'Honneur</span><span class="lang-en">Honorary Committee</span></a>
-            <a href="#coordinators" class="mobile-link"><span class="lang-fr">Organisateurs du Congrès</span><span class="lang-en">Congress Organizers</span></a>
-            <a href="#scientific" class="mobile-link"><span class="lang-fr">Comité Scientifique</span><span class="lang-en">Scientific Committee</span></a>
-            <a href="#organizing" class="mobile-link"><span class="lang-fr">Comité d'Organisation</span><span class="lang-en">Organizing Committee</span></a>
-            <a href="#submission-guidelines" class="mobile-link"><span class="lang-fr">Soumission</span><span class="lang-en">Submission</span></a>
-            <a href="#fees" class="mobile-link"><span class="lang-fr">Tarifs</span><span class="lang-en">Fees</span></a>
-            <a href="#registration" class="mobile-register-btn"><span class="lang-fr">S'inscrire</span><span class="lang-en">Register</span></a>
-        </div>
+
     </div>
 
     <!-- Navigation Header -->
@@ -148,16 +135,54 @@
             </div>
         </div>
 
-        <!-- Mobile Menu (Moved inside header for absolute positioning relative to sticky parent) -->
+        <!-- Mobile Menu (Advanced version with logos and accordions) -->
         <div class="mobile-menu-overlay" id="mobileMenu">
-            <a href="#home" class="mobile-link"><span class="lang-fr">Accueil</span><span class="lang-en">Home</span></a>
-            <a href="#overview" class="mobile-link"><span class="lang-fr">Aperçu & Portée</span><span class="lang-en">Overview</span></a>
-            <a href="#themes" class="mobile-link"><span class="lang-fr">Thématiques</span><span class="lang-en">Themes</span></a>
-            <a href="#keynotes" class="mobile-link"><span class="lang-fr">Conférenciers</span><span class="lang-en">Speakers</span></a>
-            <a href="#committees" class="mobile-link"><span class="lang-fr">Comités</span><span class="lang-en">Committees</span></a>
-            <a href="#submission-guidelines" class="mobile-link"><span class="lang-fr">Soumission</span><span class="lang-en">Submission</span></a>
-            <a href="#fees" class="mobile-link"><span class="lang-fr">Tarifs</span><span class="lang-en">Fees</span></a>
-            <a href="#registration" class="mobile-register-btn"><span class="lang-fr">S'inscrire</span><span class="lang-en">Register</span></a>
+            <!-- Mobile Logos -->
+            <div class="mobile-menu-logos">
+                <img src="assets/ISDEESIA.png" alt="ISDEESIA">
+                <img src="assets/logo.png" alt="GIS Users Logo">
+                <img src="assets/usmba50.png" alt="USMBA">
+            </div>
+            
+            <div class="mobile-menu-content">
+                <a href="#home" class="mobile-link"><span class="lang-fr">Accueil</span><span class="lang-en">Home</span></a>
+                
+                <details class="mobile-accordion">
+                    <summary class="mobile-link"><span class="lang-fr">Le Congrès</span><span class="lang-en">The Congress</span> <svg class="chevron-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></summary>
+                    <div class="mobile-accordion-content">
+                        <a href="#overview" class="mobile-sublink"><span class="lang-fr">Aperçu & Portée</span><span class="lang-en">Overview</span></a>
+                        <a href="#themes" class="mobile-sublink"><span class="lang-fr">Thématiques</span><span class="lang-en">Themes</span></a>
+                        <a href="#venue" class="mobile-sublink"><span class="lang-fr">Lieu & Contact</span><span class="lang-en">Venue & Contact</span></a>
+                    </div>
+                </details>
+                
+                <details class="mobile-accordion">
+                    <summary class="mobile-link"><span class="lang-fr">Comités</span><span class="lang-en">Committees</span> <svg class="chevron-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></summary>
+                    <div class="mobile-accordion-content">
+                        <a href="#honorary" class="mobile-sublink"><span class="lang-fr">Comité d'Honneur</span><span class="lang-en">Honorary Committee</span></a>
+                        <a href="#coordinators" class="mobile-sublink"><span class="lang-fr">Organisateurs</span><span class="lang-en">Organizers</span></a>
+                        <a href="#scientific" class="mobile-sublink"><span class="lang-fr">Comité Scientifique</span><span class="lang-en">Scientific Committee</span></a>
+                        <a href="#organizing" class="mobile-sublink"><span class="lang-fr">Comité d'Organisation</span><span class="lang-en">Organizing Committee</span></a>
+                    </div>
+                </details>
+                
+                <a href="#keynotes" class="mobile-link"><span class="lang-fr">Conférenciers</span><span class="lang-en">Keynote Speakers</span></a>
+                
+                <details class="mobile-accordion">
+                    <summary class="mobile-link"><span class="lang-fr">Inscription</span><span class="lang-en">Registration</span> <svg class="chevron-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></summary>
+                    <div class="mobile-accordion-content">
+                        <a href="#submission-guidelines" class="mobile-sublink"><span class="lang-fr">Directives</span><span class="lang-en">Guidelines</span></a>
+                        <a href="#fees" class="mobile-sublink"><span class="lang-fr">Tarifs & RIB</span><span class="lang-en">Fees & Bank RIB</span></a>
+                        <a href="#registration" class="mobile-sublink"><span class="lang-fr">S'inscrire</span><span class="lang-en">Register Now</span></a>
+                    </div>
+                </details>
+            </div>
+
+            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(226, 232, 240, 0.6);">
+                <a href="#registration" class="mobile-register-btn">
+                    <span class="lang-fr">Formulaire d'Inscription</span><span class="lang-en">Registration Form</span>
+                </a>
+            </div>
         </div>
     </header>
 

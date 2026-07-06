@@ -500,7 +500,6 @@ body[data-lang="en"] .en-item {
     border-bottom: 1px solid var(--border-color);
     padding: 24px;
     flex-direction: column;
-    gap: 14px;
     z-index: 998;
     opacity: 0;
     pointer-events: none;
@@ -515,33 +514,98 @@ body[data-lang="en"] .en-item {
     transform: translateY(0);
 }
 
+.mobile-menu-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.mobile-menu-logos img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+.mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .mobile-link {
     font-weight: 600;
     font-size: 1.05rem;
     color: var(--text-heading);
-    padding: 8px 0;
+    padding: 10px 0;
     border-bottom: 1px solid rgba(226, 232, 240, 0.6);
     transition: var(--transition);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
 }
 
 .mobile-link:hover {
-    color: var(--primary-light);
+    color: var(--accent-gold);
+    padding-left: 6px;
+}
+
+details.mobile-accordion > summary {
+    list-style: none;
+}
+details.mobile-accordion > summary::-webkit-details-marker {
+    display: none;
+}
+details.mobile-accordion .chevron-icon {
+    transition: transform 0.3s ease;
+    color: #64748b;
+}
+details.mobile-accordion[open] .chevron-icon {
+    transform: rotate(180deg);
+}
+
+.mobile-accordion-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 0 8px 15px;
+    border-left: 2px solid rgba(250, 170, 2, 0.3);
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.mobile-sublink {
+    font-size: 0.95rem;
+    color: #475569;
+    padding: 8px 0;
+    transition: var(--transition);
+    display: block;
+}
+.mobile-sublink:hover {
+    color: var(--accent-gold);
     padding-left: 6px;
 }
 
 .mobile-register-btn {
-    background: var(--primary-light);
-    color: white !important;
+    background: linear-gradient(135deg, var(--accent-gold), #f59e0b);
+    color: #01091F !important;
     text-align: center;
-    padding: 12px;
+    padding: 14px;
     border-radius: 8px;
     font-weight: 700;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 4px 15px rgba(250, 170, 2, 0.25);
     transition: var(--transition);
+    display: block;
+    width: 100%;
 }
 
 .mobile-register-btn:hover {
-    background: var(--primary-dark);
+    box-shadow: 0 6px 20px rgba(250, 170, 2, 0.4);
+    transform: translateY(-2px);
 }
 
 /* Hero Section (Premium Light Theme Centered Layout) */
