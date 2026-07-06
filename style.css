@@ -952,20 +952,22 @@ details.mobile-accordion[open] .chevron-icon {
 
 @media (max-width: 768px) {
     .hero-wrapper {
-        padding: 50px 15px 60px 15px;
+        padding: 50px 24px 60px 24px;
     }
 
     .hero-container h1 {
-        font-size: 1.9rem;
+        font-size: 1.65rem;
+        word-break: break-word;
     }
 
     .hero-acronym {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .hero-sub {
-        font-size: 1.05rem;
+        font-size: 1rem;
         margin-bottom: 30px;
+        padding: 0 10px;
     }
 }
 
@@ -1664,7 +1666,6 @@ details.mobile-accordion[open] .chevron-icon {
     font-weight: 600;
     color: var(--text-muted);
     line-height: 1.35;
-}
 }
 
 @media (max-width: 768px) {
@@ -3258,15 +3259,19 @@ details.mobile-accordion[open] .chevron-icon {
         position: sticky;
         top: 0;
         z-index: 1000;
-        background: rgba(255, 255, 255, 0.96);
+        background: rgba(1, 9, 31, 0.96);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--border-color);
-        box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
     .menu-toggle {
         display: block;
+    }
+    
+    .menu-toggle span {
+        background-color: #ffffff;
     }
 }
 
@@ -3542,12 +3547,12 @@ details.mobile-accordion[open] .chevron-icon {
         display: block;
         font-family: var(--font-heading);
         font-weight: 800;
-        font-size: 1.25rem;
+        font-size: 1.1rem;
         letter-spacing: -0.3px;
-        color: #01091F;
-        background: linear-gradient(135deg, #01091F 0%, #ca8a04 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #ffffff;
+        background: none;
+        -webkit-background-clip: initial;
+        -webkit-text-fill-color: initial;
     }
 
     .pre-header-left {
