@@ -44,7 +44,7 @@ Le serveur démarrera par défaut sur le port **3000** :
 ## 🔒 Administration du portail
 
 * **Accès** : L'accès au panneau d'administration nécessite un mot de passe.
-* **Mot de passe par défaut** : `mri9abdjaj` (il est fortement recommandé de le modifier dans le fichier `admin.html` à la variable `ADMIN_PASSWORD` avant la mise en production).
+* **Mot de passe par défaut** : `G@SUsers-7` (il est fortement recommandé de le modifier dans le fichier `admin.html` à la variable `ADMIN_PASSWORD` avant la mise en production).
 * **Fonctionnalités** :
   * Visualisation en temps réel de toutes les inscriptions.
   * Statistiques et revenus générés (frais calculés automatiquement).
