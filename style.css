@@ -2756,11 +2756,13 @@ body[data-lang="en"] .en-item {
     height: 100%;
 }
 
-.venue-map-card iframe {
+.venue-map-card iframe,
+.venue-map-card img {
     width: 100%;
     height: 100%;
     border: none;
     display: block;
+    object-fit: cover;
 }
 
 @media (max-width: 991px) {
