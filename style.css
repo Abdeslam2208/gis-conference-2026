@@ -5780,12 +5780,12 @@ details.mobile-accordion[open] .chevron-icon {
     margin: 0 !important;
 }
 
-/* 2-Column Compact Grid Layout (Left Column: 2 Stacked Cards | Right Column: 1 Tall Card) */
+/* 2-Column Equal-Height Grid Layout */
 #submission-guidelines .guidelines-grid {
     display: grid !important;
     grid-template-columns: 5fr 7fr !important;
     gap: 30px !important;
-    align-items: start !important;
+    align-items: stretch !important;  /* equal height columns */
 }
 
 @media (max-width: 992px) {
@@ -5794,11 +5794,24 @@ details.mobile-accordion[open] .chevron-icon {
     }
 }
 
+/* Left column fills full grid row height */
 #submission-guidelines .guidelines-top-row {
     display: flex !important;
     flex-direction: column !important;
     gap: 30px !important;
     width: 100% !important;
+    height: 100% !important;
+}
+
+/* Each card in the left column shares height equally */
+#submission-guidelines .guidelines-top-row .guidelines-card {
+    flex: 1 !important;
+}
+
+/* Right column (procedures) fills full grid row height */
+#submission-guidelines .guidelines-right-col.procedures-card {
+    height: 100% !important;
+    box-sizing: border-box !important;
 }
 
 #submission-guidelines .section-title {
@@ -5835,10 +5848,9 @@ details.mobile-accordion[open] .chevron-icon {
 
 #submission-guidelines .procedures-card {
     background:
-        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(37, 99, 235, 0.14) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(250, 170, 2, 0.09) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 35% at 20% 80%, rgba(96, 165, 250, 0.08) 0%, transparent 55%),
-        linear-gradient(160deg, #01091F 0%, #020b24 35%, #051333 65%, #0c2145 100%) !important;
+        radial-gradient(ellipse 100% 60% at 50% 110%, rgba(37, 99, 235, 0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(96, 165, 250, 0.07) 0%, transparent 60%),
+        linear-gradient(175deg, #010c22 0%, #020b24 40%, #051333 70%, #0c2145 100%) !important;
     border: 1px solid rgba(255,255,255,0.07) !important;
     border-left: 4px solid var(--accent-gold) !important;
     box-shadow: 0 10px 40px rgba(1, 9, 31, 0.3), inset 0 1px 0 rgba(255,255,255,0.05) !important;
